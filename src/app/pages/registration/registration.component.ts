@@ -7,6 +7,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent {
+  currentStep: number =1;
   form: FormGroup = this._fb.group({
     phone: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
@@ -18,7 +19,12 @@ export class RegistrationComponent {
 
   constructor(private _fb: FormBuilder) {
   }
-
+  nextStep() {
+    this.currentStep++;
+  }
+  previousStep() {
+    this.currentStep--;
+  }
   log() {
     console.log(this.form.value);
   }
