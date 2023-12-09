@@ -1,0 +1,22 @@
+<h1>Registration</h1>
+<form [formGroup]="form" (submit)="log()">
+  <label>
+    <input type="tel" name="phoneRegistration" formControlName="phone" placeholder="Phone number"/>
+  </label>
+  <label>
+    <input type="email" name="emailRegistration" formControlName="email" placeholder="Email"/>
+  </label>
+  <label>
+    <input type="password" name="passwordRegistration" formControlName="password" placeholder="Password"/>
+  </label>
+  <label>
+    <input type="text" name="surnameRegistration" formControlName="surname" placeholder="Your surname"/>
+  </label>
+  <label>
+    <input type="text" name="firstnameRegistration" formControlName="firstname" placeholder="Your firstname"/>
+  </label>
+  <label>
+    <input type="date" name="birthdateRegistration" formControlName="birthdate" placeholder="Your birthdate"/>
+  </label>
+  <input type="submit" value="Register" [disabled]="form.invalid">
+</form>
