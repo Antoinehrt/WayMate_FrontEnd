@@ -8,7 +8,7 @@ import {DtoInputUser} from "./dtos/dto-input-user";
   providedIn: 'root'
 })
 export class UserService {
-  private static _URL_API: string = environment.BASE_URL_API + "user";
+  private static _URL_API: string = environment.BASE_URL_API + "/user";
 
   constructor(private _httpClient: HttpClient) { }
 

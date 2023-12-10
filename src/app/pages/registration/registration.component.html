@@ -1,4 +1,9 @@
 <h1>Registration</h1>
+<ul>
+  <li *ngFor="let user of users">
+    {{user.id}} - {{user.email}}
+  </li>
+</ul>
 <form [formGroup]="form" (submit)="log()">
   <div *ngIf="currentStep === 1">
     <label>

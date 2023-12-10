@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {DtoInputUser} from "../../utils/services/user/dtos/dto-input-user";
 
 @Component({
   selector: 'app-registration',
@@ -7,6 +8,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent {
+  @Input() users: DtoInputUser[] = [];
   currentStep: number =1;
   form: FormGroup = this._fb.group({
     phone: ['', [Validators.required]],
