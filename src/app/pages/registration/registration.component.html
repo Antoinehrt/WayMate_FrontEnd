@@ -1,34 +1,22 @@
 <!--<form [formGroup]="form" (submit)="onSubmit()">-->
 <!--  <div *ngIf="currentStep === 1">-->
-<!--    <label>-->
 <!--      <input type="tel" name="phoneRegistration" formControlName="phone" placeholder="Phone number"/>-->
-<!--    </label>-->
 <!--    <button (click)="nextStep()">Next</button>-->
 <!--  </div>-->
 <!--  <div *ngIf="currentStep === 2">-->
-<!--    <label>-->
 <!--      <input type="email" name="emailRegistration" formControlName="email" placeholder="Email"/>-->
-<!--    </label>-->
-<!--    <label>-->
 <!--      <input type="password" name="passwordRegistration" formControlName="password" placeholder="Password"/>-->
-<!--    </label>-->
 <!--    <button (click)="previousStep()">Previous</button>-->
 <!--    <button (click)="nextStep()">Next</button>-->
 <!--  </div>-->
 <!--  <div *ngIf="currentStep === 3">-->
-<!--    <label>-->
 <!--      <input type="text" name="surnameRegistration" formControlName="surname" placeholder="Your surname"/>-->
-<!--    </label>-->
-<!--    <label>-->
 <!--      <input type="text" name="firstnameRegistration" formControlName="firstname" placeholder="Your firstname"/>-->
-<!--    </label>-->
 <!--    <button (click)="previousStep()">Previous</button>-->
 <!--    <button (click)="nextStep()">Next</button>-->
 <!--  </div>-->
 <!--  <div *ngIf="currentStep === 4">-->
-<!--    <label>-->
 <!--      <input type="date" name="birthdateRegistration" formControlName="birthdate" placeholder="Your birthdate"/>-->
-<!--    </label>-->
 <!--    <button (click)="previousStep()">Previous</button>-->
 <!--  </div>-->
 <!--  <input type="submit" value="Register" [disabled]="form.invalid">-->
@@ -36,24 +24,16 @@
 <div class="container">
   <form class="centered-form" [formGroup]="form" (submit)="onSubmit()">
     <div class="form-group" *ngIf="currentStep === 1">
-      <label>
         <input class="form-control" type="text" name="usernameRegistration" formControlName="username" placeholder="username"/>
-      </label>
     </div>
     <div class="form-group" *ngIf="currentStep === 2">
-      <label>
         <input class="form-control" type="password" name="passwordRegistration" formControlName="password" placeholder="password"/>
-      </label>
     </div>
     <div class="form-group" *ngIf="currentStep === 3">
-      <label>
         <input class="form-control" type="email" name="emailRegistration" formControlName="email" placeholder="email"/>
-      </label>
     </div>
     <div class="form-group" *ngIf="currentStep === 4">
-      <label>
         <input class="form-control" type="date" name="birthdateRegistration" formControlName="birthdate" placeholder="birthdate"/>
-      </label>
     </div>
     <div class="button-group" *ngIf="currentStep >= 1 && currentStep<=4">
       <input type="button" class="btn btn-primary" (click)="previousStep()" [disabled]="currentStep <=1 || currentStep >4" value="Previous">
@@ -62,6 +42,5 @@
     <div class="box">
       <input class="btn btn-extend" type="submit" value="Register" [disabled]="form.invalid || currentStep!=4">
     </div>
-
   </form>
 </div>
