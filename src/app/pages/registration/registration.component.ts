@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {DtoInputUser} from "../../utils/services/user/dtos/dto-input-user";
-import {UserService} from "../../utils/services/user/user.service";
+import {DtoInputUser} from "./dtos/dto-input-user";
+import {RegistrationService} from "./registration.service";
 
 @Component({
   selector: 'app-registration',
@@ -25,7 +25,7 @@ export class RegistrationComponent {
     birthdate: ['', [Validators.required]]
   });
 
-  constructor(private _fb: FormBuilder, private _userService: UserService) {
+  constructor(private _fb: FormBuilder, private _registrationService: RegistrationService) {
   }
   nextStep() {
     this.currentStep++;
@@ -37,7 +37,7 @@ export class RegistrationComponent {
   onSubmit(){
     if(this.form.valid){
       const registrationData = this.form.value;
-      this._userService.registerUser(registrationData).subscribe(
+      this._registrationService.registerUser(registrationData).subscribe(
         (response) => {
           console.log("User registered succesfully:", response);
         },

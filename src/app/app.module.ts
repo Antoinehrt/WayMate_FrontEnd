@@ -5,15 +5,13 @@ import { AppComponent } from './app.component';
 import { PagesComponent } from './pages/pages.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import {ReactiveFormsModule} from "@angular/forms";
-import { UtilsComponent } from './utils/utils.component';
 import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
     AppComponent,
     PagesComponent,
-    RegistrationComponent,
-    UtilsComponent
+    RegistrationComponent
   ],
     imports: [
         BrowserModule,

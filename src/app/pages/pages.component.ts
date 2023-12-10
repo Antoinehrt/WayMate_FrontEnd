@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {DtoInputUser} from "../utils/services/user/dtos/dto-input-user";
-import {UserService} from "../utils/services/user/user.service";
+import {DtoInputUser} from "./registration/dtos/dto-input-user";
+import {RegistrationService} from "./registration/registration.service";
 
 @Component({
   selector: 'app-pages',
@@ -10,7 +10,7 @@ import {UserService} from "../utils/services/user/user.service";
 export class PagesComponent implements OnInit {
   users: DtoInputUser[] = [];
 
-  constructor(private _userService: UserService) {
+  constructor(private _registrationService: RegistrationService) {
   }
 
   ngOnInit(): void {
@@ -18,6 +18,6 @@ export class PagesComponent implements OnInit {
   }
 
   getAll() {
-    this._userService.getAll().subscribe(users => this.users = users);
+    this._registrationService.getAll().subscribe(users => this.users = users);
   }
 }
