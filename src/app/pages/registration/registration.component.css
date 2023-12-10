@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 98vh; /* Pour occuper toute la hauteur de la vue */
+  background-color: #f0f0f0; /* Couleur de fond */
+}
+
+.centered-form {
+  background-color: #ffffff; /* Couleur de fond du formulaire */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  width: 400px; /* Largeur du formulaire, ajuste selon tes besoins */
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.form-control {
+  width: 100%; /* Les champs texte et la date ont la même largeur */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box div {
+  height: 100px;
+  width: 500px;
+}
+
+
