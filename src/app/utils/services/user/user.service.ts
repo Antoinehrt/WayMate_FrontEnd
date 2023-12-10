@@ -3,6 +3,7 @@ import {environment} from "../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {DtoInputUser} from "./dtos/dto-input-user";
+import {DtoOutputCreateUser} from "./dtos/dto-output-create-user";
 
 @Injectable({
   providedIn: 'root'
@@ -15,4 +16,9 @@ export class UserService {
   getAll():Observable<DtoInputUser[]>{
     return this._httpClient.get<DtoInputUser[]>(UserService._URL_API);
   }
+
+  registerUser(dto: DtoOutputCreateUser): Observable<DtoInputUser> {
+    return this._httpClient.post<DtoInputUser>(UserService._URL_API, dto);
+  }
+
 }

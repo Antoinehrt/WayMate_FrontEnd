@@ -1,5 +1,4 @@
-export interface DtoInputUser {
-  id: number;
+export interface DtoOutputCreateUser {
   username:string;
   password:string;
   email: string;

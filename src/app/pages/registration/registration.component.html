@@ -4,38 +4,53 @@
     {{user.id}} - {{user.email}}
   </li>
 </ul>
-<form [formGroup]="form" (submit)="log()">
-  <div *ngIf="currentStep === 1">
+<!--<form [formGroup]="form" (submit)="onSubmit()">-->
+<!--  <div *ngIf="currentStep === 1">-->
+<!--    <label>-->
+<!--      <input type="tel" name="phoneRegistration" formControlName="phone" placeholder="Phone number"/>-->
+<!--    </label>-->
+<!--    <button (click)="nextStep()">Next</button>-->
+<!--  </div>-->
+<!--  <div *ngIf="currentStep === 2">-->
+<!--    <label>-->
+<!--      <input type="email" name="emailRegistration" formControlName="email" placeholder="Email"/>-->
+<!--    </label>-->
+<!--    <label>-->
+<!--      <input type="password" name="passwordRegistration" formControlName="password" placeholder="Password"/>-->
+<!--    </label>-->
+<!--    <button (click)="previousStep()">Previous</button>-->
+<!--    <button (click)="nextStep()">Next</button>-->
+<!--  </div>-->
+<!--  <div *ngIf="currentStep === 3">-->
+<!--    <label>-->
+<!--      <input type="text" name="surnameRegistration" formControlName="surname" placeholder="Your surname"/>-->
+<!--    </label>-->
+<!--    <label>-->
+<!--      <input type="text" name="firstnameRegistration" formControlName="firstname" placeholder="Your firstname"/>-->
+<!--    </label>-->
+<!--    <button (click)="previousStep()">Previous</button>-->
+<!--    <button (click)="nextStep()">Next</button>-->
+<!--  </div>-->
+<!--  <div *ngIf="currentStep === 4">-->
+<!--    <label>-->
+<!--      <input type="date" name="birthdateRegistration" formControlName="birthdate" placeholder="Your birthdate"/>-->
+<!--    </label>-->
+<!--    <button (click)="previousStep()">Previous</button>-->
+<!--  </div>-->
+<!--  <input type="submit" value="Register" [disabled]="form.invalid">-->
+<!--</form>-->
+<form [formGroup]="form" (submit)="onSubmit()">
     <label>
-      <input type="tel" name="phoneRegistration" formControlName="phone" placeholder="Phone number"/>
+      <input type="text" name="usernameRegistration" formControlName="username" placeholder="username"/>
     </label>
-    <button (click)="nextStep()">Next</button>
-  </div>
-  <div *ngIf="currentStep === 2">
-    <label>
-      <input type="email" name="emailRegistration" formControlName="email" placeholder="Email"/>
-    </label>
-    <label>
-      <input type="password" name="passwordRegistration" formControlName="password" placeholder="Password"/>
-    </label>
-    <button (click)="previousStep()">Previous</button>
-    <button (click)="nextStep()">Next</button>
-  </div>
-  <div *ngIf="currentStep === 3">
-    <label>
-      <input type="text" name="surnameRegistration" formControlName="surname" placeholder="Your surname"/>
-    </label>
-    <label>
-      <input type="text" name="firstnameRegistration" formControlName="firstname" placeholder="Your firstname"/>
-    </label>
-    <button (click)="previousStep()">Previous</button>
-    <button (click)="nextStep()">Next</button>
-  </div>
-  <div *ngIf="currentStep === 4">
-    <label>
-      <input type="date" name="birthdateRegistration" formControlName="birthdate" placeholder="Your birthdate"/>
-    </label>
-    <button (click)="previousStep()">Previous</button>
-  </div>
+  <label>
+    <input type="password" name="passwordRegistration" formControlName="password" placeholder="password"/>
+  </label>
+  <label>
+    <input type="email" name="emailRegistration" formControlName="email" placeholder="email"/>
+  </label>
+  <label>
+    <input type="date" name="birthdateRegistration" formControlName="birthdate" placeholder="birthdate"/>
+  </label>
   <input type="submit" value="Register" [disabled]="form.invalid">
 </form>
