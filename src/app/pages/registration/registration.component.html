@@ -23,17 +23,18 @@
 <!--</form>-->
 <div class="container">
   <form class="centered-form" [formGroup]="form" (submit)="onSubmit()">
+    <h2 class="centered-title">Registration</h2>
     <div class="form-group" *ngIf="currentStep === 1">
-        <input class="form-control" type="text" name="usernameRegistration" formControlName="username" placeholder="username"/>
+        <input class="form-control" type="text" name="usernameRegistration" formControlName="username" placeholder="Your username"/>
     </div>
     <div class="form-group" *ngIf="currentStep === 2">
-        <input class="form-control" type="password" name="passwordRegistration" formControlName="password" placeholder="password"/>
+        <input class="form-control" type="password" name="passwordRegistration" formControlName="password" placeholder="Your password"/>
     </div>
     <div class="form-group" *ngIf="currentStep === 3">
-        <input class="form-control" type="email" name="emailRegistration" formControlName="email" placeholder="email"/>
+        <input class="form-control" type="email" name="emailRegistration" formControlName="email" placeholder="Your email"/>
     </div>
     <div class="form-group" *ngIf="currentStep === 4">
-        <input class="form-control" type="date" name="birthdateRegistration" formControlName="birthdate" placeholder="birthdate"/>
+        <input class="form-control" type="date" name="birthdateRegistration" formControlName="birthdate"/>
     </div>
     <div class="button-group" *ngIf="currentStep >= 1 && currentStep<=4">
       <input type="button" class="btn btn-primary" (click)="previousStep()" [disabled]="currentStep <=1 || currentStep >4" value="Previous">

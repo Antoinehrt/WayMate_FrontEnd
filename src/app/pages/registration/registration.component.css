@@ -55,4 +55,11 @@ label {
   width: 500px;
 }
 
-
+.centered-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+  text-decoration: underline;
+  font-family: "Times New Roman", Times, serif;
+}
