@@ -63,3 +63,11 @@ label {
   text-decoration: underline;
   font-family: "Times New Roman", Times, serif;
 }
+
+span.valid{
+  color: green;
+}
+
+span.invalid {
+  color: red;
+}
