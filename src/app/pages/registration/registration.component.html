@@ -40,8 +40,20 @@
       <input type="button" class="btn btn-primary" (click)="previousStep()" [disabled]="currentStep <=1 || currentStep >4" value="Previous">
       <input type="button" class="btn btn-primary" (click)="nextStep()" [disabled]="currentStep <1 || currentStep >=4" value="Next">
     </div>
+
     <div class="box">
-      <input class="btn btn-extend" type="submit" value="Register" [disabled]="form.invalid || currentStep!=4">
+      <input class="btn btn-extend" type="submit" value="Register" [disabled]="form.invalid">
     </div>
+
+
+
+    <div *ngIf="form.get('username')?.hasError('pattern') && form.get('username')?.touched">
+      Le username n'est pas valide. Utilisez uniquement des lettres, des chiffres, des tirets (-) et des underscores (_).
+    </div>
+    <div *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched">
+      L'adresse email n'est pas valide.
+    </div>
+
+
   </form>
 </div>

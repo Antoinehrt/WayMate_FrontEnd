@@ -19,9 +19,9 @@ export class RegistrationComponent {
     // surname: ['', [Validators.required]],
     // firstname: ['', [Validators.required]],
     // birthdate: ['', [Validators.required]]
-    username:['', [Validators.required]],
+    username:['', [Validators.required, Validators.maxLength(5), Validators.pattern("^[a-zA-Z0-9_-]{5,20}$")]],
     password:['', [Validators.required]],
-    email: ['', [Validators.required]],
+    email: ['', [Validators.required,Validators.email]],
     birthdate: ['', [Validators.required]]
   });
 
