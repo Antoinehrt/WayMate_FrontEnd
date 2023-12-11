@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 98vh;
+  background-color: lightblue;
+}
+
+.centered-form {
+  background-color: aliceblue;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  width: 400px;
+  margin-left: 200px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-control {
+  width: 100%; /* Les champs texte et la date ont la même largeur */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
