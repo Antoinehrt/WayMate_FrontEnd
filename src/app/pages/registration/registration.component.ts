@@ -19,11 +19,12 @@ export class RegistrationComponent {
     // surname: ['', [Validators.required]],
     // firstname: ['', [Validators.required]],
     // birthdate: ['', [Validators.required]]
-    username:['', [Validators.required, Validators.maxLength(5), Validators.pattern("^[a-zA-Z0-9_-]{5,20}$")]],
-    password:['', [Validators.required]],
-    email: ['', [Validators.required,Validators.email]],
+    username:['', [Validators.required, Validators.minLength(5), Validators.pattern("^[a-zA-Z0-9_-]{5,20}$")]],
+    password:['', [Validators.required, Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")]],
+    email: ['', [Validators.required, Validators.pattern("^[a-z0-9]+(?:.[a-z0-9]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$")]],
     birthdate: ['', [Validators.required]]
   });
+
 
   constructor(private _fb: FormBuilder, private _registrationService: RegistrationService) {
   }
