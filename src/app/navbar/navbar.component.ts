@@ -9,6 +9,6 @@ export class NavbarComponent {
   ImagePath: string;
 
   constructor() {
-    this.ImagePath = '/img/WayMate_Logo.png'
+    this.ImagePath = "assets/img/WayMate_Logo.png"
   }
 }
