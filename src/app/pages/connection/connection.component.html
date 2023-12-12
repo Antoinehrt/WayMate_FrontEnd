@@ -1,0 +1,9 @@
+<form [formGroup]="form" (submit)="verifyLogin(form.value)">
+  <label>
+    Email: <input type="email" name="emailConnection" formControlName="email" required>
+  </label>
+  <label>
+    Password: <input type="password" name="password" formControlName="password" required>
+  </label>
+  <input type="submit" [disabled]="form.invalid">
+</form>
