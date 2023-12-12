@@ -8,13 +8,15 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
 import {PagesComponent} from "./pages/pages.component";
+import { ConnectionComponent } from './pages/connection/connection.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     RegistrationComponent,
-    PagesComponent
+    PagesComponent,
+    ConnectionComponent
   ],
   imports: [
     HttpClientModule,
