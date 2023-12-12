@@ -36,13 +36,13 @@
     </div>
     <ul>
       <li>
-        <span [ngClass]="{'valid': form.get('username')?.valid && form.get('username')?.touched, 'invalid': !form.get('username')?.valid && form.get('username')?.touched && form.get('username')?.dirty }">The username is invalid. Use only letters, numbers, hyphens (-) and underscores (_).</span>
+        <span [ngClass]="{'valid': form.get('passengerForm.username')?.valid && form.get('passengerForm.username')?.touched, 'invalid': !form.get('passengerForm.username')?.valid && form.get('passengerForm.username')?.touched && form.get('passengerForm.username')?.dirty }">The username is invalid. Use only letters, numbers, hyphens (-) and underscores (_).</span>
       </li>
       <li>
-        <span [ngClass]="{'valid': form.get('password')?.valid && form.get('password')?.touched, 'invalid': !form.get('password')?.valid && form.get('password')?.touched && form.get('password')?.dirty }">The password must contain uppercase letters (A-Z), lowercase letters (a-z), numbers (1-9) and special characters.</span>
+        <span [ngClass]="{'valid': form.get('passengerForm.password')?.valid && form.get('passengerForm.password')?.touched, 'invalid': !form.get('passengerForm.password')?.valid && form.get('passengerForm.password')?.touched && form.get('passengerForm.password')?.dirty }">The password must contain uppercase letters (A-Z), lowercase letters (a-z), numbers (1-9) and special characters.</span>
       </li>
       <li>
-        <span [ngClass]="{'valid': form.get('email')?.valid && form.get('email')?.touched, 'invalid': !form.get('email')?.valid && form.get('email')?.touched && form.get('email')?.dirty }">The email address is invalid.</span>
+        <span [ngClass]="{'valid': form.get('passengerForm.email')?.valid && form.get('passengerForm.email')?.touched, 'invalid': !form.get('passengerForm.email')?.valid && form.get('passengerForm.email')?.touched && form.get('passengerForm.email')?.dirty }">The email address is invalid.</span>
       </li>
       <li *ngIf="errorMail === true">
         <span>This email address is already in use.</span>
