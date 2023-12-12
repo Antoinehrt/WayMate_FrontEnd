@@ -1,23 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {DtoInputUser} from "./registration/dtos/dto-input-user";
-import {RegistrationService} from "./registration/registration.service";
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-pages',
   templateUrl: './pages.component.html',
   styleUrls: ['./pages.component.css']
 })
-export class PagesComponent implements OnInit {
-  users: DtoInputUser[] = [];
+export class PagesComponent {
 
-  constructor(private _registrationService: RegistrationService) {
-  }
-
-  ngOnInit(): void {
-    this.getAll();
-  }
-
-  getAll() {
-    this._registrationService.getAll().subscribe(users => this.users = users);
-  }
 }
