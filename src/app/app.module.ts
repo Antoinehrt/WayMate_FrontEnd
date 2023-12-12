@@ -5,17 +5,25 @@ import { AppComponent } from './app.component';
 import {NavbarComponent} from "./navbar/navbar.component";
 import {RegistrationComponent} from "./pages/registration/registration.component";
 import {ReactiveFormsModule} from "@angular/forms";
+import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
+import {AppRoutingModule} from "./app-routing.module";
+import {PagesComponent} from "./pages/pages.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    PagesComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterOutlet,
+    RouterLinkActive,
+    RouterLink,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
