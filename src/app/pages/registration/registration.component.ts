@@ -11,6 +11,8 @@ import {RegistrationService} from "./registration.service";
 export class RegistrationComponent {
   @Input() users: DtoInputUser[] = [];
   currentStep: number =1;
+  errorMail: boolean = false;
+  errorUsername: boolean = false;
 
   form: FormGroup = this._fb.group({
     // phone: ['', [Validators.required]],
@@ -25,7 +27,6 @@ export class RegistrationComponent {
     birthdate: ['', [Validators.required]]
   });
 
-
   constructor(private _fb: FormBuilder, private _registrationService: RegistrationService) {
   }
   nextStep() {
@@ -37,18 +38,36 @@ export class RegistrationComponent {
 
   onSubmit(){
     if(this.form.valid){
+      const userEmail = this.form.get('email')?.value;
+      const userUsername = this.form.get('username')?.value;
       const registrationData = this.form.value;
-      this._registrationService.registerUser(registrationData).subscribe(
-        (response) => {
-          console.log("User registered succesfully:", response);
-        },
-        (error) => {
-          console.log("Registration failed", error);
+
+      this._registrationService.fetchByEmail(userEmail).subscribe(
+        response => {
+          if (response.isInDb) {
+            this.errorMail = true;
+          } else {
+            this.errorMail = false;
+            this._registrationService.fetchByUsername(userUsername).subscribe(
+              response => {
+                if (response.isInDb) {
+                  this.errorUsername = true;
+                } else {
+                  this.errorUsername = false;
+                  this._registrationService.registerUser(registrationData).subscribe(
+                    (response) => {
+                      console.log("User registered succesfully:", response);
+                    },
+                    (error) => {
+                      console.log("Registration failed", error);
+                    }
+                  )
+                }
+              }
+            );
+          }
         }
-      )
+      );
     }
-  }
-  log() {
-    console.log(this.form.value);
   }
 }
