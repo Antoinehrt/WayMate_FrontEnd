@@ -1,0 +1,35 @@
+import { Injectable } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {DtoInputUser} from "./dtos/dto-input-user";
+import {DtoOutputCreateUser} from "./dtos/dto-output-create-user";
+import {environment} from "../../../environments/environment";
+import {DtoOutputRegistration} from "./dtos/dto-output-registration";
+
+@Injectable({
+  providedIn: 'root'
+})
+export class RegistrationService {
+  private static _URL_API_USER: string = environment.BASE_URL_API + "/user";
+  private static _URL_API_REGISTRATION_EMAIL: string = environment.BASE_URL_API + "/authentication/registration/by-email";
+  private static _URL_API_REGISTRATION_USERNAME: string = environment.BASE_URL_API + "/authentication/registration/by-username";
+
+  constructor(private _httpClient: HttpClient) {
+  }
+
+  getAll(): Observable<DtoInputUser[]> {
+    return this._httpClient.get<DtoInputUser[]>(RegistrationService._URL_API_USER);
+  }
+
+  registerUser(dto: DtoOutputCreateUser): Observable<DtoInputUser> {
+    return this._httpClient.post<DtoInputUser>(RegistrationService._URL_API_USER, dto);
+  }
+
+  fetchByEmail(email:string): Observable<DtoOutputRegistration> {
+    return this._httpClient.get<DtoOutputRegistration>(`${RegistrationService._URL_API_REGISTRATION_EMAIL}/${email}`);
+  }
+
+  fetchByUsername(username:string): Observable<DtoOutputRegistration> {
+    return this._httpClient.get<DtoOutputRegistration>(`${RegistrationService._URL_API_REGISTRATION_USERNAME}/${username}`);
+  }
+}

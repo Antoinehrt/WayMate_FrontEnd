@@ -1,0 +1,64 @@
+<!--<form [formGroup]="form" (submit)="onSubmit()">-->
+<!--  <div *ngIf="currentStep === 1">-->
+<!--      <input type="tel" name="phoneRegistration" formControlName="phone" placeholder="Phone number"/>-->
+<!--    <button (click)="nextStep()">Next</button>-->
+<!--  </div>-->
+<!--  <div *ngIf="currentStep === 2">-->
+<!--      <input type="email" name="emailRegistration" formControlName="email" placeholder="Email"/>-->
+<!--      <input type="password" name="passwordRegistration" formControlName="password" placeholder="Password"/>-->
+<!--    <button (click)="previousStep()">Previous</button>-->
+<!--    <button (click)="nextStep()">Next</button>-->
+<!--  </div>-->
+<!--  <div *ngIf="currentStep === 3">-->
+<!--      <input type="text" name="surnameRegistration" formControlName="surname" placeholder="Your surname"/>-->
+<!--      <input type="text" name="firstnameRegistration" formControlName="firstname" placeholder="Your firstname"/>-->
+<!--    <button (click)="previousStep()">Previous</button>-->
+<!--    <button (click)="nextStep()">Next</button>-->
+<!--  </div>-->
+<!--  <div *ngIf="currentStep === 4">-->
+<!--      <input type="date" name="birthdateRegistration" formControlName="birthdate" placeholder="Your birthdate"/>-->
+<!--    <button (click)="previousStep()">Previous</button>-->
+<!--  </div>-->
+<!--  <input type="submit" value="Register" [disabled]="form.invalid">-->
+<!--</form>-->
+<div class="container">
+  <form class="centered-form" [formGroup]="form" (submit)="onSubmit()">
+    <h2 class="centered-title">Registration</h2>
+    <div class="form-group" *ngIf="currentStep === 1">
+        <input class="form-control" type="text" name="usernameRegistration" formControlName="username" placeholder="Your username"/>
+    </div>
+    <div class="form-group" *ngIf="currentStep === 2">
+        <input class="form-control" type="password" name="passwordRegistration" formControlName="password" placeholder="Your password"/>
+    </div>
+    <div class="form-group" *ngIf="currentStep === 3">
+        <input class="form-control" type="email" name="emailRegistration" formControlName="email" placeholder="Your email"/>
+    </div>
+    <div class="form-group" *ngIf="currentStep === 4">
+        <input class="form-control" type="date" name="birthdateRegistration" formControlName="birthdate" min="1900-01-01"/>
+    </div>
+    <div class="button-group" *ngIf="currentStep >= 1 && currentStep<=4">
+      <input type="button" class="btn btn-primary" (click)="previousStep()" [disabled]="currentStep <=1 || currentStep >4" value="Previous">
+      <input type="button" class="btn btn-primary" (click)="nextStep()" [disabled]="currentStep <1 || currentStep >=4" value="Next">
+    </div>
+    <div class="box">
+      <input class="btn btn-extend" type="submit" value="Register" [disabled]="form.invalid">
+    </div>
+    <ul>
+      <li>
+        <span [ngClass]="{'valid': form.get('username')?.valid && form.get('username')?.touched, 'invalid': !form.get('username')?.valid && form.get('username')?.touched && form.get('username')?.dirty }">The username is invalid. Use only letters, numbers, hyphens (-) and underscores (_).</span>
+      </li>
+      <li>
+        <span [ngClass]="{'valid': form.get('password')?.valid && form.get('password')?.touched, 'invalid': !form.get('password')?.valid && form.get('password')?.touched && form.get('password')?.dirty }">The password must contain uppercase letters (A-Z), lowercase letters (a-z), numbers (1-9) and special characters.</span>
+      </li>
+      <li>
+        <span [ngClass]="{'valid': form.get('email')?.valid && form.get('email')?.touched, 'invalid': !form.get('email')?.valid && form.get('email')?.touched && form.get('email')?.dirty }">The email address is invalid.</span>
+      </li>
+      <li *ngIf="errorMail === true">
+        <span>This email address is already in use.</span>
+      </li>
+      <li *ngIf="errorUsername === true">
+        <span>This username is already used.</span>
+      </li>
+    </ul>
+  </form>
+</div>
