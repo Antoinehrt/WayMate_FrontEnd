@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {catchError, map, Observable, of} from "rxjs";
 import {DtoOutputConnection} from "./dto/dto-output-connection";
+import {Observable} from "rxjs";
 
 
 @Injectable({
