@@ -17,12 +17,14 @@ export class ConnectionComponent {
   }
 
   verifyLogin(value: any){
-    const isLogged = this._connectionService.login(value.email, value.password);
-    if (isLogged){
-      console.log("Connected");
-    }
-    else {
-      console.log("Not connected");
-    }
+    this._connectionService.login(value.email, value.password)
+      .subscribe(
+        response => {
+          console.log("Login succeeded.", response.isLogged);
+        },
+        (error) =>{
+          console.log("Login failed.", error);
+        }
+      );
   }
 }
