@@ -7,7 +7,14 @@
           <input class="form-control" type="text" name="firstnameRegistration" formControlName="firstname" placeholder="Your firstname"/>
           <input class="form-control" type="text" name="lastnameRegistration" formControlName="lastname" placeholder="Your lastname"/>
           <input class="form-control" type="text" name="phoneNumberRegistration" formControlName="phoneNumber" placeholder="Your phoneNumber"/>
-          <input class="form-control" type="text" name="genderRegistration" formControlName="gender" placeholder="Your gender"/>
+        <label>Your gender :
+          <select name="genderRegistration" formControlName="gender">
+            <option value="None">None</option>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+          </select>
+        </label>
+<!--          <input class="form-control" type="text" name="genderRegistration" formControlName="gender" placeholder="Your gender"/>-->
       </div>
       <div class="form-group" *ngIf="currentStep === 2">
           <input class="form-control" type="password" name="passwordRegistration" formControlName="password" placeholder="Your password"/>
@@ -17,7 +24,7 @@
           <input class="form-control" type="email" name="emailRegistration" formControlName="email" placeholder="Your email"/>
       </div>
       <div class="form-group" *ngIf="currentStep === 4">
-          <input class="form-control" type="date" name="birthdateRegistration" formControlName="birthdate" min="1900-01-01"/>
+          <input class="form-control" type="date" name="birthdateRegistration" formControlName="birthdate" min="1900-01-01" [max]="maxBirthdate"/>
       </div>
     </div>
     <div formGroupName="addressForm">

@@ -11,6 +11,8 @@ export class RegistrationComponent {
   currentStep: number =1;
   errorMail: boolean = false;
   errorUsername: boolean = false;
+  maxBirthdate: string;
+
 
   form: FormGroup = this._fb.group({
     passengerForm:this._fb.group({
@@ -35,6 +37,9 @@ export class RegistrationComponent {
   });
 
   constructor(private _fb: FormBuilder, private _registrationService: RegistrationService) {
+    const currentDate = new Date();
+    const maxDate = new Date(currentDate.getFullYear() - 14, currentDate.getMonth(), currentDate.getDate());
+    this.maxBirthdate = maxDate.toISOString().split('T')[0];
   }
   nextStep() {
     this.currentStep++;
