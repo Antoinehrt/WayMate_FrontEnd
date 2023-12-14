@@ -1,6 +1,5 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {DtoInputUser} from "./dtos/dto-input-user";
 import {RegistrationService} from "./registration.service";
 
 @Component({
@@ -9,25 +8,38 @@ import {RegistrationService} from "./registration.service";
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent {
-  @Input() users: DtoInputUser[] = [];
   currentStep: number =1;
   errorMail: boolean = false;
   errorUsername: boolean = false;
+  maxBirthdate: string;
+
 
   form: FormGroup = this._fb.group({
-    // phone: ['', [Validators.required]],
-    // email: ['', [Validators.required, Validators.email]],
-    // password: ['', [Validators.required]],
-    // surname: ['', [Validators.required]],
-    // firstname: ['', [Validators.required]],
-    // birthdate: ['', [Validators.required]]
-    username:['', [Validators.required, Validators.minLength(5), Validators.pattern("^[a-zA-Z0-9_-]{5,20}$")]],
-    password:['', [Validators.required, Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")]],
-    email: ['', [Validators.required, Validators.pattern("^[a-z0-9]+(?:.[a-z0-9]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$")]],
-    birthdate: ['', [Validators.required]]
+    passengerForm:this._fb.group({
+      phoneNumber: ['', [Validators.required]],
+      gender: ['', [Validators.required]],
+      firstname: ['', [Validators.required]],
+      lastname: ['', [Validators.required]],
+      username: ['', [Validators.required, Validators.minLength(5), Validators.pattern("^[a-zA-Z0-9_-]{5,20}$")]],
+      password: ['', [Validators.required, Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")]],
+      passwordVerif: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.pattern("^[a-z0-9]+(?:.[a-z0-9]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$")]],
+      birthdate: ['', [Validators.required]],
+      addressId: [0],
+      isBanned: [false]
+    }),
+    addressForm:this._fb.group({
+      street:['', [Validators.required]],
+      postalCode:['', [Validators.required]],
+      city:['', [Validators.required]],
+      number:['', [Validators.required]]
+    })
   });
 
   constructor(private _fb: FormBuilder, private _registrationService: RegistrationService) {
+    const currentDate = new Date();
+    const maxDate = new Date(currentDate.getFullYear() - 14, currentDate.getMonth(), currentDate.getDate());
+    this.maxBirthdate = maxDate.toISOString().split('T')[0];
   }
   nextStep() {
     this.currentStep++;
@@ -38,30 +50,54 @@ export class RegistrationComponent {
 
   onSubmit(){
     if(this.form.valid){
-      const userEmail = this.form.get('email')?.value;
-      const userUsername = this.form.get('username')?.value;
-      const registrationData = this.form.value;
-
+      const userEmail = this.form.get('passengerForm.email')?.value;
+      const userUsername = this.form.get('passengerForm.username')?.value;
+      const addressData = this.form.get('addressForm')?.value;
+      let registrationData = this.form.get('passengerForm')?.value;
       this._registrationService.fetchByEmail(userEmail).subscribe(
-        response => {
+        (response) => {
           if (response.isInDb) {
             this.errorMail = true;
-          } else {
+          }
+          else {
             this.errorMail = false;
             this._registrationService.fetchByUsername(userUsername).subscribe(
               response => {
                 if (response.isInDb) {
                   this.errorUsername = true;
-                } else {
+                }
+                else {
                   this.errorUsername = false;
-                  this._registrationService.registerUser(registrationData).subscribe(
-                    (response) => {
-                      console.log("User registered succesfully:", response);
-                    },
-                    (error) => {
-                      console.log("Registration failed", error);
-                    }
-                  )
+                  if(this.form.get('passengerForm.password')?.value === this.form.get('passengerForm.passwordVerif')?.value) {
+                    this._registrationService.fetchByAddress(this.form.get('addressForm.street')?.value,
+                      this.form.get('addressForm.postalCode')?.value,
+                      this.form.get('addressForm.city')?.value,
+                      this.form.get('addressForm.number')?.value).subscribe(
+                      (id) => {
+                        if(id.id !=0 && id.id != null){
+                          registrationData.addressId = id.id;
+                          this._registrationService.registerUser(registrationData).subscribe(
+                            (response) => {
+                              console.log("User registered succesfully:", response);
+                            }
+                          )
+                        }
+                        else{
+                          this._registrationService.insertAddress(addressData).subscribe(
+                            (addressId) => {
+                              if(addressId.id !=0 && addressId.id != null)
+                              registrationData.addressId = addressId.id;
+                              this._registrationService.registerUser(registrationData).subscribe(
+                                (response) => {
+                                  console.log("User registered succesfully:", response);
+                                }
+                              )
+                            }
+                          )
+                        }
+                      }
+                    )
+                  }
                 }
               }
             );
@@ -69,5 +105,28 @@ export class RegistrationComponent {
         }
       );
     }
+  }
+  autocomplete() {
+    this.form.setValue({
+      passengerForm:{
+        phoneNumber: "06498231658",
+        gender: "Male",
+        firstname: "User123",
+        lastname: "User123",
+        username: "UserTest",
+        password: "PasswordTest1234!",
+        passwordVerif: "PasswordTest1234!",
+        email: "user123@gmail.com",
+        birthdate: "",
+        addressId: 0,
+        isBanned: false
+      },
+      addressForm:{
+        street: "Rue de la test",
+        postalCode: "645",
+        city: "Test",
+        number: "665"
+      }
+    });
   }
 }
