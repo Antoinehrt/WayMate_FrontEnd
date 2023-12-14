@@ -9,6 +9,7 @@ import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
 import {PagesComponent} from "./pages/pages.component";
 import { ConnectionComponent } from './pages/connection/connection.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ConnectionComponent } from './pages/connection/connection.component';
     RouterOutlet,
     RouterLinkActive,
     RouterLink,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
