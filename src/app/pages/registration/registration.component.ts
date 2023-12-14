@@ -21,6 +21,7 @@ export class RegistrationComponent {
       lastname: ['', [Validators.required]],
       username: ['', [Validators.required, Validators.minLength(5), Validators.pattern("^[a-zA-Z0-9_-]{5,20}$")]],
       password: ['', [Validators.required, Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")]],
+      passwordVerif: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.pattern("^[a-z0-9]+(?:.[a-z0-9]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$")]],
       birthdate: ['', [Validators.required]],
       addressId: [0],
@@ -48,6 +49,7 @@ export class RegistrationComponent {
       const userEmail = this.form.get('passengerForm.email')?.value;
       const userUsername = this.form.get('passengerForm.username')?.value;
       const addressData = this.form.get('addressForm')?.value;
+      let registrationData = this.form.get('passengerForm')?.value;
 
       this._registrationService.fetchByEmail(userEmail).subscribe(
         response => {
@@ -61,27 +63,51 @@ export class RegistrationComponent {
                   this.errorUsername = true;
                 } else {
                   this.errorUsername = false;
-                  this._registrationService.insertAddress(addressData).subscribe(
-                    (addressId) => {
-                      console.log(addressId.id);
-                      const registrationData = {
-                        ...this.form.get('passengerForm')?.value,
-                        addressId: addressId.id
-                      };
+                  if(this.form.get('passengerForm.password')?.value === this.form.get('passengerForm.passwordVerif')?.value) {
+                    this._registrationService.fetchByAddress(this.form.get('addressForm.street')?.value,
+                      this.form.get('addressForm.postalCode')?.value,
+                      this.form.get('addressForm.city')?.value,
+                      this.form.get('addressForm.number')?.value).subscribe(
+                      (id) => {
+                        registrationData.addressId = id.id;
+                        this._registrationService.registerUser(registrationData).subscribe(
+                          (response) => {
+                            console.log("User registered succesfully:", response);
+                          },
+                          (error) => {
+                            console.log("Registration failed", error);
+                          }
+                        )
+                      },
 
-                      this._registrationService.registerUser(registrationData).subscribe(
-                        (response) => {
-                          console.log("User registered succesfully:", response);
-                        },
-                        (error) => {
-                          console.log("Registration failed", error);
-                        }
-                      )
-                    },
-                    (error) => {
-                      console.log("Address Registration failed", error);
-                    }
-                  )
+
+
+                      (error) => {
+                        this._registrationService.insertAddress(addressData).subscribe(
+                          (addressId) => {
+                            console.log(addressId.id);
+                            registrationData = {
+                              ...this.form.get('passengerForm')?.value,
+                              addressId: addressId.id
+                            };
+
+                            // registrationData.addressId = addressId.id;
+                            this._registrationService.registerUser(registrationData).subscribe(
+                              (response) => {
+                                console.log("User registered succesfully:", response);
+                              },
+                              (error) => {
+                                console.log("Registration failed", error);
+                              }
+                            )
+                          },
+                          (error) => {
+                            console.log("Address Registration failed", error);
+                          }
+                        )
+                      }
+                    )
+                  }
                 }
               }
             );
