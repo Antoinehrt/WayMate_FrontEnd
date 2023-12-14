@@ -3,7 +3,7 @@
     <h2 class="centered-title">Registration</h2>
     <div formGroupName="passengerForm">
       <div class="form-group" *ngIf="currentStep === 1">
-          <input class="form-control" type="text" name="usernameRegistration" formControlName="username" placeholder="Your username"/>
+          <input class="form-control" type="text" name="usernameRegistration" formControlName="username" placeholder="Your username"  (dblclick)="autocomplete()"/>
           <input class="form-control" type="text" name="firstnameRegistration" formControlName="firstname" placeholder="Your firstname"/>
           <input class="form-control" type="text" name="lastnameRegistration" formControlName="lastname" placeholder="Your lastname"/>
           <input class="form-control" type="text" name="phoneNumberRegistration" formControlName="phoneNumber" placeholder="Your phoneNumber"/>

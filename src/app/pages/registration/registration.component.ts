@@ -1,6 +1,5 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {DtoInputUser} from "./dtos/dto-input-user";
 import {RegistrationService} from "./registration.service";
 
 @Component({
@@ -50,18 +49,19 @@ export class RegistrationComponent {
       const userUsername = this.form.get('passengerForm.username')?.value;
       const addressData = this.form.get('addressForm')?.value;
       let registrationData = this.form.get('passengerForm')?.value;
-
       this._registrationService.fetchByEmail(userEmail).subscribe(
-        response => {
+        (response) => {
           if (response.isInDb) {
             this.errorMail = true;
-          } else {
+          }
+          else {
             this.errorMail = false;
             this._registrationService.fetchByUsername(userUsername).subscribe(
               response => {
                 if (response.isInDb) {
                   this.errorUsername = true;
-                } else {
+                }
+                else {
                   this.errorUsername = false;
                   if(this.form.get('passengerForm.password')?.value === this.form.get('passengerForm.passwordVerif')?.value) {
                     this._registrationService.fetchByAddress(this.form.get('addressForm.street')?.value,
@@ -69,42 +69,27 @@ export class RegistrationComponent {
                       this.form.get('addressForm.city')?.value,
                       this.form.get('addressForm.number')?.value).subscribe(
                       (id) => {
-                        registrationData.addressId = id.id;
-                        this._registrationService.registerUser(registrationData).subscribe(
-                          (response) => {
-                            console.log("User registered succesfully:", response);
-                          },
-                          (error) => {
-                            console.log("Registration failed", error);
-                          }
-                        )
-                      },
-
-
-
-                      (error) => {
-                        this._registrationService.insertAddress(addressData).subscribe(
-                          (addressId) => {
-                            console.log(addressId.id);
-                            registrationData = {
-                              ...this.form.get('passengerForm')?.value,
-                              addressId: addressId.id
-                            };
-
-                            // registrationData.addressId = addressId.id;
-                            this._registrationService.registerUser(registrationData).subscribe(
-                              (response) => {
-                                console.log("User registered succesfully:", response);
-                              },
-                              (error) => {
-                                console.log("Registration failed", error);
-                              }
-                            )
-                          },
-                          (error) => {
-                            console.log("Address Registration failed", error);
-                          }
-                        )
+                        if(id.id !=0 && id.id != null){
+                          registrationData.addressId = id.id;
+                          this._registrationService.registerUser(registrationData).subscribe(
+                            (response) => {
+                              console.log("User registered succesfully:", response);
+                            }
+                          )
+                        }
+                        else{
+                          this._registrationService.insertAddress(addressData).subscribe(
+                            (addressId) => {
+                              if(addressId.id !=0 && addressId.id != null)
+                              registrationData.addressId = addressId.id;
+                              this._registrationService.registerUser(registrationData).subscribe(
+                                (response) => {
+                                  console.log("User registered succesfully:", response);
+                                }
+                              )
+                            }
+                          )
+                        }
                       }
                     )
                   }
@@ -115,5 +100,28 @@ export class RegistrationComponent {
         }
       );
     }
+  }
+  autocomplete() {
+    this.form.setValue({
+      passengerForm:{
+        phoneNumber: "06498231658",
+        gender: "Male",
+        firstname: "User123",
+        lastname: "User123",
+        username: "UserTest",
+        password: "PasswordTest1234!",
+        passwordVerif: "PasswordTest1234!",
+        email: "user123@gmail.com",
+        birthdate: "",
+        addressId: 0,
+        isBanned: false
+      },
+      addressForm:{
+        street: "Rue de la test",
+        postalCode: "645",
+        city: "Test",
+        number: "665"
+      }
+    });
   }
 }
