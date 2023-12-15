@@ -10,9 +10,18 @@ import {AppRoutingModule} from "./app-routing.module";
 import {PagesComponent} from "./pages/pages.component";
 import { ConnectionComponent } from './pages/connection/connection.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PagesComponent } from './pages/pages.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
+    AppComponent,
+    PagesComponent,
+    HomePageComponent,
     AppComponent,
     NavbarComponent,
     RegistrationComponent,
@@ -27,7 +36,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     RouterLinkActive,
     RouterLink,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    BrowserModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    NgbCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
