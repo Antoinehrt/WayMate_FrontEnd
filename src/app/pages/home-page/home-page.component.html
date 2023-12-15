@@ -8,7 +8,7 @@
               <input class="form-control" type="text" name="destinationHomePage" formControlName="depart" placeholder="◉ Depart"/>
             </div>
             <div class="form-group col-md-5">
-              <input class="form-control" type="date" name="destinationHomePage" formControlName="date" />
+              <input class="form-control" type="date" name="destinationHomePage" formControlName="date" [min]="minDate"/>
             </div>
           </div>
           <div class="form-group row">
@@ -20,7 +20,7 @@
             </div>
           </div>
           <div class="form-group">
-            <input class="form-control" type="submit" value="See trip"/>
+            <input class="form-control" type="submit" value="See trip" [disabled]="form.invalid"/>
           </div>
         </form>
       </div>
