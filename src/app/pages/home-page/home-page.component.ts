@@ -1,6 +1,9 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {HomePageService} from "./home-page.service";
+import {AppRoutingModule} from "../../app-routing.module";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home-page',
@@ -20,7 +23,7 @@ export class HomePageComponent {
     date: ['', [Validators.required]],
     people: ['', [Validators.required, Validators.pattern("^\\d+$")]],
   });
-  constructor(private _fb: FormBuilder, config: NgbCarouselConfig) {
+  constructor(private _fb: FormBuilder, private _homePageService:HomePageService, private _route:Router,config: NgbCarouselConfig) {
     this.ImagePath = "assets/img/waymateHome.png";
     const currentDate = new Date();
     this.minDate = currentDate.toISOString().split('T')[0];
@@ -33,7 +36,11 @@ export class HomePageComponent {
     config.showNavigationArrows = false;
   }
 
-  searchTrip(){
-    this.formSubmited.emit(this.form);
+  soumettreFormulaire() {
+    const formData = this.form.value;
+    // Envoyer les données au service
+    this._homePageService.updateFormData(formData);
+
+    this._route.navigate(['/tripSearch']);
   }
 }

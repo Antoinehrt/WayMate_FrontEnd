@@ -13,6 +13,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TripSearchComponent } from './pages/trip-search/trip-search.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavbarComponent,
     RegistrationComponent,
     PagesComponent,
-    ConnectionComponent
+    ConnectionComponent,
+    TripSearchComponent
   ],
   imports: [
     HttpClientModule,
