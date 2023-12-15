@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-home-page',
@@ -9,7 +10,14 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class HomePageComponent {
   ImagePath: string;
-  constructor(config: NgbCarouselConfig) {
+
+  form: FormGroup = this._fb.group({
+    depart: ['', [Validators.required]],
+    destination: ['', [Validators.required]],
+    date: ['', [Validators.required]],
+    people: ['', [Validators.required]],
+  });
+  constructor(private _fb: FormBuilder, config: NgbCarouselConfig) {
     this.ImagePath = "assets/img/waymateHome.png"
     config.interval = 5500;
     config.wrap = true;
