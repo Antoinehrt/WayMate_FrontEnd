@@ -17,14 +17,15 @@ export class ConnectionComponent {
   }
 
   verifyLogin(value: any){
-    this._connectionService.login(value.email, value.password)
-      .subscribe(
-        response => {
-          console.log("Login succeeded.", response.isLogged);
-        },
-        (error) =>{
-          console.log("Login failed.", error);
-        }
-      );
+    this._connectionService.login(value.email, value.password).subscribe({
+      next: (response) => {
+        //This.loginForm.reset
+        console.log(response);
+        this._connectionService.storeToken(response);
+      },
+      error: (err) => {
+        console.error("Login failed", err);
+      }
+    })
   }
 }

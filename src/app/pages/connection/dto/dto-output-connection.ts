@@ -1,3 +1,3 @@
 export interface DtoOutputConnection {
-  isLogged: boolean;
+  Token: string;
 }
