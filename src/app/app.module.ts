@@ -14,6 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TripSearchComponent } from './pages/trip-search/trip-search.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TripSearchComponent } from './pages/trip-search/trip-search.component';
     RegistrationComponent,
     PagesComponent,
     ConnectionComponent,
-    TripSearchComponent
+    TripSearchComponent,
+    FooterComponent
   ],
   imports: [
     HttpClientModule,
