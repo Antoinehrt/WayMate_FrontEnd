@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-export class HomePageService {
+export class DataTransferService {
   private formDataSubject: BehaviorSubject<any> = new BehaviorSubject(null);
   formData$: Observable<any> = this.formDataSubject.asObservable();
 
