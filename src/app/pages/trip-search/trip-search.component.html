@@ -1,0 +1,10 @@
+<div>
+<h2>Trip information</h2>
+  <div *ngIf="formData">
+    <p>Depart: {{ formData.depart }}</p>
+    <p>Destination: {{ formData.destination }}</p>
+    <p>How many people: {{ formData.people }}</p>
+    <p>Date: {{ formData.date | date }}</p>
+  </div>
+</div>
+

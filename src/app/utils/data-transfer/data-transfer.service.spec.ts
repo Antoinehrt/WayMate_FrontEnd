@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HomePageService } from './home-page.service';
+import { DataTransferService } from './data-transfer.service';
 
-describe('HomePageService', () => {
-  let service: HomePageService;
+describe('DataTransferService', () => {
+  let service: DataTransferService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(HomePageService);
+    service = TestBed.inject(DataTransferService);
   });
 
   it('should be created', () => {

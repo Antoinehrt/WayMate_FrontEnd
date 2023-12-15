@@ -3,11 +3,13 @@ import {RouterModule, Routes} from "@angular/router";
 import {RegistrationComponent} from "./pages/registration/registration.component";
 import {ConnectionComponent} from "./pages/connection/connection.component";
 import {HomePageComponent} from "./pages/home-page/home-page.component";
+import {TripSearchComponent} from "./pages/trip-search/trip-search.component";
 
 
 const routes: Routes = [
   {path: "", pathMatch: "full", redirectTo:"/home"},
   {path: "home", component: HomePageComponent},
+  {path: "tripSearch", component: TripSearchComponent},
   {path: "registration", component: RegistrationComponent},
   {path: "connection", component: ConnectionComponent},
   {path: "**", redirectTo:"/home"},
