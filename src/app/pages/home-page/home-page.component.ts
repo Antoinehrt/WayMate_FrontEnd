@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
@@ -9,6 +9,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   providers: [NgbCarouselConfig]
 })
 export class HomePageComponent {
+  @Output()
+  formSubmited: EventEmitter<any> = new EventEmitter();
   ImagePath: string;
   minDate: string;
 
@@ -29,5 +31,9 @@ export class HomePageComponent {
     config.pauseOnHover = false;
     config.showNavigationIndicators = false;
     config.showNavigationArrows = false;
+  }
+
+  searchTrip(){
+    this.formSubmited.emit(this.form);
   }
 }
