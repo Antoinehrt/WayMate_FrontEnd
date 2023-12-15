@@ -8,11 +8,14 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
   providers: [NgbCarouselConfig]
 })
 export class HomePageComponent {
+  ImagePath: string;
   constructor(config: NgbCarouselConfig) {
-    // customize default values of carousels used by this component tree
-    config.interval = 10000;
-    config.wrap = false;
-    config.keyboard = false;
+    this.ImagePath = "assets/img/waymateHome.png"
+    config.interval = 5500;
+    config.wrap = true;
+    config.keyboard = true;
     config.pauseOnHover = false;
+    config.showNavigationIndicators = false;
+    config.showNavigationArrows = false;
   }
 }

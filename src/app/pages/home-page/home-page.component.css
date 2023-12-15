@@ -2,53 +2,34 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  height: 98vh;
-  background-color: lightblue;
+  height: 100vh;
 }
 
 .centered-form {
-  background-color: aliceblue;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 6px;
   box-shadow: 0 0 10px rgba(0,0,0,0.4);
   width: 400px;
-  margin-left: 200px;
-}
-
-.form-group {
-  margin-bottom: 10px;
+  margin-left: 100px;
+  margin-top: 100px
 }
 
 .form-control {
   width: 100%; /* Les champs texte et la date ont la même largeur */
   padding: 8px;
+  margin: 2px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
-
-ngb-carousel .wrapper {
-
-  position: relative;
-
-  height: 0;
-
-  padding-top: 55%; /* Keep ratio for 900x500 images */
-
+.row-bottom{
+  padding-top: 150px;
 }
 
-ngb-carousel .wrapper>img {
-
-  position: absolute;
-
-  top: 0;
-
-  left: 0;
-
-  bottom: 0;
-
-  right: 0;
-
+.image-right{
+  height: 700px;
+  width: 600px;
+  padding-left: 100px;
 }
 
