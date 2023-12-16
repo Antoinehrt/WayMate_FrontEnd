@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
   ImagePath: string;
-  isNavbarCollapsed=true;
   collapsed = true;
 
   constructor() {
