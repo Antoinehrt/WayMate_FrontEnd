@@ -5,6 +5,13 @@
     <p>Destination: {{ formData.destination }}</p>
     <p>How many people: {{ formData.people }}</p>
     <p>Date: {{ formData.date | date }}</p>
+
   </div>
 </div>
 
+<ul>
+  <li *ngFor="let trip of trips">
+    {{trip.Id}} - {{trip.Date}}
+    {{trip.Luggage}}
+  </li>
+</ul>
