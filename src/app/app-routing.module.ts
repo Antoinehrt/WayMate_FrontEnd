@@ -4,6 +4,7 @@ import {RegistrationComponent} from "./pages/registration/registration.component
 import {ConnectionComponent} from "./pages/connection/connection.component";
 import {HomePageComponent} from "./pages/home-page/home-page.component";
 import {TripSearchComponent} from "./pages/trip-search/trip-search.component";
+import {NotFoundComponent} from "./pages/not-found/not-found.component";
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path: "tripSearch", component: TripSearchComponent},
   {path: "registration", component: RegistrationComponent},
   {path: "connection", component: ConnectionComponent},
-  {path: "**", redirectTo:"/home"},
+  {path: "not-found", component: NotFoundComponent},
+  {path: "**", redirectTo:"/not-found"},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

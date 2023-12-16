@@ -15,6 +15,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TripSearchComponent } from './pages/trip-search/trip-search.component';
 import { FooterComponent } from './footer/footer.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FooterComponent } from './footer/footer.component';
     PagesComponent,
     ConnectionComponent,
     TripSearchComponent,
-    FooterComponent
+    FooterComponent,
+    NotFoundComponent
   ],
   imports: [
     HttpClientModule,
