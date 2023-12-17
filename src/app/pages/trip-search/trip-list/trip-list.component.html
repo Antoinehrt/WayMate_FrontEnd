@@ -1,7 +1,8 @@
 <ul>
-  <li *ngFor="let trip of trips">
-    {{trip.id}} - {{trip.date}}
-    {{trip.luggage}}
+  <li *ngFor="let trip of trips; let i = index;">
+    {{trip.id}} - {{trip.idDriver}} - {{trip.smoke}} - {{trip.priceKm}} - {{trip.luggage}} - {{trip.petFriendly}} - {{trip.occupiedSeats}} - {{trip.idStartingPoint}} - {{trip.idDestination}}
+    <br>
+    {{addressDepart[i].id}} - {{addressDepart[i].city}} - {{addressDepart[i].number}} - {{addressDepart[i].postalCode}} - {{addressDepart[i].street}}
   </li>
 </ul>
 
