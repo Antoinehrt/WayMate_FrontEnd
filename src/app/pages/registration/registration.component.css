@@ -1,71 +1,44 @@
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 98vh; /* Pour occuper toute la hauteur de la vue */
-  background-color: #f0f0f0; /* Couleur de fond */
+@media (min-width: 1025px) {
+  .h-custom {
+    height: 120vh !important;
+  }
+}
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+  font-size: 1rem;
+  line-height: 2.15;
+  padding-left: .75em;
+  padding-right: .75em;
+}
+.card-registration .select-arrow {
+  top: 13px;
 }
 
-.centered-form {
-  background-color: #ffffff; /* Couleur de fond du formulaire */
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
-  width: 400px; /* Largeur du formulaire, ajuste selon tes besoins */
+.gradient-custom-2 {
+  background: #a1c4fd;
+
+  background: -webkit-linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1));
+
+  background: linear-gradient(to right, rgba(161, 196, 253, 1), rgba(194, 233, 251, 1))
 }
 
-.form-group {
-  margin-bottom: 15px;
+.bg-indigo {
+  background-color: #4835d4;
+}
+@media (min-width: 992px) {
+  .card-registration-2 .bg-indigo {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+}
+@media (max-width: 991px) {
+  .card-registration-2 .bg-indigo {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
 }
 
-label {
-  display: block;
-  margin-bottom: 8px;
-}
-
-.form-control {
-  width: 100%; /* Les champs texte et la date ont la même largeur */
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-.button-group {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-}
-
-.btn {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.box div {
-  height: 100px;
-  width: 500px;
-}
-
-.centered-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 20px;
-  text-decoration: underline;
-  font-family: "Times New Roman", Times, serif;
-}
-
-span.valid{
-  color: green;
+a:hover {
+  cursor:pointer;
 }
 
 span.invalid {

@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {RegistrationService} from "./registration.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-registration',
@@ -8,7 +9,6 @@ import {RegistrationService} from "./registration.service";
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent {
-  currentStep: number =1;
   errorMail: boolean = false;
   errorUsername: boolean = false;
   maxBirthdate: string;
@@ -36,19 +36,13 @@ export class RegistrationComponent {
     })
   });
 
-  constructor(private _fb: FormBuilder, private _registrationService: RegistrationService) {
+  constructor(private _fb: FormBuilder, private _registrationService: RegistrationService, private _route:Router) {
     const currentDate = new Date();
     const maxDate = new Date(currentDate.getFullYear() - 14, currentDate.getMonth(), currentDate.getDate());
     this.maxBirthdate = maxDate.toISOString().split('T')[0];
   }
-  nextStep() {
-    this.currentStep++;
-  }
-  previousStep() {
-    this.currentStep--;
-  }
-
   onSubmit(){
+
     if(this.form.valid){
       const userEmail = this.form.get('passengerForm.email')?.value;
       const userUsername = this.form.get('passengerForm.username')?.value;
@@ -68,7 +62,7 @@ export class RegistrationComponent {
                 }
                 else {
                   this.errorUsername = false;
-                  if(this.form.get('passengerForm.password')?.value === this.form.get('passengerForm.passwordVerif')?.value) {
+                  if(this.verifPassword()) {
                     this._registrationService.fetchByAddress(this.form.get('addressForm.street')?.value,
                       this.form.get('addressForm.postalCode')?.value,
                       this.form.get('addressForm.city')?.value,
@@ -106,6 +100,46 @@ export class RegistrationComponent {
       );
     }
   }
+
+  public controlUsername() : boolean {
+    if(this.form.get('passengerForm.username')?.valid && this.form.get('passengerForm.username')?.touched){
+      return true;
+    }
+    else if(this.form.get('passengerForm.username')?.invalid && this.form.get('passengerForm.username')?.touched && this.form.get('passengerForm.username')?.dirty){
+      return false;
+    }
+    return true;
+  }
+
+  public controlPassword() : boolean {
+    if(this.form.get('passengerForm.password')?.valid && this.form.get('passengerForm.password')?.touched){
+      return true;
+    }
+    else if(this.form.get('passengerForm.password')?.invalid && this.form.get('passengerForm.password')?.touched && this.form.get('passengerForm.password')?.dirty){
+      return false;
+    }
+    return true;
+  }
+  public controlEmail() : boolean {
+    if(this.form.get('passengerForm.email')?.valid && this.form.get('passengerForm.email')?.touched){
+      return true;
+    }
+    else if(this.form.get('passengerForm.email')?.invalid && this.form.get('passengerForm.email')?.touched && this.form.get('passengerForm.email')?.dirty){
+      return false;
+    }
+    return true;
+  }
+
+  public verifPassword(): boolean {
+    if(this.form.get('passengerForm.password')?.value != this.form.get('passengerForm.passwordVerif')?.value)
+      return false;
+    return true;
+  }
+
+  clickLogIn() {
+    this._route.navigate(['/connection']);
+  }
+
   autocomplete() {
     this.form.setValue({
       passengerForm:{
