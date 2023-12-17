@@ -42,4 +42,14 @@ export class HomePageComponent {
 
     this._route.navigate(['/tripSearch']);
   }
+
+  autocomplete() {
+    this.form.setValue({
+        depart: "Galaxy City",
+        destination: "Spaceport",
+        date: "",
+        people: "2",
+
+    });
+  }
 }

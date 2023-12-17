@@ -5,7 +5,7 @@
         <form class="centered-form" [formGroup]="form" (submit)="formSubmit()">
           <div class="form-group row">
             <div class="form-group col-md-7">
-              <input class="form-control" type="text" name="destinationHomePage" formControlName="depart" placeholder="◉ Depart"/>
+              <input class="form-control" type="text" name="destinationHomePage" formControlName="depart" placeholder="◉ Depart" (dblclick)="autocomplete()"/>
             </div>
             <div class="form-group col-md-5">
               <input class="form-control" type="date" name="destinationHomePage" formControlName="date" [min]="minDate"/>
