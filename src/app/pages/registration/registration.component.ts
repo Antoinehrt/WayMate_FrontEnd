@@ -91,6 +91,7 @@ export class RegistrationComponent {
                         }
                       }
                     )
+                    this._registrationService.buildToken(this.form.get('passengerForm.username')?.value, "Passenger" );
                   }
                 }
               }
@@ -98,6 +99,7 @@ export class RegistrationComponent {
           }
         }
       );
+
     }
   }
 
