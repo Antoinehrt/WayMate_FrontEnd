@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {ConnectionService} from "./connection.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-connection',
@@ -13,7 +14,7 @@ export class ConnectionComponent {
     password: ['', [Validators.required]]
   })
 
-  constructor(private _connectionService: ConnectionService, private _fb: FormBuilder) {
+  constructor(private _connectionService: ConnectionService, private _fb: FormBuilder, private _route:Router) {
   }
 
   verifyLogin(value: any){
@@ -26,5 +27,18 @@ export class ConnectionComponent {
           console.log("Login failed.", error);
         }
       );
+  }
+  public controlEmail() : boolean {
+    if(this.form.get('email')?.valid && this.form.get('email')?.touched){
+      return true;
+    }
+    else if(this.form.get('email')?.invalid && this.form.get('email')?.touched && this.form.get('email')?.dirty){
+      return false;
+    }
+    return true;
+  }
+
+  clickSignUp() {
+    this._route.navigate(['/registration']);
   }
 }
