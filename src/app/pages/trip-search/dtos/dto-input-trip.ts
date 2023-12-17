@@ -1,12 +1,12 @@
 export interface DtoInputTrip {
-  Id: number;
-  IdDriver: number;
-  Smoke: boolean;
-  PriceKm: number;
-  Luggage: boolean;
-  PetFriendly: boolean;
-  Date: Date;
-  OccupiedSeats: number;
-  IdStartingPoint: number;
-  IdDestination: number;
+  id: number;
+  idDriver: number;
+  smoke: boolean;
+  priceKm: number;
+  luggage: boolean;
+  petFriendly: boolean;
+  date: Date;
+  occupiedSeats: number;
+  idStartingPoint: number;
+  idDestination: number;
 }
