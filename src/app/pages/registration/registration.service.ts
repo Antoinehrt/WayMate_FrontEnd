@@ -18,6 +18,8 @@ export class RegistrationService {
   private static _URL_API_REGISTRATION_EMAIL: string = environment.BASE_URL_API + "/authentication/registration/by-email";
   private static _URL_API_REGISTRATION_USERNAME: string = environment.BASE_URL_API + "/authentication/registration/by-username";
   private static _URL_API_REGISTRATION_ADDRESS: string = environment.BASE_URL_API + "/address/get-id";
+  private static _URL_API_TOKEN: string = environment.BASE_URL_API + "/authentication/token";
+  private readonly TOKEN_NAME: string = 'WayMateToken';
 
   constructor(private _httpClient: HttpClient) {
   }
@@ -43,5 +45,17 @@ export class RegistrationService {
   }
   fetchByAddress(street:string, postalCode:string, city:string, number:string): Observable<DtoOutputFetchByAddress> {
     return this._httpClient.get<DtoOutputFetchByAddress>(`${RegistrationService._URL_API_REGISTRATION_ADDRESS}?street=${street}&postalCode=${postalCode}&city=${city}&number=${number}`);
+  }
+
+  storeToken(token: string){
+    localStorage.setItem(this.TOKEN_NAME, token);
+  }
+
+  buildToken(username: string, userType: string) {
+    this._httpClient.get(`${RegistrationService._URL_API_TOKEN}?username=${username}&userType=${userType}`, { responseType: 'text' }).subscribe(
+       (response) => {
+         this.storeToken(response);
+      }
+    )
   }
 }
