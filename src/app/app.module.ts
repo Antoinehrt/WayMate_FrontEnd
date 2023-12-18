@@ -6,6 +6,11 @@ import { AccountComponent } from './account/account.component';
 import { ProfilComponent } from './account/profil/profil.component';
 import { AboutComponent } from './about/about.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
+import { AdministratorComponent } from './administrator/administrator.component';
+import {RouterOutlet} from "@angular/router";
+import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -13,10 +18,15 @@ import { AboutusComponent } from './aboutus/aboutus.component';
     AccountComponent,
     ProfilComponent,
     AboutComponent,
-    AboutusComponent
+    AboutusComponent,
+    AdministratorComponent,
+    NotFoundComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterOutlet,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

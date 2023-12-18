@@ -4,26 +4,26 @@ import {Observable} from "rxjs";
 import {DtoInputProfil} from "./dtos/dto-input-profil";
 import {DtoInputAddress} from "./dtos/dto-input-address";
 import {DtoOutputUpdateAddress} from "./dtos/dto-output-update-address";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfilService {
-  private environment: any;
-
+private static _URL_API: string = environment.BASE_URL_API + "/user";
   constructor(private _httpClient: HttpClient,
-              private _session: SessionService) {
+             /* private _session: SessionService*/) {
   }
   fetchProfil(id: number): Observable<DtoInputProfil> {
-    return this._httpClient.get<DtoInputProfil>(this.environment.apiUrlAccount + "/fetch/profil/" + id);
+    return this._httpClient.get<DtoInputProfil>(ProfilService._URL_API + id);
   }
 
-  updateProfil(dto: DtoInputProfil) {
+  /*updateProfil(dto: DtoInputProfil) {
 
     let dtoUpdate: DtoOutputUpdateDriver = {
       email: dto.email,
       firstName: dto.firstName,
-      idAccount: this._session.getID(),
+      idAccount: //this._session.getID(),
       isAdmin: null,
       phone: dto.phone,
       lastName: dto.lastName,
@@ -42,5 +42,5 @@ export class ProfilService {
       postCode:dto.postCode
     }
     return this.updateAddress(dtoAddress).subscribe();
-  }
+  }*/
 }

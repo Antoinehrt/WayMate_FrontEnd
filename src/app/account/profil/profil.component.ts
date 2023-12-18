@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProfilService} from "./profil.service";
 import {DtoInputProfil} from "./dtos/dto-input-profil";
+import {DtoInputAddress} from "./dtos/dto-input-address";
 
 @Component({
   selector: 'app-profil',
@@ -38,21 +39,21 @@ export class ProfilComponent implements OnInit{
               private _session : SessionService*/) {}
 
   ngOnInit(): void {
-    this.profilService.fetchProfil(this._session.getID()).subscribe(profil => {
+   /* this.profilService.fetchProfil(this._session.getID()).subscribe(profil => {
       this.user = profil
     })
-
+*/
   }
 
   edit() {
     this.editMode = !this.editMode;
   }
 
-  send() {
+  /*send() {
     this._notification.success("Changement effectué");
     this.profilService.updateProfil(this.user);
     this.profilService.updateAddress(this.user.address);
     this.edit();
-  }
+  }*/
 
 }

@@ -4,7 +4,7 @@
   </div>
   <button (click)="edit()">Mode édition</button>
   <div class="content">
-    <form #form="ngForm" (ngSubmit)="send()">
+    <form #form="ngForm">
       <h1>Informations personnelles</h1>
       <input type="submit" [hidden]="!editMode" [disabled]="form.invalid">
       <div class="row">
@@ -111,10 +111,10 @@
     </form>
   </div>
   <div class="content">
-    <h1>Informations relatives à la société</h1>
+    <h1>Informations relatives au covoiturage</h1>
     <div class="row">
       <div class="interior">
-        <p><span class="titre">Fonction dans la société </span> : {{user.function}}</p>
+        <p><span class="titre">Fonction </span> : {{user.function}}</p>
       </div>
     </div>
     <br>
