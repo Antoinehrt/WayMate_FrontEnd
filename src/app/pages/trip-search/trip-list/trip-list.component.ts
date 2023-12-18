@@ -30,7 +30,6 @@ export class TripListComponent implements OnInit {
     this._tripSearch.getAllTripDetails().subscribe(data => {
       this.groupedTrips = this.groupTrips(data.trips, data.addresses, data.drivers);
       this.filterTrips();
-      console.log(this.groupedTrips.length);
     });
   }
 
