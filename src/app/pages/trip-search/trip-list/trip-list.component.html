@@ -1,53 +1,27 @@
 <div class="gradient-custom-2">
   <div class="container py-5 h-100">
-    <div *ngIf="formData" class="row d-flex justify-content-center align-items-center h-100">
-      <div *ngIf="filteredTrips.length > 0;" class="col-auto">
-        <div *ngFor="let trip of filteredTrips; let i = index;"  class="card card-registration card-registration-2" style="border-radius: 15px;">
+    <div  *ngIf="formData" class="row d-flex justify-content-center align-items-center h-100">
+      <div *ngIf="groupedTrips.length > 0" class="col-auto">
+        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
           <div class="p-5">
-            <p>
-              {{trip.id}} - {{trip.idDriver}} - {{trip.smoke}} - {{trip.priceKm}} - {{trip.luggage}} - {{trip.petFriendly}} - {{trip.occupiedSeats}} - {{trip.idStartingPoint}} - {{trip.idDestination}}
-              <br>
-              {{addressDepart[i].city}} {{trip.date | date:'HH:mm'}}--> {{addressDestination[i].city}}
-            </p>
-
-              <!-- Côté gauche -->
-              <div class="d-flex flex-column">
-                <div class="mb-2">
-                  <!-- Heure de départ -->
-                  <strong>Départ:</strong> {{ trip.date | date:'HH:mm' }}
-                </div>
-                <div class="mb-2">
-                  <!-- Temps de trajet -->
-                  <strong>Temps de trajet:</strong> 50min <!-- Remplacez par la variable réelle du temps de trajet -->
-                </div>
-                <div>
-                  <!-- Heure d'arrivée -->
-                  <strong>Arrivée:</strong> {{ (trip.date | date:'HH:mm') }} <!-- Remplacez par la variable réelle -->
-                </div>
-                <div class="mt-3">
-                  <!-- Ville de départ -->
-                  <strong>Départ:</strong> {{ addressDepart[i].city }}
-                </div>
-                <div>
-                  <!-- Ville de destination -->
-                  <strong>Destination:</strong> {{ addressDestination[i].city }}
-                </div>
+            <div *ngFor="let groupedTrip of filteredTrips">
+              <div>
+                <strong>Trip:</strong> {{ groupedTrip.trip | json }}
               </div>
-
-              <!-- Côté droit -->
-              <div class="d-flex flex-column align-items-end">
-                <div class="mb-2">
-                  <!-- Prix -->
-                  <strong>Prix:</strong> {{ trip.priceKm }} €
-                </div>
-                <div>
-                  <!-- Nom du driver -->
-                  <strong>Driver:</strong> trip.driverName <!-- Remplacez par la variable réelle -->
-                </div>
+              <div>
+                <strong>Departure Address:</strong> {{ groupedTrip.departureAddress | json }}
               </div>
+              <div>
+                <strong>Destination Address:</strong> {{ groupedTrip.destinationAddress | json }}
+              </div>
+              <div>
+                <strong>Driver:</strong> {{ groupedTrip.driver | json }}
+              </div>
+            </div>
           </div>
+        </div>
       </div>
-      <div *ngIf="filteredTrips.length == 0;" class="col-auto">
+      <div *ngIf="groupedTrips.length == 0" class="col-auto">
         <div class="card card-registration card-registration-2" style="border-radius: 15px;">
           <div class="p-5">
             <p>No matching trips found.</p>
@@ -66,3 +40,4 @@
     </div>
   </div>
 </div>
+

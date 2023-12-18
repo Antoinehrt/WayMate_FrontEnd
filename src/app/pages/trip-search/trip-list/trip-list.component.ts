@@ -13,16 +13,24 @@ import {DtoInputDriver} from "../dtos/dto-input-driver";
 })
 export class TripListComponent implements OnInit {
   groupedTrips: any[] = [];
+  filteredTrips: any[] = [];
+  formData: any = [];
 
-  constructor(private _tripSearch: TripSearchService) {}
+  constructor(private _tripSearch: TripSearchService, private sharedDataService: DataTransferService) {}
 
   ngOnInit() {
+    this.sharedDataService.formData$.subscribe(formData => {
+      this.formData = formData;
+    });
     this.getAllTripDetails();
+
   }
 
   getAllTripDetails() {
     this._tripSearch.getAllTripDetails().subscribe(data => {
       this.groupedTrips = this.groupTrips(data.trips, data.addresses, data.drivers);
+      this.filterTrips();
+      console.log(this.groupedTrips.length);
     });
   }
 
@@ -35,5 +43,12 @@ export class TripListComponent implements OnInit {
         driver: drivers.find(driver => driver.id === trip.idDriver)
       };
     });
+  }
+
+  filterTrips() {
+    this.filteredTrips = this.groupedTrips.filter(trip =>
+      trip.departureAddress.city === this.formData.depart &&
+      trip.destinationAddress.city === this.formData.destination
+    );
   }
 }
