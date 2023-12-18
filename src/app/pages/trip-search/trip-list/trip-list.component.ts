@@ -4,6 +4,7 @@ import { TripSearchService } from "../trip-search.service";
 import { DtoInputAddress } from "../dtos/dto-input-address";
 import { forkJoin } from "rxjs";
 import { DataTransferService } from "../../../utils/data-transfer/data-transfer.service";
+import {DtoInputDriver} from "../dtos/dto-input-driver";
 
 @Component({
     selector: 'app-trip-list',
@@ -11,52 +12,28 @@ import { DataTransferService } from "../../../utils/data-transfer/data-transfer.
     styleUrls: ['./trip-list.component.css']
 })
 export class TripListComponent implements OnInit {
-    trips: DtoInputTrip[] = [];
-    addressDepart: DtoInputAddress[] = [];
-    addressDestination: DtoInputAddress[] = [];
-    filteredTrips: DtoInputTrip[] = [];
-    formData: any = [];
+  groupedTrips: any[] = [];
 
-    constructor(private _tripSearch: TripSearchService, private sharedDataService: DataTransferService) {
-    }
+  constructor(private _tripSearch: TripSearchService) {}
 
-    ngOnInit() {
-        this.getAll();
-    }
+  ngOnInit() {
+    this.getAllTripDetails();
+  }
 
-    getAll() {
-        this.sharedDataService.formData$.subscribe(formData => {
-            this.formData = formData;
-            if (this.formData) {
-                this._tripSearch.getAll().subscribe(trips => {
-                    this.trips = trips;
-                    this.getAddress();
-                });
-            }
-        });
-    }
+  getAllTripDetails() {
+    this._tripSearch.getAllTripDetails().subscribe(data => {
+      this.groupedTrips = this.groupTrips(data.trips, data.addresses, data.drivers);
+    });
+  }
 
-    getAddress() {
-        forkJoin(
-            this.trips.map(trip => this._tripSearch.fetchAddressById(trip.idStartingPoint))
-        ).subscribe(addresses => {
-            this.addressDepart = addresses;
-        });
-
-        forkJoin(
-            this.trips.map(trip => this._tripSearch.fetchAddressById(trip.idDestination))
-        ).subscribe(addresses => {
-            this.addressDestination = addresses;
-            this.filterTrips();
-        });
-    }
-
-    filterTrips() {
-        if (this.formData.depart && this.formData.destination) {
-            this.filteredTrips = this.trips.filter((trip, index) =>
-                this.addressDepart[index]?.city === this.formData.depart &&
-                this.addressDestination[index]?.city === this.formData.destination
-            );
-        }
-    }
+  private groupTrips(trips: DtoInputTrip[], addresses: DtoInputAddress[], drivers: DtoInputDriver[]): any[] {
+    return trips.map(trip => {
+      return {
+        trip: trip,
+        departureAddress: addresses.find(addr => addr.id === trip.idStartingPoint),
+        destinationAddress: addresses.find(addr => addr.id === trip.idDestination),
+        driver: drivers.find(driver => driver.id === trip.idDriver)
+      };
+    });
+  }
 }
