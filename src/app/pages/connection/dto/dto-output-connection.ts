@@ -1,3 +1,5 @@
 export interface DtoOutputConnection {
-  Token: string;
+  islogged: boolean,
+  username: string,
+  usertype: string
 }

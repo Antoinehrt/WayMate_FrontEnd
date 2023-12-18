@@ -19,10 +19,12 @@ export class ConnectionComponent {
 
   verifyLogin(value: any){
     this._connectionService.login(value.email, value.password).subscribe({
-      next: (response) => {
-        //This.loginForm.reset
-        console.log(response);
-        this._connectionService.storeToken(response);
+    next: (response) => {
+        this._connectionService.buildToken(response.username, response.usertype).subscribe({
+          next: (resToken) => {
+            console.log(resToken.token);
+          }
+        })
       },
       error: (err) => {
         console.error("Login failed", err);

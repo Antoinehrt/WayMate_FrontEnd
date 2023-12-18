@@ -8,6 +8,7 @@ import {DtoOutputRegistration} from "./dtos/dto-output-registration";
 import {DtoOutputCreateAddress} from "./dtos/dto-output-create-address";
 import {DtoInputAddress} from "./dtos/dto-input-address";
 import {DtoOutputFetchByAddress} from "./dtos/dto-output-fetch-by-address";
+import {DtoOutputToken} from "../connection/dto/dto-output-token";
 
 @Injectable({
   providedIn: 'root'
@@ -52,9 +53,9 @@ export class RegistrationService {
   }
 
   buildToken(username: string, userType: string) {
-    this._httpClient.get(`${RegistrationService._URL_API_TOKEN}?username=${username}&userType=${userType}`, { responseType: 'text' }).subscribe(
+    this._httpClient.get<DtoOutputToken>(`${RegistrationService._URL_API_TOKEN}?username=${username}&userType=${userType}`).subscribe(
        (response) => {
-         this.storeToken(response);
+         this.storeToken(response.token);
       }
     )
   }
