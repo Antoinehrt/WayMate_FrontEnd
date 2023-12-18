@@ -21,7 +21,7 @@ export class ConnectionService {
   }
 
   buildToken(dto: DtoInputToken): Observable<DtoOutputToken>{
-    return this._httpClient.post<DtoOutputToken>(ConnectionService._URL_API_TOKEN, dto);
+    return this._httpClient.post<DtoOutputToken>(ConnectionService._URL_API_TOKEN, dto, { withCredentials: true });
   }
 
   isLoggedIn(): boolean{

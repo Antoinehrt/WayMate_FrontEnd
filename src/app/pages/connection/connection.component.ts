@@ -23,6 +23,9 @@ export class ConnectionComponent {
         this._connectionService.buildToken(response).subscribe({
           next: (resToken) => {
             console.log(resToken.token);
+          },
+          error: (err) => {
+            console.error('Error generating token:', err);
           }
         })
       },
