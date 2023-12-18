@@ -1,7 +1,43 @@
-<ul>
-  <li *ngFor="let trip of trips">
-    {{trip.id}} - {{trip.date}}
-    {{trip.luggage}}
-  </li>
-</ul>
+<div class="gradient-custom-2">
+  <div class="container py-5 h-100">
+    <div  *ngIf="formData" class="row d-flex justify-content-center align-items-center h-100">
+      <div *ngIf="groupedTrips.length > 0" class="col-auto">
+        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+          <div class="p-5">
+            <div *ngFor="let groupedTrip of filteredTrips">
+              <div>
+                <strong>Trip:</strong> {{ groupedTrip.trip | json }}
+              </div>
+              <div>
+                <strong>Departure Address:</strong> {{ groupedTrip.departureAddress | json }}
+              </div>
+              <div>
+                <strong>Destination Address:</strong> {{ groupedTrip.destinationAddress | json }}
+              </div>
+              <div>
+                <strong>Driver:</strong> {{ groupedTrip.driver | json }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="groupedTrips.length == 0" class="col-auto">
+        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+          <div class="p-5">
+            <p>No matching trips found.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!formData" class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-auto">
+        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+          <div class="p-5">
+            Home Page form not send.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
