@@ -45,8 +45,8 @@ export class HomePageComponent {
 
   autocomplete() {
     this.form.setValue({
-        depart: "Galaxy City",
-        destination: "Spaceport",
+        depart: "Keldabe",
+        destination: "Lessu",
         date: "",
         people: "2",
 
