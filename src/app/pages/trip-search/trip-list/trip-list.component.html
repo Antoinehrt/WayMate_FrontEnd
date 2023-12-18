@@ -1,22 +1,34 @@
 <div class="gradient-custom-2">
     <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
+      <div *ngIf="formData" class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-auto">
           <div class="card card-registration card-registration-2" style="border-radius: 15px;">
             <div class="p-5">
-              <div *ngIf="formData">
-                <div *ngFor="let trip of trips; let i = index;">
-                  <ng-container *ngIf="addressDepart[i] && addressDestination[i]">
-                    <p *ngIf="formData.depart === addressDepart[i].city && formData.destination === addressDestination[i].city">
-                      {{trip.id}} - {{trip.idDriver}} - {{trip.smoke}} - {{trip.priceKm}} - {{trip.luggage}} - {{trip.petFriendly}} - {{trip.occupiedSeats}} - {{trip.idStartingPoint}} - {{trip.idDestination}}
-                      <br>
-                      {{addressDepart[i].id}} - {{addressDepart[i].city}} - {{addressDepart[i].number}} - {{addressDepart[i].postalCode}} - {{addressDepart[i].street}}
-                      <br>
-                      {{addressDestination[i].id}} - {{addressDestination[i].city}} - {{addressDestination[i].number}} - {{addressDestination[i].postalCode}} - {{addressDestination[i].street}}
-                    </p>
-                  </ng-container>
+              <div *ngIf="filteredTrips.length > 0; else emptyState">
+                <div *ngFor="let trip of filteredTrips; let i = index;">
+                  <p>
+                    {{trip.id}} - {{trip.idDriver}} - {{trip.smoke}} - {{trip.priceKm}} - {{trip.luggage}} - {{trip.petFriendly}} - {{trip.occupiedSeats}} - {{trip.idStartingPoint}} - {{trip.idDestination}}
+                    <br>
+                    Depart Address:
+                    {{addressDepart[i].id}} - {{addressDepart[i].city}} - {{addressDepart[i].number}} - {{addressDepart[i].postalCode}} - {{addressDepart[i].street}}
+                    <br>
+                    Destination Address:
+                    {{addressDestination[i].id}} - {{addressDestination[i].city}} - {{addressDestination[i].number}} - {{addressDestination[i].postalCode}} - {{addressDestination[i].street}}
+                  </p>
                 </div>
               </div>
+              <ng-template #emptyState>
+                <p>No matching trips found.</p>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!formData" class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-auto">
+          <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+            <div class="p-5">
+              Form not send
             </div>
           </div>
         </div>
