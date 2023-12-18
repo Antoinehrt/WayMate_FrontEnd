@@ -27,6 +27,6 @@ export class TripSearchService {
   }
 
   getAllDriver(): Observable<DtoInputDriver[]> {
-    return this._httpClient.get<DtoInputTrip[]>(TripSearchService._URL_API_DRIVER);
+    return this._httpClient.get<DtoInputDriver[]>(TripSearchService._URL_API_DRIVER);
   }
 }
