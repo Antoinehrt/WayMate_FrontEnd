@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {DtoOutputToken} from "./dto/dto-output-token";
 import {Observable} from "rxjs";
 import {DtoOutputConnection} from "./dto/dto-output-connection";
+import {DtoInputToken} from "./dto/dto-input-token";
 
 
 @Injectable({
@@ -19,8 +20,8 @@ export class ConnectionService {
     return this._httpClient.get<DtoOutputConnection>(`${ConnectionService._URL_API_AUTH}?email=${email}&password=${password}`);
   }
 
-  buildToken(username: string, userType: string): Observable<DtoOutputToken>{
-    return this._httpClient.get<DtoOutputToken>(`${ConnectionService._URL_API_TOKEN}?username=${username}&usertype=${userType}`);
+  buildToken(dto: DtoInputToken): Observable<DtoOutputToken>{
+    return this._httpClient.post<DtoOutputToken>(ConnectionService._URL_API_TOKEN, dto);
   }
 
   isLoggedIn(): boolean{

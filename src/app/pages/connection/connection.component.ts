@@ -20,7 +20,7 @@ export class ConnectionComponent {
   verifyLogin(value: any){
     this._connectionService.login(value.email, value.password).subscribe({
     next: (response) => {
-        this._connectionService.buildToken(response.username, response.usertype).subscribe({
+        this._connectionService.buildToken(response).subscribe({
           next: (resToken) => {
             console.log(resToken.token);
           }
