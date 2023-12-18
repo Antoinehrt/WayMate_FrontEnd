@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {RegistrationService} from "./registration.service";
 import {Router} from "@angular/router";
 
@@ -70,9 +70,9 @@ export class RegistrationComponent {
                       (id) => {
                         if(id.id !=0 && id.id != null){
                           registrationData.addressId = id.id;
-                          this._registrationService.registerUser(registrationData).subscribe(
+                          this._registrationService.buildToken(registrationData).subscribe(
                             (response) => {
-                              console.log("User registered succesfully:", response);
+                              console.log("User registered successfully:", response);
                             }
                           )
                         }
@@ -81,7 +81,7 @@ export class RegistrationComponent {
                             (addressId) => {
                               if(addressId.id !=0 && addressId.id != null)
                               registrationData.addressId = addressId.id;
-                              this._registrationService.registerUser(registrationData).subscribe(
+                              this._registrationService.buildToken(registrationData).subscribe(
                                 (response) => {
                                   console.log("User registered succesfully:", response);
                                 }
@@ -89,9 +89,9 @@ export class RegistrationComponent {
                             }
                           )
                         }
+                        this._route.navigate(['/home']);
                       }
                     )
-                    this._registrationService.buildToken(this.form.get('passengerForm.username')?.value, "Passenger" );
                   }
                 }
               }
@@ -133,9 +133,7 @@ export class RegistrationComponent {
   }
 
   public verifPassword(): boolean {
-    if(this.form.get('passengerForm.password')?.value != this.form.get('passengerForm.passwordVerif')?.value)
-      return false;
-    return true;
+    return this.form.get('passengerForm.password')?.value == this.form.get('passengerForm.passwordVerif')?.value;
   }
 
   clickLogIn() {

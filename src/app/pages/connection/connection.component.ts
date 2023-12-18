@@ -19,10 +19,9 @@ export class ConnectionComponent {
 
   verifyLogin(value: any){
     this._connectionService.login(value.email, value.password).subscribe({
-      next: (response) => {
-        //This.loginForm.reset
-        console.log(response);
-        this._connectionService.storeToken(response);
+    next: (response) => {
+        console.log("Login successful!", response);
+      this._route.navigate(['/home']);
       },
       error: (err) => {
         console.error("Login failed", err);

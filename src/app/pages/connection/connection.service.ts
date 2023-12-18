@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {DtoOutputConnection} from "./dto/dto-output-connection";
+import {DtoOutputToken} from "./dto/dto-output-token";
 import {Observable} from "rxjs";
 
 
@@ -13,17 +13,8 @@ export class ConnectionService {
   private readonly TOKEN_NAME: string = 'WayMateToken';
   constructor(private _httpClient: HttpClient) { }
 
-  login(email: string, password: string): Observable<string> {
-    return this._httpClient.get(`${ConnectionService._URL_API_AUTH}?email=${email}&password=${password}`, { responseType: 'text' });
-  }
-
-
-  storeToken(token: string){
-    localStorage.setItem(this.TOKEN_NAME, token);
-  }
-
-  getToken(){
-    return localStorage.getItem(this.TOKEN_NAME);
+  login(email: string, password: string): Observable<DtoOutputToken> {
+    return this._httpClient.get<DtoOutputToken>(`${ConnectionService._URL_API_AUTH}?email=${email}&password=${password}`, { withCredentials: true });
   }
 
   isLoggedIn(): boolean{
