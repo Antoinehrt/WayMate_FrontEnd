@@ -7,14 +7,45 @@
             <p>
               {{trip.id}} - {{trip.idDriver}} - {{trip.smoke}} - {{trip.priceKm}} - {{trip.luggage}} - {{trip.petFriendly}} - {{trip.occupiedSeats}} - {{trip.idStartingPoint}} - {{trip.idDestination}}
               <br>
-              Depart Address:
-              {{addressDepart[i].id}} - {{addressDepart[i].city}} - {{addressDepart[i].number}} - {{addressDepart[i].postalCode}} - {{addressDepart[i].street}}
-              <br>
-              Destination Address:
-              {{addressDestination[i].id}} - {{addressDestination[i].city}} - {{addressDestination[i].number}} - {{addressDestination[i].postalCode}} - {{addressDestination[i].street}}
+              {{addressDepart[i].city}} {{trip.date | date:'HH:mm'}}--> {{addressDestination[i].city}}
             </p>
+
+              <!-- Côté gauche -->
+              <div class="d-flex flex-column">
+                <div class="mb-2">
+                  <!-- Heure de départ -->
+                  <strong>Départ:</strong> {{ trip.date | date:'HH:mm' }}
+                </div>
+                <div class="mb-2">
+                  <!-- Temps de trajet -->
+                  <strong>Temps de trajet:</strong> 50min <!-- Remplacez par la variable réelle du temps de trajet -->
+                </div>
+                <div>
+                  <!-- Heure d'arrivée -->
+                  <strong>Arrivée:</strong> {{ (trip.date | date:'HH:mm') }} <!-- Remplacez par la variable réelle -->
+                </div>
+                <div class="mt-3">
+                  <!-- Ville de départ -->
+                  <strong>Départ:</strong> {{ addressDepart[i].city }}
+                </div>
+                <div>
+                  <!-- Ville de destination -->
+                  <strong>Destination:</strong> {{ addressDestination[i].city }}
+                </div>
+              </div>
+
+              <!-- Côté droit -->
+              <div class="d-flex flex-column align-items-end">
+                <div class="mb-2">
+                  <!-- Prix -->
+                  <strong>Prix:</strong> {{ trip.priceKm }} €
+                </div>
+                <div>
+                  <!-- Nom du driver -->
+                  <strong>Driver:</strong> trip.driverName <!-- Remplacez par la variable réelle -->
+                </div>
+              </div>
           </div>
-        </div>
       </div>
       <div *ngIf="filteredTrips.length == 0;" class="col-auto">
         <div class="card card-registration card-registration-2" style="border-radius: 15px;">
