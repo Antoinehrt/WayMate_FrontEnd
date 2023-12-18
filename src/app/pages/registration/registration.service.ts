@@ -8,7 +8,6 @@ import {DtoOutputRegistration} from "./dtos/dto-output-registration";
 import {DtoOutputCreateAddress} from "./dtos/dto-output-create-address";
 import {DtoInputAddress} from "./dtos/dto-input-address";
 import {DtoOutputFetchByAddress} from "./dtos/dto-output-fetch-by-address";
-import {DtoOutputToken} from "../connection/dto/dto-output-token";
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +18,7 @@ export class RegistrationService {
   private static _URL_API_REGISTRATION_EMAIL: string = environment.BASE_URL_API + "/authentication/registration/by-email";
   private static _URL_API_REGISTRATION_USERNAME: string = environment.BASE_URL_API + "/authentication/registration/by-username";
   private static _URL_API_REGISTRATION_ADDRESS: string = environment.BASE_URL_API + "/address/get-id";
-  private static _URL_API_TOKEN: string = environment.BASE_URL_API + "/authentication/token";
-  private readonly TOKEN_NAME: string = 'WayMateToken';
+  private static _URL_API_TOKEN: string = environment.BASE_URL_API + "/authentication/registration";
 
   constructor(private _httpClient: HttpClient) {
   }
@@ -48,15 +46,8 @@ export class RegistrationService {
     return this._httpClient.get<DtoOutputFetchByAddress>(`${RegistrationService._URL_API_REGISTRATION_ADDRESS}?street=${street}&postalCode=${postalCode}&city=${city}&number=${number}`);
   }
 
-  storeToken(token: string){
-    localStorage.setItem(this.TOKEN_NAME, token);
-  }
 
-  buildToken(username: string, userType: string) {
-    this._httpClient.get<DtoOutputToken>(`${RegistrationService._URL_API_TOKEN}?username=${username}&userType=${userType}`).subscribe(
-       (response) => {
-         this.storeToken(response.token);
-      }
-    )
+  buildToken(dto: DtoOutputCreateUser): Observable<DtoInputUser>{
+    return this._httpClient.post<DtoInputUser>(RegistrationService._URL_API_TOKEN, dto, { withCredentials: true });
   }
 }

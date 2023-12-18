@@ -20,14 +20,8 @@ export class ConnectionComponent {
   verifyLogin(value: any){
     this._connectionService.login(value.email, value.password).subscribe({
     next: (response) => {
-        this._connectionService.buildToken(response).subscribe({
-          next: (resToken) => {
-            console.log(resToken.token);
-          },
-          error: (err) => {
-            console.error('Error generating token:', err);
-          }
-        })
+        console.log("Login successful!", response);
+      this._route.navigate(['/home']);
       },
       error: (err) => {
         console.error("Login failed", err);

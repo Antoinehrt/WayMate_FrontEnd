@@ -3,8 +3,6 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {DtoOutputToken} from "./dto/dto-output-token";
 import {Observable} from "rxjs";
-import {DtoOutputConnection} from "./dto/dto-output-connection";
-import {DtoInputToken} from "./dto/dto-input-token";
 
 
 @Injectable({
@@ -12,16 +10,11 @@ import {DtoInputToken} from "./dto/dto-input-token";
 })
 export class ConnectionService {
   private static _URL_API_AUTH: string = environment.BASE_URL_API + "/authentication/login";
-  private static _URL_API_TOKEN: string = environment.BASE_URL_API + "/authentication/token";
   private readonly TOKEN_NAME: string = 'WayMateToken';
   constructor(private _httpClient: HttpClient) { }
 
-  login(email: string, password: string): Observable<DtoOutputConnection> {
-    return this._httpClient.get<DtoOutputConnection>(`${ConnectionService._URL_API_AUTH}?email=${email}&password=${password}`);
-  }
-
-  buildToken(dto: DtoInputToken): Observable<DtoOutputToken>{
-    return this._httpClient.post<DtoOutputToken>(ConnectionService._URL_API_TOKEN, dto, { withCredentials: true });
+  login(email: string, password: string): Observable<DtoOutputToken> {
+    return this._httpClient.get<DtoOutputToken>(`${ConnectionService._URL_API_AUTH}?email=${email}&password=${password}`, { withCredentials: true });
   }
 
   isLoggedIn(): boolean{
