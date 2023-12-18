@@ -4,7 +4,6 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {DtoInputTrip} from "./dtos/dto-input-trip";
 import {DtoInputAddress} from "./dtos/dto-input-address";
-import {DtoOutputAddress} from "./dtos/dto-output-address";
 
 @Injectable({
   providedIn: 'root'
