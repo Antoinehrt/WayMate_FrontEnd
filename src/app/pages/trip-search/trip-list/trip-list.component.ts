@@ -50,4 +50,8 @@ export class TripListComponent implements OnInit {
       trip.destinationAddress.city === this.formData.destination
     );
   }
+
+  logid(id:number){
+    console.log(id);
+  }
 }
