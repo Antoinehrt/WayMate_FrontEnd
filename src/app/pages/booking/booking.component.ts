@@ -4,6 +4,7 @@ import {BookingService} from "./booking.service";
 import {DtoInputTrip} from "./dtos/dto-input-trip";
 import {DtoInputAddress} from "./dtos/dto-input-address";
 import {DtoInputDriver} from "./dtos/dto-input-driver";
+import {DtoInputCar} from "./dtos/dto-input-car";
 
 @Component({
   selector: 'app-booking',
@@ -16,6 +17,7 @@ export class BookingComponent implements OnInit {
   addressDepart!: DtoInputAddress;
   addressDestination!: DtoInputAddress;
   driver!: DtoInputDriver;
+  car!: DtoInputCar;
 
   constructor(private _route: ActivatedRoute, private _bookingService: BookingService) {
   }
@@ -67,6 +69,19 @@ export class BookingComponent implements OnInit {
     this._bookingService.getAllDriver(idDriver).subscribe(
       response => {
         this.driver = response;
+        console.log(response);
+        this.getCar(this.driver.carPlate);
+      },
+      error => {
+        console.error('Error fetching trip details:', error);
+      }
+    );
+  }
+
+  getCar(carplate:string){
+    this._bookingService.getAllCar(carplate).subscribe(
+      response => {
+        this.car = response;
         console.log(response);
       },
       error => {
