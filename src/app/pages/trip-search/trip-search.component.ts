@@ -6,6 +6,7 @@ import {DatePipe} from "@angular/common";
 import {DtoInputTrip} from "./dtos/dto-input-trip";
 import {DtoInputAddress} from "./dtos/dto-input-address";
 import {DtoInputDriver} from "./dtos/dto-input-driver";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-trip-search',
@@ -18,7 +19,7 @@ export class TripSearchComponent implements OnInit {
   formData: any = [];
   minDate: string;
 
-  constructor(private _tripSearch: TripSearchService, private _fb: FormBuilder, private _sharedDataService: DataTransferService, private _datePipe: DatePipe) {
+  constructor(private _tripSearch: TripSearchService, private _fb: FormBuilder, private _sharedDataService: DataTransferService, private _router: Router) {
     const currentDate = new Date();
     this.minDate = currentDate.toISOString().split('T')[0];
   }
@@ -83,5 +84,10 @@ export class TripSearchComponent implements OnInit {
       people: this.formData.people,
 
     });
+  }
+
+  navigateToTripDetails(tripId: number) {
+    // Use the router to navigate to the details page with the tripId as a route parameter
+    this._router.navigate(['/booking', tripId]);
   }
 }
