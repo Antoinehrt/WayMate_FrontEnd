@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AuthenticationService} from "../utils/authentication/authentication.service";
+import {AuthenticationService} from "../../utils/authentication/authentication.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -18,10 +18,10 @@ export class NavbarComponent {
 
   displayLogout(){
     this.authService.isConnected().subscribe({
-      next: value => {
+      next: () => {
         this.isConnected = true;
       },
-      error: (err) => {
+      error: () => {
         this.isConnected = false;
     }
     });

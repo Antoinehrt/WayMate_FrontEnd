@@ -4,6 +4,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {DataTransferService} from "../../utils/data-transfer/data-transfer.service";
 import {AuthenticationService} from "../../utils/authentication/authentication.service";
+import {PopupNotConnectedComponent} from "../../addon/popup-not-connected/popup-not-connected.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-home-page',
@@ -23,7 +25,8 @@ export class HomePageComponent {
     date: ['', [Validators.required]],
     people: ['', [Validators.required, Validators.pattern("^\\d+$")]],
   });
-  constructor(private _fb: FormBuilder, private _homePageService:DataTransferService, private _route:Router,config: NgbCarouselConfig, private authService: AuthenticationService) {
+  constructor(private _fb: FormBuilder, private _homePageService:DataTransferService, private _route:Router,
+              config: NgbCarouselConfig, private authService: AuthenticationService, private dialog: MatDialog) {
     this.ImagePath = "assets/img/waymateHome.png";
     const currentDate = new Date();
     this.minDate = currentDate.toISOString().split('T')[0];
@@ -46,11 +49,15 @@ export class HomePageComponent {
       },
       error: (err) =>{
         console.error("error", err);
-        this._route.navigate(['/connection'])
+        this.openPopup();
       }
     });
   }
 
+  openPopup(){
+    this.dialog.open(PopupNotConnectedComponent, {
+    })
+  }
 
   autocomplete() {
     this.form.setValue({
