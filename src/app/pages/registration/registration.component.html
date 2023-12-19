@@ -31,7 +31,7 @@
                       </div>
                       <div class="col-md-6 mb-4 pb-2">
                         <div class="form-outline">
-                              <input class="form-control form-control-lg" type="text" name="lastname" formControlName="lastname" placeholder="Last name"/>
+                          <input class="form-control form-control-lg" type="text" name="lastname" formControlName="lastname" placeholder="Last name"/>
                         </div>
                       </div>
                     </div>
@@ -69,16 +69,30 @@
                     </div>
                     <div class="mb-4 pb-2">
                       <div class="form-outline">
-                        <input class="form-control form-control-lg" type="password" name="password" formControlName="password" placeholder="Password"/>
+                        <div class="input-group">
+                          <input class="form-control form-control-lg" type="password" name="password" formControlName="password" placeholder="Password"/>
+                          <div class="input-group-append">
+                           <span class="form-control form-control-lg">
+                             <i class="fa fa-eye-slash"></i>
+                           </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div class="mb-4 pb-2">
                       <div class="form-outline">
-                        <input class="form-control form-control-lg" type="password" name="passwordVerif" formControlName="passwordVerif" placeholder="Repeat your password"/>
+                        <div class="input-group">
+                          <input class="form-control form-control-lg" type="password" name="passwordVerif" formControlName="passwordVerif" placeholder="Repeat your password"/>
+                          <div class="input-group-append">
+                             <span class="form-control form-control-lg">
+                               <i class="fa fa-eye-slash"></i>
+                             </span>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                      <span *ngIf="!controlPassword()" class="invalid">The password must contain uppercase letters (A-Z), lowercase letters (a-z), numbers (1-9) and special characters.</span>
-                      <span *ngIf="!verifPassword()" class="invalid"><br>Passwords are not the same.</span>
+                    <span *ngIf="!controlPassword()" class="invalid">The password must contain uppercase letters (A-Z), lowercase letters (a-z), numbers (1-9) and special characters.</span>
+                    <span *ngIf="!verifPassword()" class="invalid"><br>Passwords are not the same.</span>
                   </div>
                 </div>
                 <div class="col-lg-6 bg-indigo text-white" formGroupName="addressForm">
