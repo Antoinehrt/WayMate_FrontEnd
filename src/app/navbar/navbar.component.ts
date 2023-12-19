@@ -10,10 +10,23 @@ import {Router} from "@angular/router";
 export class NavbarComponent {
   ImagePath: string;
   collapsed = true;
+  isConnected = false;
 
   constructor(private authService: AuthenticationService, private _route:Router) {
     this.ImagePath = "assets/img/WayMate_Logo.png"
   }
+
+  displayLogout(){
+    this.authService.isConnected().subscribe({
+      next: value => {
+        this.isConnected = true;
+      },
+      error: (err) => {
+        this.isConnected = false;
+    }
+    });
+  }
+
   logout(): void{
     this.authService.logout().subscribe({
       next: value => {
