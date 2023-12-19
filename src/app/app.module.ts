@@ -17,6 +17,7 @@ import { TripSearchComponent } from './pages/trip-search/trip-search.component';
 import { FooterComponent } from './footer/footer.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { DatePipe } from '@angular/common';
+import { BookingComponent } from './pages/booking/booking.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DatePipe } from '@angular/common';
     ConnectionComponent,
     TripSearchComponent,
     FooterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    BookingComponent
   ],
   imports: [
     HttpClientModule,
