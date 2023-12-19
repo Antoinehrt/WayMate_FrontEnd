@@ -23,16 +23,13 @@ export class TripListComponent implements OnInit {
       this.formData = formData;
     });
     this.getAllTripDetails();
-
   }
-
   getAllTripDetails() {
     this._tripSearch.getAllTripDetails().subscribe(data => {
       this.groupedTrips = this.groupTrips(data.trips, data.addresses, data.drivers);
       this.filterTrips();
     });
   }
-
   private groupTrips(trips: DtoInputTrip[], addresses: DtoInputAddress[], drivers: DtoInputDriver[]): any[] {
     return trips.map(trip => {
       return {
@@ -43,15 +40,18 @@ export class TripListComponent implements OnInit {
       };
     });
   }
-
   filterTrips() {
     this.filteredTrips = this.groupedTrips.filter(trip =>
       trip.departureAddress.city === this.formData.depart &&
-      trip.destinationAddress.city === this.formData.destination
+      trip.destinationAddress.city === this.formData.destination &&
+      this.isSameDate(new Date(trip.trip.date), new Date(this.formData.date))
     );
   }
-
-  logid(id:number){
-    console.log(id);
+  isSameDate(date1:Date, date2:Date) {
+    return (
+      date1.getFullYear() === date2.getFullYear() &&
+      date1.getMonth() === date2.getMonth() &&
+      date1.getDate() === date2.getDate()
+    );
   }
 }

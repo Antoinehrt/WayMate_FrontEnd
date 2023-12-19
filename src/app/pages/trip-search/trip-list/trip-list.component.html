@@ -2,40 +2,38 @@
   <div *ngFor="let filteredTrip of filteredTrips" class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-lg-6">
-
         <div class="card card-margin">
-          <a (click)="logid(filteredTrip.trip.id)">
-          <div class="card-header no-border">
-            <h5 class="card-title">{{filteredTrip.departureAddress.city}} - {{filteredTrip.destinationAddress.city}}</h5>
-          </div>
-          <div class="card-body pt-0">
-            <div class="widget-49">
-              <div class="widget-49-title-wrapper">
-                <div class="widget-49-date-primary">
-                  <span class="widget-49-date-day">{{filteredTrip.trip.date | date : "dd"}}</span>
-                  <span class="widget-49-date-month">{{filteredTrip.trip.date | date : "MMM"}}</span>
+          <a>
+            <div class="card-header no-border">
+              <h5 class="card-title">{{filteredTrip.departureAddress.city}} - {{filteredTrip.destinationAddress.city}}</h5>
+            </div>
+            <div class="card-body pt-0">
+              <div class="widget-49">
+                <div class="widget-49-title-wrapper">
+                  <div class="widget-49-date-primary">
+                    <span class="widget-49-date-day">{{filteredTrip.trip.date | date : "dd"}}</span>
+                    <span class="widget-49-date-month">{{filteredTrip.trip.date | date : "MMM"}}</span>
+                  </div>
+                  <div class="widget-49-meeting-info">
+                    <span class="widget-49-pro-title">{{filteredTrip.driver.firstName}} {{filteredTrip.driver.lastName}}</span>
+                    <span class="widget-49-meeting-time">{{filteredTrip.trip.date | date : "hh:mm"}} to ???? Hrs</span>
+                  </div>
                 </div>
-                <div class="widget-49-meeting-info">
-                  <span class="widget-49-pro-title">{{filteredTrip.driver.firstName}} {{filteredTrip.driver.lastName}}</span>
-                  <span class="widget-49-meeting-time">{{filteredTrip.trip.date | date : "hh:mm"}} to ???? Hrs</span>
+                <ol class="widget-49-meeting-points">
+                  <li *ngIf="filteredTrip.trip.smoke" class="widget-49-meeting-item"><span>You can smoke</span></li>
+                  <li *ngIf="!filteredTrip.trip.smoke" class="widget-49-meeting-item"><span>You can't smoke</span></li>
+                  <li *ngIf="filteredTrip.trip.luggage" class="widget-49-meeting-item"><span>You can get luggage with you</span></li>
+                  <li *ngIf="!filteredTrip.trip.luggage" class="widget-49-meeting-item"><span>You can't get luggage with you</span></li>
+                  <li *ngIf="filteredTrip.trip.petFriendly" class="widget-49-meeting-item"><span>You can get pet with you</span></li>
+                  <li *ngIf="!filteredTrip.trip.petFriendly" class="widget-49-meeting-item"><span>You can't get pet with you</span></li>
+                </ol>
+                <div class="widget-49-meeting-action">
+                  <span class="btn-sm btn-flash-border-primary">{{filteredTrip.trip.priceKm}} €</span>
                 </div>
-              </div>
-              <ol class="widget-49-meeting-points">
-                <li *ngIf="filteredTrip.trip.smoke" class="widget-49-meeting-item"><span>You can smoke</span></li>
-                <li *ngIf="!filteredTrip.trip.smoke" class="widget-49-meeting-item"><span>You can't smoke</span></li>
-                <li *ngIf="filteredTrip.trip.luggage" class="widget-49-meeting-item"><span>You can get luggage with you</span></li>
-                <li *ngIf="!filteredTrip.trip.luggage" class="widget-49-meeting-item"><span>You can't get luggage with you</span></li>
-                <li *ngIf="filteredTrip.trip.petFriendly" class="widget-49-meeting-item"><span>You can get pet with you</span></li>
-                <li *ngIf="!filteredTrip.trip.petFriendly" class="widget-49-meeting-item"><span>You can't get pet with you</span></li>
-              </ol>
-              <div class="widget-49-meeting-action">
-                <span class="btn-sm btn-flash-border-primary">{{filteredTrip.trip.priceKm}} €</span>
               </div>
             </div>
-          </div>
-        </a>
+          </a>
         </div>
-
       </div>
     </div>
   </div>
