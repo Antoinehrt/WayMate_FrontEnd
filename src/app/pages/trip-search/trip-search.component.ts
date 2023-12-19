@@ -1,25 +1,87 @@
 import {Component, OnInit} from '@angular/core';
 import {DataTransferService} from "../../utils/data-transfer/data-transfer.service";
-import {DtoInputTrip} from "./dtos/dto-input-trip";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TripSearchService} from "./trip-search.service";
+import {DatePipe} from "@angular/common";
+import {DtoInputTrip} from "./dtos/dto-input-trip";
+import {DtoInputAddress} from "./dtos/dto-input-address";
+import {DtoInputDriver} from "./dtos/dto-input-driver";
 
 @Component({
   selector: 'app-trip-search',
   templateUrl: './trip-search.component.html',
   styleUrls: ['./trip-search.component.css']
 })
-export class TripSearchComponent  {
+export class TripSearchComponent implements OnInit {
+  groupedTrips: any[] = [];
+  filteredTrips: any[] = [];
+  formData: any = [];
+  minDate: string;
 
-  formData: any;
-
-  constructor(private sharedDataService: DataTransferService, private _tripSearch: TripSearchService) {
+  constructor(private _tripSearch: TripSearchService, private _fb: FormBuilder, private _sharedDataService: DataTransferService, private _datePipe: DatePipe) {
+    const currentDate = new Date();
+    this.minDate = currentDate.toISOString().split('T')[0];
   }
+
+  form: FormGroup = this._fb.group({
+    depart: ['', [Validators.required]],
+    destination: ['', [Validators.required]],
+    date: ['', [Validators.required]],
+    people: ['', [Validators.required, Validators.pattern("^\\d+$")]],
+  });
 
   ngOnInit() {
-    this.sharedDataService.formData$.subscribe(formData => {
+    this._sharedDataService.formData$.subscribe(formData => {
       this.formData = formData;
     });
+    this.getAllTripDetails();
+    this.formSetValue();
+  }
+  getAllTripDetails() {
+    this._tripSearch.getAllTripDetails().subscribe(data => {
+      this.groupedTrips = this.groupTrips(data.trips, data.addresses, data.drivers);
+      this.groupedTrips.sort((a, b) => new Date(a.trip.date).getTime() - new Date(b.trip.date).getTime());
+      this.filterTrips();
+    });
+
+  }
+  private groupTrips(trips: DtoInputTrip[], addresses: DtoInputAddress[], drivers: DtoInputDriver[]): any[] {
+    return trips.map(trip => {
+      return {
+        trip: trip,
+        departureAddress: addresses.find(addr => addr.id === trip.idStartingPoint),
+        destinationAddress: addresses.find(addr => addr.id === trip.idDestination),
+        driver: drivers.find(driver => driver.id === trip.idDriver)
+      };
+    });
+  }
+  filterTrips() {
+    this.filteredTrips = this.groupedTrips.filter(trip =>
+      trip.departureAddress.city === this.formData.depart &&
+      trip.destinationAddress.city === this.formData.destination &&
+      this.isSameDate(new Date(trip.trip.date), new Date(this.formData.date))
+    );
+  }
+  isSameDate(date1:Date, date2:Date) {
+    return (
+      date1.getFullYear() === date2.getFullYear() &&
+      date1.getMonth() === date2.getMonth() &&
+      date1.getDate() === date2.getDate()
+    );
   }
 
+  formSubmit(){
+    this.formData = this.form.value;
+    this.getAllTripDetails();
+  }
 
+  formSetValue(){
+    this.form.setValue({
+      depart: this.formData.depart,
+      destination: this.formData.destination,
+      date: this.formData.date,
+      people: this.formData.people,
+
+    });
+  }
 }
