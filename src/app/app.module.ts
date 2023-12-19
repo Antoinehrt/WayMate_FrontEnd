@@ -17,6 +17,7 @@ import { TripSearchComponent } from './pages/trip-search/trip-search.component';
 import { FooterComponent } from './footer/footer.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { TripListComponent } from './pages/trip-search/trip-list/trip-list.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { TripListComponent } from './pages/trip-search/trip-list/trip-list.compo
     BrowserAnimationsModule,
     NgbCarouselModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
