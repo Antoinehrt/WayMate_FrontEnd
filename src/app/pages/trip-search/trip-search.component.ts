@@ -37,7 +37,7 @@ export class TripSearchComponent implements OnInit {
 
   ngOnInit() {
     this.authService.isConnected().subscribe({
-      next: value => {
+      next: () => {
         this._sharedDataService.formData$.subscribe(formData => {
           this.formData = formData;
         });

@@ -18,10 +18,10 @@ export class NavbarComponent {
 
   displayLogout(){
     this.authService.isConnected().subscribe({
-      next: value => {
+      next: () => {
         this.isConnected = true;
       },
-      error: (err) => {
+      error: () => {
         this.isConnected = false;
     }
     });
