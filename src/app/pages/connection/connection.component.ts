@@ -9,6 +9,8 @@ import {Router} from "@angular/router";
   styleUrls: ['./connection.component.css']
 })
 export class ConnectionComponent {
+  fieldTextType: boolean = false;
+
   form: FormGroup = this._fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]]
@@ -40,5 +42,9 @@ export class ConnectionComponent {
 
   clickSignUp() {
     this._route.navigate(['/registration']);
+  }
+
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
   }
 }
