@@ -1,7 +1,7 @@
-<div class="gradient-custom-2">
+<div *ngIf="trip && addressDepart && addressDestination && driver" class="gradient-custom-2">
   <div class="container py-3 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-lg-6">
+      <div class="col-lg-4">
         <div class="card card-margin">
           <div class="card-header no-border">
             <h5 class="card-title">Trip details</h5>
@@ -30,24 +30,51 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-4">
         <div class="card card-margin">
           <div class="card-header no-border">
-            <h5 class="card-title">Your information</h5>
+            <h5 class="card-title">Driver information</h5>
           </div>
           <div class="card-body pt-0">
             <div class="widget-49">
               <div class="widget-49-title-wrapper">
                 <div class="widget-49-meeting-info">
-                  <span class="widget-49-pro-title">Firstname : </span>
-                  <span class="widget-49-pro-title">Surname : </span>
-                  <span class="widget-49-pro-title">Your email : </span>
-                  <span class="widget-49-pro-title">Phone number : </span>
-                  <span class="widget-49-pro-title">Birthdate : </span>
-                  <span class="widget-49-pro-title">Your email : </span>
-                  <span class="widget-49-pro-title">Firstname : </span>
-                  <span class="widget-49-pro-title">Surname : </span>
+                  <span class="widget-49-pro-title">Firstname : {{driver.firstName}}</span>
+                  <span class="widget-49-pro-title">LastName : {{driver.lastName}} </span>
+                  <span class="widget-49-pro-title">Email : {{driver.email}} </span>
+                  <span class="widget-49-pro-title">Phone number : {{driver.phoneNumber}} </span>
+                  <span class="widget-49-pro-title">Birthdate : {{driver.birthdate}} </span>
+                  <span class="widget-49-pro-title">Gender : {{driver.gender}} </span>
+                  <span class="widget-49-pro-title">Carplate : {{driver.carPlate}} </span>
                 </div>
+              </div>
+              <div class="widget-49-meeting-action">
+                <span class="btn-sm btn-flash-border-primary">Note</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card card-margin">
+          <div class="card-header no-border">
+            <h5 class="card-title">Car information</h5>
+          </div>
+          <div class="card-body pt-0">
+            <div class="widget-49">
+              <div class="widget-49-title-wrapper">
+                <div class="widget-49-meeting-info">
+                  <span class="widget-49-pro-title">Firstname</span>
+                  <span class="widget-49-pro-title">LastName</span>
+                  <span class="widget-49-pro-title">Email</span>
+                  <span class="widget-49-pro-title">Phone number</span>
+                  <span class="widget-49-pro-title">Birthdate</span>
+                  <span class="widget-49-pro-title">Gender</span>
+                  <span class="widget-49-pro-title">Carplate</span>
+                </div>
+              </div>
+              <div class="widget-49-meeting-action">
+                <span class="btn-sm btn-flash-border-primary">Note</span>
               </div>
             </div>
           </div>
@@ -85,4 +112,5 @@
         </div>
     </div>
     </div>
+</div>
 </div>
