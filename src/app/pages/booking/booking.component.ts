@@ -7,19 +7,16 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./booking.component.css']
 })
 export class BookingComponent implements OnInit {
-  tripIdS: string | null = "";
-  tripIdI: number = 0;
+  tripId: number = 0;
 
   constructor(private _route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this._route.paramMap.subscribe(params => {
-      this.tripIdS = params.get('id');
-      if (typeof this.tripIdS === "string") {
-        this.tripIdI = parseInt(this.tripIdS, 10);
-      }
-      console.log('Trip ID:', this.tripIdI);
+      this.tripId = parseInt(<string>params.get('id'), 10);
+
+      console.log('Trip ID:', this.tripId);
     });
   }
 }
