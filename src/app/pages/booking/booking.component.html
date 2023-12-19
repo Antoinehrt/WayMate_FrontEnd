@@ -38,18 +38,21 @@
           <div class="card-body pt-0">
             <div class="widget-49">
               <div class="widget-49-title-wrapper">
+                <div class="widget-49-date-primary">
+                  <span class="widget-49-date-day"><i class="fa-regular fa-user"></i></span>
+                </div>
                 <div class="widget-49-meeting-info">
-                  <span class="widget-49-pro-title">Firstname : {{driver.firstName}}</span>
-                  <span class="widget-49-pro-title">LastName : {{driver.lastName}} </span>
-                  <span class="widget-49-pro-title">Email : {{driver.email}} </span>
-                  <span class="widget-49-pro-title">Phone number : {{driver.phoneNumber}} </span>
-                  <span class="widget-49-pro-title">Birthdate : {{driver.birthdate}} </span>
-                  <span class="widget-49-pro-title">Gender : {{driver.gender}} </span>
-                  <span class="widget-49-pro-title">Carplate : {{driver.carPlate}} </span>
+                  <span class="widget-49-pro-title">{{driver.firstName}} {{driver.lastName}}</span>
+                  <span class="widget-49-meeting-time">{{driver.email}}</span>
                 </div>
               </div>
+              <ol class="widget-49-meeting-points">
+                <li class="widget-49-meeting-item"><span><i class="fa-solid fa-phone"></i> {{driver.phoneNumber}}</span></li>
+                <li class="widget-49-meeting-item"><span><i class="fa-solid fa-cake-candles"></i> {{driver.birthdate | date:"yyyy-MM-dd"}}</span></li>
+                <li class="widget-49-meeting-item"><span><i class="fa-solid fa-genderless"></i> {{driver.gender}}</span></li>
+              </ol>
               <div class="widget-49-meeting-action">
-                <span class="btn-sm btn-flash-border-primary">Note</span>
+                <span class="btn-sm btn-flash-border-primary">NOTES</span>
               </div>
             </div>
           </div>
@@ -63,19 +66,36 @@
           <div class="card-body pt-0">
             <div class="widget-49">
               <div class="widget-49-title-wrapper">
+                <div class="widget-49-date-primary">
+                  <span class="widget-49-date-day"><i class="fa-solid fa-car"></i></span>
+                </div>
                 <div class="widget-49-meeting-info">
-                  <span class="widget-49-pro-title">Firstname</span>
-                  <span class="widget-49-pro-title">LastName</span>
-                  <span class="widget-49-pro-title">Email</span>
-                  <span class="widget-49-pro-title">Phone number</span>
-                  <span class="widget-49-pro-title">Birthdate</span>
-                  <span class="widget-49-pro-title">Gender</span>
-                  <span class="widget-49-pro-title">Carplate</span>
+                  <span class="widget-49-pro-title">{{car.brand}} : {{car.numberPlate}}</span>
+                  <span class="widget-49-meeting-time">{{car.model}}</span>
                 </div>
               </div>
+              <ol class="widget-49-meeting-points">
+                <li class="widget-49-meeting-item"><span><i class="fa-solid fa-chair"></i> {{car.nbSeats}}</span></li>
+                <li class="widget-49-meeting-item"><span><i class="fa-solid fa-leaf"></i> {{car.fuelType}}</span></li>
+                <li class="widget-49-meeting-item"><span><i class="fa-solid fa-car-side"></i> {{car.carType}}</span></li>
+              </ol>
               <div class="widget-49-meeting-action">
-                <span class="btn-sm btn-flash-border-primary">Note</span>
+                <span class="btn-sm btn-flash-border-primary">NOTES</span>
               </div>
+<!--              <div class="widget-49-title-wrapper">-->
+<!--                <div class="widget-49-meeting-info">-->
+<!--                  <span class="widget-49-pro-title">Plate Number : {{car.numberPlate}}</span>-->
+<!--                  <span class="widget-49-pro-title">Model : {{car.model}}</span>-->
+<!--                  <span class="widget-49-pro-title">Number of places : {{car.nbSeats}}</span>-->
+<!--                  <span class="widget-49-pro-title">Brand : {{car.brand}}</span>-->
+<!--                  <span class="widget-49-pro-title">Fuel Type : {{car.fuelType}}</span>-->
+<!--                  <span class="widget-49-pro-title">Car Type : {{car.carType}}</span>-->
+<!--                  <span class="widget-49-pro-title"></span>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="widget-49-meeting-action">-->
+<!--                <span class="btn-sm btn-flash-border-primary"></span>-->
+<!--              </div>-->
             </div>
           </div>
         </div>
