@@ -6,6 +6,10 @@ import {DatePipe} from "@angular/common";
 import {DtoInputTrip} from "./dtos/dto-input-trip";
 import {DtoInputAddress} from "./dtos/dto-input-address";
 import {DtoInputDriver} from "./dtos/dto-input-driver";
+import {PopupNotConnectedComponent} from "../../addon/popup-not-connected/popup-not-connected.component";
+import {MatDialog} from "@angular/material/dialog";
+import {AuthenticationService} from "../../utils/authentication/authentication.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-trip-search',
@@ -18,7 +22,8 @@ export class TripSearchComponent implements OnInit {
   formData: any = [];
   minDate: string;
 
-  constructor(private _tripSearch: TripSearchService, private _fb: FormBuilder, private _sharedDataService: DataTransferService, private _datePipe: DatePipe) {
+  constructor(private _tripSearch: TripSearchService, private _fb: FormBuilder, private _sharedDataService: DataTransferService,
+              private _datePipe: DatePipe, private _dialog: MatDialog, private authService: AuthenticationService, private _route: Router) {
     const currentDate = new Date();
     this.minDate = currentDate.toISOString().split('T')[0];
   }
@@ -31,11 +36,22 @@ export class TripSearchComponent implements OnInit {
   });
 
   ngOnInit() {
-    this._sharedDataService.formData$.subscribe(formData => {
-      this.formData = formData;
+    this.authService.isConnected().subscribe({
+      next: value => {
+        this._sharedDataService.formData$.subscribe(formData => {
+          this.formData = formData;
+        });
+        this.getAllTripDetails();
+        this.formSetValue();
+      },
+      error: (err) =>{
+        console.error("error", err);
+        this.openPopup();
+        this._route.navigate(['/home']);
+      }
     });
-    this.getAllTripDetails();
-    this.formSetValue();
+
+
   }
   getAllTripDetails() {
     this._tripSearch.getAllTripDetails().subscribe(data => {
@@ -83,5 +99,9 @@ export class TripSearchComponent implements OnInit {
       people: this.formData.people,
 
     });
+  }
+
+  openPopup(){
+    this._dialog.open(PopupNotConnectedComponent);
   }
 }
