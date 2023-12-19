@@ -6,6 +6,7 @@ import { forkJoin } from "rxjs";
 import { DataTransferService } from "../../../utils/data-transfer/data-transfer.service";
 import {DtoInputDriver} from "../dtos/dto-input-driver";
 import {DatePipe} from "@angular/common";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
     selector: 'app-trip-list',
@@ -16,14 +17,26 @@ export class TripListComponent implements OnInit {
   groupedTrips: any[] = [];
   filteredTrips: any[] = [];
   formData: any = [];
+  minDate: string;
 
-  constructor(private _tripSearch: TripSearchService, private _sharedDataService: DataTransferService, private _datePipe: DatePipe) {}
+  constructor(private _tripSearch: TripSearchService, private _fb: FormBuilder, private _sharedDataService: DataTransferService, private _datePipe: DatePipe) {
+    const currentDate = new Date();
+    this.minDate = currentDate.toISOString().split('T')[0];
+  }
+
+  form: FormGroup = this._fb.group({
+    depart: ['', [Validators.required]],
+    destination: ['', [Validators.required]],
+    date: ['', [Validators.required]],
+    people: ['', [Validators.required, Validators.pattern("^\\d+$")]],
+  });
 
   ngOnInit() {
     this._sharedDataService.formData$.subscribe(formData => {
       this.formData = formData;
     });
     this.getAllTripDetails();
+    this.formSetValue();
   }
   getAllTripDetails() {
     this._tripSearch.getAllTripDetails().subscribe(data => {
@@ -56,5 +69,20 @@ export class TripListComponent implements OnInit {
       date1.getMonth() === date2.getMonth() &&
       date1.getDate() === date2.getDate()
     );
+  }
+
+  formSubmit(){
+    this.formData = this.form.value;
+    this.getAllTripDetails();
+  }
+
+  formSetValue(){
+    this.form.setValue({
+      depart: this.formData.depart,
+      destination: this.formData.destination,
+      date: this.formData.date,
+      people: this.formData.people,
+
+    });
   }
 }

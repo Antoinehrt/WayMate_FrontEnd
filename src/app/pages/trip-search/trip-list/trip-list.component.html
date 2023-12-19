@@ -1,3 +1,26 @@
+<div class="container py-3 h-100">
+  <div class="row">
+    <form class="centered-form" [formGroup]="form" (submit)="formSubmit()">
+      <div class="row align-items-center g-3">
+        <div class="col-3">
+          <input class="form-control" type="text" name="destinationHomePage" formControlName="depart" placeholder="◉ Depart"/>
+        </div>
+        <div class="col-3">
+          <input class="form-control" type="text" name="destinationHomePage" formControlName="destination" placeholder="◉ Destination"/>
+        </div>
+        <div class="col-3">
+          <input class="form-control" type="date" name="destinationHomePage" formControlName="date" [min]="minDate"/>
+        </div>
+        <div class="col-2">
+          <input class="form-control" type="text" name="destinationHomePage" formControlName="people" placeholder="🚹 People"/>
+        </div>
+        <div class="col">
+          <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
 <div *ngIf="formData" class="gradient-custom-2">
   <div *ngFor="let filteredTrip of filteredTrips" class="container py-3 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
