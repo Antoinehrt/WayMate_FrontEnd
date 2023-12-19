@@ -16,7 +16,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TripSearchComponent } from './pages/trip-search/trip-search.component';
 import { FooterComponent } from './footer/footer.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { TripListComponent } from './pages/trip-search/trip-list/trip-list.component';
 import { DatePipe } from '@angular/common';
 
 @NgModule({
@@ -31,8 +30,7 @@ import { DatePipe } from '@angular/common';
     ConnectionComponent,
     TripSearchComponent,
     FooterComponent,
-    NotFoundComponent,
-    TripListComponent
+    NotFoundComponent
   ],
   imports: [
     HttpClientModule,
