@@ -27,7 +27,7 @@
           <div ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
             <a routerLink="registration" class="dropdown-item" routerLinkActive="active">Sign Up</a>
             <a routerLink="connection" class="dropdown-item" routerLinkActive="active">Log in</a>
-            <a class="dropdown-item" href="#">Logout</a>
+            <a class="dropdown-item" (click)="logout()">Logout</a>
           </div>
         </li>
       </ul>

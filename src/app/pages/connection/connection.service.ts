@@ -10,14 +10,9 @@ import {Observable} from "rxjs";
 })
 export class ConnectionService {
   private static _URL_API_AUTH: string = environment.BASE_URL_API + "/authentication/login";
-  private readonly TOKEN_NAME: string = 'WayMateToken';
   constructor(private _httpClient: HttpClient) { }
 
   login(email: string, password: string): Observable<DtoOutputToken> {
     return this._httpClient.get<DtoOutputToken>(`${ConnectionService._URL_API_AUTH}?email=${email}&password=${password}`, { withCredentials: true });
-  }
-
-  isLoggedIn(): boolean{
-    return !!localStorage.getItem(this.TOKEN_NAME);
   }
 }
