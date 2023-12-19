@@ -5,6 +5,7 @@ import { DtoInputAddress } from "../dtos/dto-input-address";
 import { forkJoin } from "rxjs";
 import { DataTransferService } from "../../../utils/data-transfer/data-transfer.service";
 import {DtoInputDriver} from "../dtos/dto-input-driver";
+import {DatePipe} from "@angular/common";
 
 @Component({
     selector: 'app-trip-list',
@@ -16,10 +17,10 @@ export class TripListComponent implements OnInit {
   filteredTrips: any[] = [];
   formData: any = [];
 
-  constructor(private _tripSearch: TripSearchService, private sharedDataService: DataTransferService) {}
+  constructor(private _tripSearch: TripSearchService, private _sharedDataService: DataTransferService, private _datePipe: DatePipe) {}
 
   ngOnInit() {
-    this.sharedDataService.formData$.subscribe(formData => {
+    this._sharedDataService.formData$.subscribe(formData => {
       this.formData = formData;
     });
     this.getAllTripDetails();
@@ -27,8 +28,10 @@ export class TripListComponent implements OnInit {
   getAllTripDetails() {
     this._tripSearch.getAllTripDetails().subscribe(data => {
       this.groupedTrips = this.groupTrips(data.trips, data.addresses, data.drivers);
+      this.groupedTrips.sort((a, b) => new Date(a.trip.date).getTime() - new Date(b.trip.date).getTime());
       this.filterTrips();
     });
+
   }
   private groupTrips(trips: DtoInputTrip[], addresses: DtoInputAddress[], drivers: DtoInputDriver[]): any[] {
     return trips.map(trip => {
