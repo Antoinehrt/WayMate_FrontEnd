@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {Route, Router} from "@angular/router";
+import {MatDialogRef} from "@angular/material/dialog";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-popup-not-connected',
