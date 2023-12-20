@@ -1,51 +1,53 @@
-<div class="container">
+<div class="container py-5 h-100">
   <div class="row">
-    <div class="col-md-6">
-      <div class="row">
-        <form class="centered-form" [formGroup]="form" (submit)="formSubmit()">
-          <div class="form-group row">
-            <div class="form-group col-md-7">
-              <input class="form-control" type="text" name="destinationHomePage" formControlName="depart" placeholder="◉ Depart" (dblclick)="autocomplete()"/>
+    <div class="col-md-8">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-md-8 mb-4 pb-2">
+          <form [formGroup]="form" (submit)="formSubmit()">
+            <div class="form-group row">
+              <div class="form-group col-md-7">
+                <input class="form-control" type="text" name="destinationHomePage" formControlName="depart" placeholder="◉ Depart" (dblclick)="autocomplete()"/>
+              </div>
+              <div class="form-group col-md-5">
+                <input class="form-control" type="date" name="destinationHomePage" formControlName="date" [min]="minDate"/>
+              </div>
             </div>
-            <div class="form-group col-md-5">
-              <input class="form-control" type="date" name="destinationHomePage" formControlName="date" [min]="minDate"/>
+            <div class="form-group row">
+              <div class="form-group col-md-7">
+                <input class="form-control" type="text" name="destinationHomePage" formControlName="destination" placeholder="◉ Destination"/>
+              </div>
+              <div class="form-group col-md-5">
+                <input class="form-control" type="text" name="destinationHomePage" formControlName="people" placeholder="🚹 People"/>
+              </div>
             </div>
-          </div>
-          <div class="form-group row">
-            <div class="form-group col-md-7">
-              <input class="form-control" type="text" name="destinationHomePage" formControlName="destination" placeholder="◉ Destination"/>
+            <div class="form-group">
+              <input class="form-control" type="submit" value="See trip" [disabled]="form.invalid"/>
             </div>
-            <div class="form-group col-md-5">
-              <input class="form-control" type="text" name="destinationHomePage" formControlName="people" placeholder="🚹 People"/>
-            </div>
-          </div>
-          <div class="form-group">
-            <input class="form-control" type="submit" value="See trip" [disabled]="form.invalid"/>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-      <div class="row row-bottom">
+      <div class="row align-items-center mb-4">
         <ngb-carousel>
           <ng-template ngbSlide>
-            <div class="picsum-img-wrapper">
+            <div class="">
               <h2>Pourquoi choisir WayMate ?</h2>
               <p>À Waymate, nous croyons en la puissance du covoiturage pour créer des connexions significatives tout en réduisant notre empreinte carbone. Avec notre plateforme conviviale, vous pouvez trouver des compagnons de voyage fiables, économiser de l'argent et contribuer à un avenir plus durable. Choisissez Waymate pour une expérience de covoiturage sécurisée, conviviale et respectueuse de l'environnement.</p>
             </div>
           </ng-template>
           <ng-template ngbSlide>
-            <div class="picsum-img-wrapper">
+            <div class="">
               <h2>La Communauté Waymate: Votre Voyage, Votre Communauté</h2>
               <p>Explorez une nouvelle façon de voyager avec la communauté Waymate. En choisissant Waymate, vous rejoignez une communauté dynamique de covoitureurs partageant les mêmes idées. Économisez sur les coûts de transport, réduisez votre empreinte carbone et créez des liens avec des personnes partageant vos intérêts. Faites de chaque trajet une aventure sociale avec la communauté Waymate.</p>
             </div>
           </ng-template>
           <ng-template ngbSlide>
-            <div class="picsum-img-wrapper">
+            <div class="">
               <h2>Waymate: Plus Qu'un Trajet, Une Connexion Humaine</h2>
               <p>Bien plus qu'une simple plateforme de covoiturage, Waymate favorise les connexions humaines. Choisissez Waymate pour rencontrer de nouvelles personnes, partager des expériences enrichissantes et créer des liens uniques tout en économisant sur vos trajets. Faites de chaque kilomètre une opportunité de connexion avec Waymate.</p>
             </div>
           </ng-template>
           <ng-template ngbSlide>
-            <div class="picsum-img-wrapper">
+            <div class="">
               <h2>Waymate: Votre Compagnon de Voyage Idéal</h2>
               <p>Choisissez Waymate pour transformer vos trajets en expériences mémorables. Notre plateforme de covoiturage facilite la connexion avec des conducteurs et passagers partageant vos itinéraires, vous offrant ainsi des voyages confortables et conviviaux. Optez pour Waymate et faites de chaque trajet une aventure enrichissante.</p>
             </div>
@@ -53,8 +55,8 @@
         </ngb-carousel>
       </div>
     </div>
-    <div class="col-md-6">
-        <img [src] ="ImagePath" height="50" class="image-right" alt="waymate">
+    <div class="col-md-4">
+        <img [src] ="ImagePath" height="50" class="img-fluid" alt="waymate">
      </div>
   </div>
 </div>
