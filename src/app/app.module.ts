@@ -20,6 +20,7 @@ import { DatePipe } from '@angular/common';
 import { MatDialogModule} from "@angular/material/dialog";
 import { PopupNotConnectedComponent } from './addon/popup-not-connected/popup-not-connected.component';
 import {MatButtonModule} from "@angular/material/button";
+import {ProfileComponent} from "./pages/profile/profile.component";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {MatButtonModule} from "@angular/material/button";
     TripSearchComponent,
     FooterComponent,
     NotFoundComponent,
-    PopupNotConnectedComponent
+    PopupNotConnectedComponent,
+    ProfileComponent
   ],
   imports: [
     HttpClientModule,
