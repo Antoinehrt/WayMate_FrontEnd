@@ -5,12 +5,14 @@ import {ConnectionComponent} from "./pages/connection/connection.component";
 import {HomePageComponent} from "./pages/home-page/home-page.component";
 import {TripSearchComponent} from "./pages/trip-search/trip-search.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
+import {BookingComponent} from "./pages/booking/booking.component";
 
 
 const routes: Routes = [
   {path: "", pathMatch: "full", redirectTo:"/home"},
   {path: "home", component: HomePageComponent},
   {path: "tripSearch", component: TripSearchComponent},
+  {path: "booking/:id", component: BookingComponent},
   {path: "registration", component: RegistrationComponent},
   {path: "connection", component: ConnectionComponent},
   {path: "not-found", component: NotFoundComponent},

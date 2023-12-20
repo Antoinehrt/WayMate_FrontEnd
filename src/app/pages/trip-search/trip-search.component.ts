@@ -104,4 +104,9 @@ export class TripSearchComponent implements OnInit {
   openPopup(){
     this._dialog.open(PopupNotConnectedComponent);
   }
+
+  navigateToTripDetails(tripId: number) {
+    // Use the router to navigate to the details page with the tripId as a route parameter
+    this._router.navigate(['/booking', tripId]);
+  }
 }
