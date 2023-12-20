@@ -31,7 +31,7 @@ export class HomePageComponent {
     const currentDate = new Date();
     this.minDate = currentDate.toISOString().split('T')[0];
 
-    config.interval = 5500;
+    config.interval = 8500;
     config.wrap = true;
     config.keyboard = true;
     config.pauseOnHover = false;
