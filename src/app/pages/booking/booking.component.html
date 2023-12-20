@@ -78,24 +78,8 @@
                 <li class="widget-49-meeting-item"><span><i class="fa-solid fa-chair"></i> {{car.nbSeats}}</span></li>
                 <li class="widget-49-meeting-item"><span><i class="fa-solid fa-leaf"></i> {{car.fuelType}}</span></li>
                 <li class="widget-49-meeting-item"><span><i class="fa-solid fa-car-side"></i> {{car.carType}}</span></li>
+                <li class="widget-49-meeting-item"><span><i class="fa-solid fa-brush"></i> {{car.color}}</span></li>
               </ol>
-              <div class="widget-49-meeting-action">
-                <span class="btn-sm btn-flash-border-primary">NOTES</span>
-              </div>
-<!--              <div class="widget-49-title-wrapper">-->
-<!--                <div class="widget-49-meeting-info">-->
-<!--                  <span class="widget-49-pro-title">Plate Number : {{car.numberPlate}}</span>-->
-<!--                  <span class="widget-49-pro-title">Model : {{car.model}}</span>-->
-<!--                  <span class="widget-49-pro-title">Number of places : {{car.nbSeats}}</span>-->
-<!--                  <span class="widget-49-pro-title">Brand : {{car.brand}}</span>-->
-<!--                  <span class="widget-49-pro-title">Fuel Type : {{car.fuelType}}</span>-->
-<!--                  <span class="widget-49-pro-title">Car Type : {{car.carType}}</span>-->
-<!--                  <span class="widget-49-pro-title"></span>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="widget-49-meeting-action">-->
-<!--                <span class="btn-sm btn-flash-border-primary"></span>-->
-<!--              </div>-->
             </div>
           </div>
         </div>
@@ -105,27 +89,39 @@
       <div class="col-lg-12">
         <div class="card card-margin">
           <div class="card-header no-border">
-            <h5 class="card-title">test</h5>
+            <h5 class="card-title">More information</h5>
           </div>
           <div class="card-body pt-0">
             <div class="widget-49">
               <div class="widget-49-title-wrapper">
                 <div class="widget-49-date-primary">
-                  <span class="widget-49-date-day">5</span>
-                  <span class="widget-49-date-month">m</span>
-                </div>
-                <div class="widget-49-meeting-info">
-                  <span class="widget-49-pro-title">h</span>
-                  <span class="widget-49-meeting-time">h</span>
+                  <span class="widget-49-date-day"><i class="fa-solid fa-message"></i></span>
                 </div>
               </div>
-              <ol class="widget-49-meeting-points">
-                <li class="widget-49-meeting-item"><span>You can smoke</span></li>
-                <li class="widget-49-meeting-item"><span>You can get luggage with you</span></li>
-                <li class="widget-49-meeting-item"><span>You can get pet with you</span></li>
-              </ol>
-              <div class="widget-49-meeting-action">
-                <span class="btn-sm btn-flash-border-primary"> €</span>
+              <div class="row">
+                <div class="col-md-9 mb-3 pb-2">
+                    <span *ngIf="trip.driverMessage" class="widget-49-pro-title">Message from {{driver.firstName}} {{driver.lastName}} : {{trip.driverMessage}}</span>
+                    <span *ngIf="!trip.driverMessage" class="widget-49-pro-title">Message from {{driver.firstName}} {{driver.lastName}} : nothing</span>
+                </div>
+                <div class="col-md-3 mb-3 pb-2">
+                  <div class="d-flex justify-content-center">
+                    <input class="btn btn-light btn-lg" type="button" value="Contact {{driver.firstName}}">
+                  </div>
+                </div>
+              </div>
+              <hr class="hr" />
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="d-flex justify-content-center">
+                    <p>
+                      Your reservation will be confirmed instantly
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <hr class="hr" />
+              <div class="d-flex justify-content-center">
+                <input class="btn btn-light btn-lg" type="button" value="Book a trip with {{driver.firstName}}" (click)="confirmBooking()">
               </div>
             </div>
           </div>
