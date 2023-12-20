@@ -28,6 +28,7 @@
             <a *ngIf="!isConnected" routerLink="registration" class="dropdown-item" routerLinkActive="active">Sign Up</a>
             <a *ngIf="!isConnected" routerLink="connection" class="dropdown-item" routerLinkActive="active">Log in</a>
             <a *ngIf="isConnected" class="dropdown-item">Profile</a>
+            <a *ngIf="isConnected" routerLink="adminPanel" class="dropdown-item" routerLinkActive="active">Admin Panel</a>
             <a *ngIf="isConnected" class="dropdown-item" (click)="logout()">Logout</a>
           </div>
         </li>
