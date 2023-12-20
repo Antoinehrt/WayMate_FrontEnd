@@ -6,6 +6,7 @@ import {DtoInputAddress} from "./dtos/dto-input-address";
 import {DtoInputDriver} from "./dtos/dto-input-driver";
 import {DtoInputCar} from "./dtos/dto-input-car";
 import {DtoOutputCreateBooking} from "./dtos/dto-output-create-booking";
+import {AuthenticationService} from "../../utils/authentication/authentication.service";
 
 @Component({
   selector: 'app-booking',
@@ -20,8 +21,9 @@ export class BookingComponent implements OnInit {
   driver!: DtoInputDriver;
   car!: DtoInputCar;
   booking!: DtoOutputCreateBooking;
+  idPass!: number;
 
-  constructor(private _route: ActivatedRoute, private _bookingService: BookingService, private _router: Router) {
+  constructor(private _route: ActivatedRoute, private _bookingService: BookingService, private _router: Router, private _athenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
@@ -87,21 +89,31 @@ export class BookingComponent implements OnInit {
   }
 
   confirmBooking(){
-    this.booking = {
-      date: new Date(),
-      reservedSeats: 1,
-      IdPassenger: 3,
-      IdTrip: this.trip.id
-    }
-
-    this._bookingService.createBooking(this.booking).subscribe(
-      response => {
-        console.log("Booking create");
-        this._router.navigate(['/home']);
-      },
-      error => {
-        console.error('Error creating booking');
+    this._athenticationService.GetUsernameFromToken().subscribe(
+      reponse => {
+        console.log(reponse);
+        this._bookingService.getUserB(reponse.username).subscribe(
+          reponse => {
+            console.log(reponse);
+            this.booking = {
+              date: new Date(),
+              reservedSeats: 1,
+              IdPassenger: reponse.id,
+              IdTrip: this.trip.id
+            }
+            console.log(this.booking);
+            this._bookingService.createBooking(this.booking).subscribe(
+              response => {
+                console.log("Booking create");
+                this._router.navigate(['/home']);
+              },
+              error => {
+                console.error('Error creating booking');
+              }
+            );
+          }
+        )
       }
-    );
+    )
   }
 }

@@ -8,6 +8,7 @@ import {DtoInputDriver} from "../trip-search/dtos/dto-input-driver";
 import {DtoInputCar} from "./dtos/dto-input-car";
 import {DtoOutputCreateBooking} from "./dtos/dto-output-create-booking";
 import {DtoInputBooking} from "./dtos/dto-input-booking";
+import {DtoInputUser} from "../registration/dtos/dto-input-user";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class BookingService {
   private static _URL_API_DRIVER: string = environment.BASE_URL_API + "/driver";
   private static _UTL_API_CAR: string = environment.BASE_URL_API + "/car";
   private static _UTL_API_BOOKING: string = environment.BASE_URL_API + "/booking";
+  private static _UTL_API_USER: string = environment.BASE_URL_API + "/user/GetByUsername";
   constructor(private _httpClient: HttpClient) {
   }
 
@@ -39,5 +41,9 @@ export class BookingService {
 
   createBooking(dto:DtoOutputCreateBooking): Observable<DtoInputBooking> {
     return this._httpClient.post<DtoInputBooking>(BookingService._UTL_API_BOOKING,dto);
+  }
+
+  getUserB(username:string): Observable<DtoInputUser> {
+    return this._httpClient.get<DtoInputUser>(`${BookingService._UTL_API_USER}/${username}`);
   }
 }
