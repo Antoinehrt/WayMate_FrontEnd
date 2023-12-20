@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {BookingService} from "./booking.service";
 import {DtoInputTrip} from "./dtos/dto-input-trip";
 import {DtoInputAddress} from "./dtos/dto-input-address";
 import {DtoInputDriver} from "./dtos/dto-input-driver";
 import {DtoInputCar} from "./dtos/dto-input-car";
+import {DtoOutputCreateBooking} from "./dtos/dto-output-create-booking";
 
 @Component({
   selector: 'app-booking',
@@ -18,8 +19,9 @@ export class BookingComponent implements OnInit {
   addressDestination!: DtoInputAddress;
   driver!: DtoInputDriver;
   car!: DtoInputCar;
+  booking!: DtoOutputCreateBooking;
 
-  constructor(private _route: ActivatedRoute, private _bookingService: BookingService) {
+  constructor(private _route: ActivatedRoute, private _bookingService: BookingService, private _router: Router) {
   }
 
   ngOnInit() {
@@ -80,6 +82,25 @@ export class BookingComponent implements OnInit {
       },
       error => {
         console.error('Error fetching car details:', error);
+      }
+    );
+  }
+
+  confirmBooking(){
+    this.booking = {
+      date: new Date(),
+      reservedSeats: 1,
+      IdPassenger: 3,
+      IdTrip: this.trip.id
+    }
+
+    this._bookingService.createBooking(this.booking).subscribe(
+      response => {
+        console.log("Booking create");
+        this._router.navigate(['/home']);
+      },
+      error => {
+        console.error('Error creating booking');
       }
     );
   }
