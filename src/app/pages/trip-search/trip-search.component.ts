@@ -23,7 +23,7 @@ export class TripSearchComponent implements OnInit {
   minDate: string;
 
   constructor(private _tripSearch: TripSearchService, private _fb: FormBuilder, private _sharedDataService: DataTransferService,
-              private _datePipe: DatePipe, private _dialog: MatDialog, private authService: AuthenticationService, private _route: Router) {
+              private _datePipe: DatePipe, private _dialog: MatDialog, private authService: AuthenticationService, private _router: Router) {
     const currentDate = new Date();
     this.minDate = currentDate.toISOString().split('T')[0];
   }
@@ -47,11 +47,9 @@ export class TripSearchComponent implements OnInit {
       error: (err) =>{
         console.error("error", err);
         this.openPopup();
-        this._route.navigate(['/home']);
+        this._router.navigate(['/home']);
       }
     });
-
-
   }
   getAllTripDetails() {
     this._tripSearch.getAllTripDetails().subscribe(data => {
