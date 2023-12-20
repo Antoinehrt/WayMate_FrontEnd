@@ -18,6 +18,7 @@ export class BookingService {
   private static _URL_API_DRIVER: string = environment.BASE_URL_API + "/driver";
   private static _UTL_API_CAR: string = environment.BASE_URL_API + "/car";
   private static _UTL_API_BOOKING: string = environment.BASE_URL_API + "/booking";
+  private static _UTL_API_USER: string = environment.BASE_URL_API + "/user/GetByUsername";
   constructor(private _httpClient: HttpClient) {
   }
 
@@ -39,5 +40,9 @@ export class BookingService {
 
   createBooking(dto:DtoOutputCreateBooking): Observable<DtoInputBooking> {
     return this._httpClient.post<DtoInputBooking>(BookingService._UTL_API_BOOKING,dto);
+  }
+
+  getUserB(username:string): Observable<DtoInputCar> {
+    return this._httpClient.get<DtoInputCar>(`${BookingService._UTL_API_USER}/${username}`);
   }
 }
