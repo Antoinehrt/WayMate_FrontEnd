@@ -6,4 +6,5 @@ export interface DtoInputCar {
   nbSeats:number;
   fuelType:string;
   carType:string;
+  color: string;
 }
