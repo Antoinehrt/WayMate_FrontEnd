@@ -8,7 +8,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import { ConnectionComponent } from './pages/connection/connection.component';
 import { PagesComponent } from './pages/pages.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +21,8 @@ import {MatButtonModule} from "@angular/material/button";
 import { BookingComponent } from './pages/booking/booking.component';
 import {NavbarComponent} from "./addon/navbar/navbar.component";
 import {FooterComponent} from "./addon/footer/footer.component";
+import { AccountComponent } from './account/account.component';
+import { ProfilComponent } from './account/profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import {FooterComponent} from "./addon/footer/footer.component";
     NotFoundComponent,
     PopupNotConnectedComponent,
     NotFoundComponent,
-    BookingComponent
+    BookingComponent,
+    AccountComponent,
+    ProfilComponent
   ],
   imports: [
     HttpClientModule,
@@ -53,7 +57,8 @@ import {FooterComponent} from "./addon/footer/footer.component";
     BrowserAnimationsModule,
     NgbCarouselModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
