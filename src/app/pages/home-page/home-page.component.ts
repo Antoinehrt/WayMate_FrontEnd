@@ -27,11 +27,11 @@ export class HomePageComponent {
   });
   constructor(private _fb: FormBuilder, private _homePageService:DataTransferService, private _route:Router,
               config: NgbCarouselConfig, private authService: AuthenticationService, private dialog: MatDialog) {
-    this.ImagePath = "assets/img/waymateHome.png";
+    this.ImagePath = "assets/img/waymate_HomePage.jpg";
     const currentDate = new Date();
     this.minDate = currentDate.toISOString().split('T')[0];
 
-    config.interval = 5500;
+    config.interval = 8500;
     config.wrap = true;
     config.keyboard = true;
     config.pauseOnHover = false;
