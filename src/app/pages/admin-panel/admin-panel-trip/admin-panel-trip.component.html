@@ -16,7 +16,12 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header><i class="fa-solid fa-smoking"></i></th>
         <td mat-cell *matCellDef="let trip">
           <ng-container *ngIf="!trip.editMode; else editMode">{{trip.smoke}}</ng-container>
-          <ng-template #editMode><input type="text" class="short" [(ngModel)]="trip.smoke"></ng-template>
+          <ng-template #editMode>
+            <select name="smoke" class="short" [(ngModel)]="trip.smoke">
+              <option value="true">true</option>
+              <option value="false">false</option>
+            </select>
+          </ng-template>
         </td>
       </ng-container>
 
@@ -32,7 +37,12 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header><i class="fa-solid fa-person-walking-luggage"></i></th>
         <td mat-cell *matCellDef="let trip">
           <ng-container *ngIf="!trip.editMode; else editMode">{{trip.luggage}}</ng-container>
-          <ng-template #editMode><input  type="text" class="short" [(ngModel)]="trip.luggage"></ng-template>
+          <ng-template #editMode>
+            <select name="luggage" class="short" [(ngModel)]="trip.luggage">
+              <option value="true">true</option>
+              <option value="false">false</option>
+            </select>
+          </ng-template>
         </td>
       </ng-container>
 
@@ -40,7 +50,12 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header><i class="fa-solid fa-paw"></i></th>
         <td mat-cell *matCellDef="let trip">
           <ng-container *ngIf="!trip.editMode; else editMode">{{trip.petFriendly}}</ng-container>
-          <ng-template #editMode><input  type="text" class="short" [(ngModel)]="trip.petFriendly"></ng-template>
+          <ng-template #editMode>
+            <select name="petFriendly" class="short" [(ngModel)]="trip.petFriendly">
+              <option value="true">true</option>
+              <option value="false">false</option>
+            </select>
+          </ng-template>
         </td>
       </ng-container>
 
@@ -64,7 +79,12 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header><i class="fa-solid fa-fan"></i></th>
         <td mat-cell *matCellDef="let trip">
           <ng-container *ngIf="!trip.editMode; else editMode">{{trip.airConditioning}}</ng-container>
-          <ng-template #editMode><input  type="text" class="short" [(ngModel)]="trip.airConditioning"></ng-template>
+          <ng-template #editMode>
+            <select name="airConditioning" class="short" [(ngModel)]="trip.airConditioning">
+              <option value="true">true</option>
+              <option value="false">false</option>
+            </select>
+          </ng-template>
         </td>
       </ng-container>
 
