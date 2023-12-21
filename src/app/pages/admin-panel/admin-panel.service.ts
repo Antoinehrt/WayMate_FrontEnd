@@ -50,4 +50,7 @@ export class AdminPanelService {
     return this._httpClient.put<DtoInputUser>(AdminPanelService._URL_API_ADDRESS +"/"+ dto.id, dto);
   }
 
+  updateCar(dto:DtoOutputCar): Observable<DtoInputCar> {
+    return this._httpClient.put<DtoInputCar>(AdminPanelService._URL_API_ADDRESS +"/"+ dto.numberPlate, dto);
+  }
 }
