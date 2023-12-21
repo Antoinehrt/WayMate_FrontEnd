@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../utils/authentication/authentication.service";
 import {ProfileService} from "./profile.service";
-import {DtoOutputAdmin} from "./dto/dto-output-admin";
-import {DtoOutputUser} from "./dto/dto-output-user";
 import {switchMap} from "rxjs";
 
 @Component({
