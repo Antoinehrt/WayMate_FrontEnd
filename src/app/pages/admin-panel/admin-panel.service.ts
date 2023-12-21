@@ -3,10 +3,7 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {DtoInputUser} from "./dtos/dto-input-user";
-import {DtoOutputRegistration} from "../registration/dtos/dto-output-registration";
-import {DtoOutputUser} from "./dtos/dto-output-user";
 import {DtoOutputAdmin} from "./dtos/dto-output-admin";
-import {DtoInputAdmin} from "./dtos/dto-input-admin";
 import {DtoOutputDriver} from "./dtos/dto-output-driver";
 import {DtoOutputPassenger} from "./dtos/dto-output-passenger";
 
