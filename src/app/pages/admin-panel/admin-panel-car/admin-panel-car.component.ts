@@ -14,7 +14,7 @@ import {LiveAnnouncer} from "@angular/cdk/a11y";
 })
 export class AdminPanelCarComponent implements AfterViewInit  {
   cars: DtoInputCar[] = [];
-  displayedColumns: string[] = ['numberPlate', 'brand', 'model', 'nbSeats', 'carType', 'fuelType', 'color', 'edit', 'delete'];
+  displayedColumns: string[] = ['numberPlate', 'brand', 'model', 'nbSeats', 'carType', 'fuelType', 'color', 'edit'];
   dataSource = new MatTableDataSource <DtoInputCar>(this.cars);
 
   constructor(private _adminPanel: AdminPanelService, private _liveAnnouncer: LiveAnnouncer) {
@@ -45,10 +45,6 @@ export class AdminPanelCarComponent implements AfterViewInit  {
     } else {
       this._liveAnnouncer.announce('Sorting cleared');
     }
-  }
-
-  deleteUser(car: any) {
-
   }
 
   enableEditMode(car: any): void {
