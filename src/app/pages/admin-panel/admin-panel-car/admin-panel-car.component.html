@@ -2,46 +2,46 @@
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
       <ng-container matColumnDef="numberPlate">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> numberPlate </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Numberplate</th>
         <td mat-cell *matCellDef="let car"> {{car.numberPlate}} </td>
       </ng-container>
       <ng-container matColumnDef="model">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> model </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Model </th>
         <td mat-cell *matCellDef="let car">
           <ng-container *ngIf="!car.editMode; else editMode">{{car.model}}</ng-container>
           <ng-template #editMode><input type="text" class="long" [(ngModel)]="car.model"></ng-template>
         </td>
       </ng-container>
       <ng-container matColumnDef="nbSeats">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> nbSeats </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header><i class="fa-solid fa-chair"></i></th>
         <td mat-cell *matCellDef="let car">
           <ng-container *ngIf="!car.editMode; else editMode">{{car.nbSeats}}</ng-container>
           <ng-template #editMode><input type="text" class="short" [(ngModel)]="car.nbSeats"></ng-template>
         </td>
       </ng-container>
       <ng-container matColumnDef="brand">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> brand </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Brand </th>
         <td mat-cell *matCellDef="let car">
           <ng-container *ngIf="!car.editMode; else editMode">{{car.brand}}</ng-container>
           <ng-template #editMode><input type="text" class="long" [(ngModel)]="car.brand"></ng-template>
         </td>
       </ng-container>
       <ng-container matColumnDef="carType">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> carTpe </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Car Type </th>
         <td mat-cell *matCellDef="let car">
           <ng-container *ngIf="!car.editMode; else editMode">{{car.carType}}</ng-container>
           <ng-template #editMode><input type="text" class="normal" [(ngModel)]="car.carType"></ng-template>
         </td>
       </ng-container>
       <ng-container matColumnDef="fuelType">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> fuelType </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header><i class="fa-solid fa-gas-pump"></i></th>
         <td mat-cell *matCellDef="let car">
           <ng-container *ngIf="!car.editMode; else editMode">{{car.fuelType}}</ng-container>
           <ng-template #editMode><input type="text" class="normal" [(ngModel)]="car.fuelType"></ng-template>
         </td>
       </ng-container>
       <ng-container matColumnDef="color">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> color </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header><i class="fa-solid fa-palette"></i></th>
         <td mat-cell *matCellDef="let car">
           <ng-container *ngIf="!car.editMode; else editMode">{{car.color}}</ng-container>
           <ng-template #editMode><input type="text" class="short" [(ngModel)]="car.color"></ng-template>
