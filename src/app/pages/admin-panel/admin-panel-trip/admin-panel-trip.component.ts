@@ -14,7 +14,7 @@ import {LiveAnnouncer} from "@angular/cdk/a11y";
 })
 export class AdminPanelTripComponent implements AfterViewInit {
   trips: DtoInputTrip[] = [];
-  displayedColumns: string[] = ['id', 'idDriver', 'smoke', 'price', 'luggage', 'petFriendly', 'date', 'driverMessage', 'airConditioning', 'idStartingPoint', 'idDestination', 'edit','delete'];
+  displayedColumns: string[] = ['id', 'idDriver', 'date', 'price',  'smoke','luggage', 'petFriendly', 'airConditioning', 'driverMessage', 'idStartingPoint', 'idDestination', 'edit','delete'];
   dataSource = new MatTableDataSource <DtoInputTrip>(this.trips);
 
   constructor(private _adminPanel: AdminPanelService, private _liveAnnouncer: LiveAnnouncer) {
