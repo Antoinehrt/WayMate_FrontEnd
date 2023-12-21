@@ -9,6 +9,7 @@ import {DtoOutputPassenger} from "./dtos/dto-output-passenger";
 import {DtoInputAddress} from "./dtos/dto-input-address";
 import {DtoInputCar} from "./dtos/dto-input-car";
 import {DtoOutputCar} from "./dtos/dto-output-car";
+import {DtoInputTrip} from "./dtos/dto-input-trip";
 
 
 @Injectable({
@@ -21,6 +22,7 @@ export class AdminPanelService {
   private static _URL_API_PASSENGER: string = environment.BASE_URL_API + "/passenger";
   private static _URL_API_ADDRESS: string = environment.BASE_URL_API + "/address";
   private static _URL_API_CAR: string = environment.BASE_URL_API + "/car";
+  private static _URL_API_TRIP: string = environment.BASE_URL_API + "/trip";
   constructor(private _httpClient: HttpClient) { }
 
   getAllUser(): Observable<DtoInputUser[]> {
@@ -33,6 +35,10 @@ export class AdminPanelService {
 
   getAllCar(): Observable<DtoInputCar[]> {
     return this._httpClient.get<DtoInputCar[]>(AdminPanelService._URL_API_CAR);
+  }
+
+  getAllTrip(): Observable<DtoInputTrip[]> {
+    return this._httpClient.get<DtoInputTrip[]>(AdminPanelService._URL_API_TRIP);
   }
 
   updateAdmin(dto:DtoOutputAdmin): Observable<DtoInputUser> {
