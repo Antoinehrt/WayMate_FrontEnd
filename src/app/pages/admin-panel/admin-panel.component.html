@@ -6,32 +6,35 @@
         <hr/>
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
           <li>
-            <a href="" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white">
+            <a data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white" routerLink="admin-users" routerLinkActive="active">
               <i class="fa-solid fa-user"></i> <span class="ms-1 d-none d-sm-inline">Users</span>
             </a>
           </li>
           <li>
-            <a href="" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white">
+            <a data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white" routerLink="admin-address" routerLinkActive="active">
               <i class="fa-solid fa-house"></i> <span class="ms-1 d-none d-sm-inline">Address</span>
             </a>
           </li>
           <li>
-            <a href="" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white">
+            <a data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white" routerLink="admin-car" routerLinkActive="active">
               <i class="fa-solid fa-car-side"></i> <span class="ms-1 d-none d-sm-inline">Car</span>
             </a>
           </li>
           <li>
-            <a href="" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white">
+            <a data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white" routerLink="admin-trip" routerLinkActive="active">
               <i class="fa-solid fa-route"></i> <span class="ms-1 d-none d-sm-inline">Trip</span>
             </a>
           </li>
           <li>
-            <a href="" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white">
+            <a data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white" routerLink="admin-booking" routerLinkActive="active">
               <i class="fa-solid fa-calendar-days"></i> <span class="ms-1 d-none d-sm-inline">Booking</span>
             </a>
           </li>
         </ul>
       </div>
+    </div>
+    <div class="col py-3">
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
