@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, booleanAttribute, Component, ViewChild} from '@angular/core';
 import {DtoInputUser} from "../dtos/dto-input-user";
 import {AdminPanelService} from "../admin-panel.service";
 import {MatTableDataSource} from "@angular/material/table";
@@ -47,9 +47,16 @@ export class AdminPanelUserComponent implements AfterViewInit  {
     }
   }
 
-  deleteUser(user: any) {
+  banUser(user: any) {
     if(user.isBanned == false){
       user.isBanned = true;
+      this.updateUser(user);
+    }
+  }
+
+  unbanUser(user: any) {
+    if(user.isBanned == true){
+      user.isBanned = false;
       this.updateUser(user);
     }
   }
@@ -64,6 +71,7 @@ export class AdminPanelUserComponent implements AfterViewInit  {
   }
 
   updateUser(user: any){
+    user.isBanned = booleanAttribute(user.isBanned);
     if(user.userType == "Driver") {
       this._adminPanel.updateDriver(user).subscribe(
         response => {
