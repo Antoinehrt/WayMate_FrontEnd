@@ -11,6 +11,7 @@ import {DtoInputCar} from "./dtos/dto-input-car";
 import {DtoOutputCar} from "./dtos/dto-output-car";
 import {DtoInputTrip} from "./dtos/dto-input-trip";
 import {DtoInputBooking} from "./dtos/dto-input-booking";
+import {DtoOutputTrip} from "./dtos/dto-output-trip";
 
 
 @Injectable({
@@ -64,6 +65,10 @@ export class AdminPanelService {
 
   updateCar(dto:DtoOutputCar): Observable<DtoInputCar> {
     return this._httpClient.put<DtoInputCar>(AdminPanelService._URL_API_CAR +"/"+ dto.numberPlate, dto);
+  }
+
+  updateTrip(dto:DtoOutputTrip): Observable<DtoInputTrip> {
+    return this._httpClient.put<DtoInputTrip>(AdminPanelService._URL_API_TRIP +"/"+ dto.id, dto);
   }
 
   deleteBooking(id:number): Observable<DtoInputBooking>{

@@ -81,8 +81,8 @@
           <ng-container *ngIf="!trip.editMode; else editMode">{{trip.airConditioning}}</ng-container>
           <ng-template #editMode>
             <select name="airConditioning" class="short" [(ngModel)]="trip.airConditioning">
-              <option value="true">true</option>
-              <option value="false">false</option>
+              <option value="{{true}}">true</option>
+              <option value="{{false}}">false</option>
             </select>
           </ng-template>
         </td>

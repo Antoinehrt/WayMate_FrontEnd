@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, booleanAttribute, Component, ViewChild} from '@angular/core';
 import {DtoInputAddress} from "../dtos/dto-input-address";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
@@ -56,5 +56,22 @@ export class AdminPanelTripComponent implements AfterViewInit {
 
   disableEditMode(trip: any): void {
     trip.editMode = false;
+    this.updateTrip(trip);
+  }
+
+  updateTrip(trip:any){
+    trip.smoke = (booleanAttribute(trip.smoke));
+    trip.luggage = (booleanAttribute(trip.luggage));
+    trip.petFriendly = (booleanAttribute(trip.petFriendly));
+    trip.airConditioning = (booleanAttribute(trip.airConditioning));
+    this._adminPanel.updateTrip(trip).subscribe(
+      response => {
+        console.log(response);
+        this.getAllTrip();
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 }
