@@ -14,8 +14,14 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div [class.collapse]="collapsed" class="collapse navbar-collapse" id="navbarsDefault">
-      <a routerLink="home" routerLinkActive="active">Home</a>
-      <a class="fw-bold text-body" routerLink="myTrip" routerLinkActive="active">My Trip</a>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="home" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="myTrip" routerLinkActive="active">My Trip</a>
+        </li>
+      </ul>
     </div>
     <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
       <ul class="navbar-nav ms-auto">
