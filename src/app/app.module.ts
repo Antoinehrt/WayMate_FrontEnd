@@ -22,6 +22,7 @@ import { BookingComponent } from './pages/booking/booking.component';
 import {NavbarComponent} from "./addon/navbar/navbar.component";
 import {FooterComponent} from "./addon/footer/footer.component";
 import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
+import { MyTripComponent } from './pages/my-trip/my-trip.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
     PopupNotConnectedComponent,
     NotFoundComponent,
     BookingComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    MyTripComponent
   ],
   imports: [
     HttpClientModule,

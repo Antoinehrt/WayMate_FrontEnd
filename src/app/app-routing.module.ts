@@ -7,6 +7,7 @@ import {HomePageComponent} from "./pages/home-page/home-page.component";
 import {TripSearchComponent} from "./pages/trip-search/trip-search.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
 import {BookingComponent} from "./pages/booking/booking.component";
+import {MyTripComponent} from "./pages/my-trip/my-trip.component";
 
 const routes: Routes = [
   {path: "", pathMatch: "full", redirectTo:"/home"},
@@ -18,7 +19,7 @@ const routes: Routes = [
   {path: "home", component: HomePageComponent},
   {path: "tripSearch", component: TripSearchComponent},
   {path: "booking/:id", component: BookingComponent},
-  // {path: "adminPanel", component:AdminPanelComponent},
+  {path: "myTrip", component: MyTripComponent},
   {path: "registration", component: RegistrationComponent},
   {path: "connection", component: ConnectionComponent},
   {path: "not-found", component: NotFoundComponent},
