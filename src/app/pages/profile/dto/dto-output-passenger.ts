@@ -5,7 +5,6 @@ export interface DtoOutputPassenger {
   password:string;
   email: string;
   birthdate: Date;
-  isBanned: string;
   phoneNumber: string;
   lastname: string;
   firstname:string;
