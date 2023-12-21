@@ -1,9 +1,9 @@
 export interface DtoOutputCar {
-  plateNumber: string;
+  numberPlate: string;
   model: string;
   nbSeats: number;
   brand: string;
-  carTpe: string;
+  carType: string;
   fuelType: string;
   color: string;
 }
