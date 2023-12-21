@@ -1,7 +1,7 @@
 export interface DtoOutputUpdateAddress{
-  idAddress:number;
-  street: string;
-  number: string;
-  postCode: string;
-  city: string;
+  street : string;
+  number : string;
+  postalCode : string;
+  city : string;
+  passenger : string;
 }

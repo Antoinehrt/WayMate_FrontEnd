@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProfilService} from "./profil.service";
 import {DtoInputProfil} from "./dtos/dto-input-profil";
 import {DtoInputAddress} from "./dtos/dto-input-address";
+import {AuthenticationService} from "../../utils/authentication/authentication.service";
 
 @Component({
   selector: 'app-profil',
@@ -11,38 +12,39 @@ import {DtoInputAddress} from "./dtos/dto-input-address";
 export class ProfilComponent implements OnInit{
 
   public user : DtoInputProfil = {
-    idAccount : 0,
-    firstName: "",
-    lastName: "",
+   // userType : "",
+    userName: "",
+    password: "",
     email: "",
-    pictureURL: "",
-    phone: "",
-    function : "",
+    birthdate: "",
+    phoneNumber: "",
+    lastName: "",
+    firstName: "",
+    gender: "",
     address: {
-      postCode : "",
-      street : "",
+      passenger: "",
       city : "",
-      number : "",
-      idAddress : 0
+      postalCode : "",
+      number : 0,
+      street : "",
     }
   };
   public address:DtoInputAddress={
-    idAddress:0,
-    street:"",
-    city:"",
-    number:"",
-    postCode:""
+    street : "",
+    number : 0,
+    postalCode : "",
+    city : "",
+    passenger : ""
   }
   editMode: boolean = false;
-  constructor(private profilService : ProfilService,
-              /*  private _notification : NotificationsService,
-                private _session : SessionService*/) {}
+  constructor(private profilService : ProfilService, private authService : AuthenticationService
+              /*private _session : SessionService*/) {}
 
   ngOnInit(): void {
    /* this.profilService.fetchProfil(this._session.getID()).subscribe(profil => {
       this.user = profil
     })*/
-
+    //this.user = this.authService.currentUserValue;
   }
 
   edit() {
@@ -56,4 +58,17 @@ export class ProfilComponent implements OnInit{
     this.edit();
   }
 
+  save() {
+    if (this.editMode) {
+      this.authService.updateUser(this.user).subscribe(
+        (data) => {
+          console.log('Profil mis à jour avec succès', data);
+          this.editMode = false;
+        },
+        (error) => {
+          console.error('Erreur lors de la mise à jour du profil', error);
+        }
+      );
+    }
+  }
 }

@@ -14,6 +14,7 @@ export class AuthenticationService {
   private static _URL_API_TEST_CONNECTION_DRIVER = environment.BASE_URL_API + "/authentication/TestConnectionDriver";
   private static _URL_API_TEST_CONNECTION_ADMIN = environment.BASE_URL_API + "/authentication/TestConnectionAdmin";
   private static _URL_API_GET_USERNAME = environment.BASE_URL_API + "/authentication/getUsername";
+  private static _URL_API_UPDATE_USER = environment.BASE_URL_API + "/user/update";
 
   constructor(private _httpClient: HttpClient) { }
 
@@ -39,6 +40,11 @@ export class AuthenticationService {
 
   GetUsernameFromToken(): Observable<DtoInputUsername>{
     return this._httpClient.get<DtoInputUsername>(`${AuthenticationService._URL_API_GET_USERNAME}`, { withCredentials: true });
+  }
+
+  // méthode de mise à jour de l'utilisateur
+  updateUser(user: any): Observable<any> {
+    return this._httpClient.put(`${AuthenticationService._URL_API_UPDATE_USER}`, user, { withCredentials: true });
   }
 
 }

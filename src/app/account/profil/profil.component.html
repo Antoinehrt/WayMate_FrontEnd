@@ -1,10 +1,7 @@
 <div class="container">
-  <div>
-    <img src="{{user.pictureURL}}" class="rounded-circle" width="150" alt="">
-  </div>
   <button (click)="edit()">Mode édition</button>
   <div class="content">
-    <form #form="ngForm" >
+    <form #form="ngForm" (ngSubmit)="send()">
       <h1>Informations personnelles</h1>
       <input type="submit" [hidden]="!editMode" [disabled]="form.invalid">
       <div class="row">
@@ -53,8 +50,8 @@
         </div>
         <div class="interior">
           <p><span class="titre">Code Postal</span> :
-            <span [hidden]="editMode">{{user.address.postCode}}</span>
-            <input [(ngModel)]="user.address.postCode"
+            <span [hidden]="editMode">{{user.address.postalCode}}</span>
+            <input [(ngModel)]="user.address.postalCode"
                    [hidden]="!editMode"
                    name="postCode"
                    pattern="[0-9]{4}"
@@ -76,18 +73,9 @@
       <br>
       <div class="row">
         <div class="interior">
-          <p><span class="titre">Photo de profil</span> :
-            <input [(ngModel)]="user.pictureURL"
-                   [hidden]="!editMode"
-                   name="pictureURL"
-                   required
-                   #pictureURLEl="ngModel"></p>
-          <span *ngIf="pictureURLEl.dirty &&  pictureURLEl.invalid">Doit être complété</span>
-        </div>
-        <div class="interior">
           <p><span class="titre">Numéro de téléphone</span> :
-            <span [hidden]="editMode">{{user.phone}}</span>
-            <input [(ngModel)]="user.phone"
+            <span [hidden]="editMode">{{user.phoneNumber}}</span>
+            <input [(ngModel)]="user.phoneNumber"
                    [hidden]="!editMode"
                    pattern="[0][4][0-9]{8}"
                    name="phone"
@@ -109,15 +97,6 @@
         </div>
       </div>
     </form>
-  </div>
-  <div class="content">
-    <h1>Informations relatives à la société</h1>
-    <div class="row">
-      <div class="interior">
-        <p><span class="titre">Fonction dans la société </span> : {{user.function}}</p>
-      </div>
-    </div>
-    <br>
   </div>
 </div>
 

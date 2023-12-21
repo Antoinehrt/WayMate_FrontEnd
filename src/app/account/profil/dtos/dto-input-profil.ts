@@ -1,12 +1,18 @@
 import {DtoInputAddress} from "./dto-input-address";
+import {DtoInputCar} from "./dto-input-car";
 
 export interface DtoInputProfil {
-  idAccount : number;
-  firstName : string;
-  lastName : string;
+ // userType : string;
+  userName : string;
+  password : string;
   email : string;
-  pictureURL : string;
-  phone: string;
+  birthdate : string;
+  phoneNumber: string;
+  lastName: string;
+  firstName : string;
+  gender : string;
   address : DtoInputAddress;
-  function : string;
+ // car : DtoInputCar;
+
+
 }
