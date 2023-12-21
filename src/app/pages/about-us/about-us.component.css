@@ -1,0 +1,51 @@
+.members {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; /* Distribute space evenly around the items */
+  padding: 20px;
+  background-color: #f4f7f6; /* Assuming this is the background color of the site */
+}
+
+.member {
+  width: 250px; /* Fixed width for each member */
+  margin: 10px;
+  padding: 20px;
+  background-color: #ffffff; /* White background for the member card */
+  border-radius: 10px; /* Rounded corners for the card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  text-align: center; /* Center the text for the member card */
+}
+
+.member img {
+  width: 100%; /* Make image responsive */
+  height: auto; /* Keep the aspect ratio */
+  border-radius: 50%; /* Circle shape */
+  margin-bottom: 15px; /* Space below the image */
+}
+
+.member .name {
+  display: block; /* Make the name stand out on its own line */
+  font-weight: bold;
+  font-size: 1.2em; /* Slightly larger font size for the name */
+  color: #007bff; /* Blue color for the name, similar to the site's header */
+}
+
+.member .desc {
+  display: block; /* Ensure the description is block-level */
+  font-size: 0.9em; /* Smaller font size for the description */
+  color: #333; /* Dark text color for readability */
+  text-align: justify; /* Justify the text for a cleaner look */
+  margin-top: 10px; /* Space above the description */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .members {
+    flex-direction: column;
+    align-items: center; /* Stack the cards on small screens */
+  }
+
+  .member {
+    width: 90%; /* Make the member card take up most of the screen width */
+  }
+}
