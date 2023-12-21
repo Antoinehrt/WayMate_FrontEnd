@@ -14,7 +14,7 @@ import {MatSort, Sort} from "@angular/material/sort";
 })
 export class AdminPanelBookingComponent implements AfterViewInit {
   bookings: DtoInputBooking[] = [];
-  displayedColumns: string[] = ['id', 'date', 'reservedSeats', 'idPassenger', 'idTrip', 'edit','delete'];
+  displayedColumns: string[] = ['id', 'date', 'reservedSeats', 'idPassenger', 'idTrip','delete'];
   dataSource = new MatTableDataSource <DtoInputBooking>(this.bookings);
 
   constructor(private _adminPanel: AdminPanelService, private _liveAnnouncer: LiveAnnouncer) {
