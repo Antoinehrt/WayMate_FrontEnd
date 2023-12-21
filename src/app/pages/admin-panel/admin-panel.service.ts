@@ -6,6 +6,7 @@ import {DtoInputUser} from "./dtos/dto-input-user";
 import {DtoOutputAdmin} from "./dtos/dto-output-admin";
 import {DtoOutputDriver} from "./dtos/dto-output-driver";
 import {DtoOutputPassenger} from "./dtos/dto-output-passenger";
+import {DtoInputAddress} from "./dtos/dto-input-address";
 
 
 @Injectable({
@@ -16,10 +17,15 @@ export class AdminPanelService {
   private static _URL_API_ADMIN: string = environment.BASE_URL_API + "/admin";
   private static _URL_API_DRIVER: string = environment.BASE_URL_API + "/driver";
   private static _URL_API_PASSENGER: string = environment.BASE_URL_API + "/passenger";
+  private static _URL_API_ADDRESS: string = environment.BASE_URL_API + "/address";
   constructor(private _httpClient: HttpClient) { }
 
   getAllUser(): Observable<DtoInputUser[]> {
     return this._httpClient.get<DtoInputUser[]>(AdminPanelService._URL_API_USER);
+  }
+
+  getAddress(): Observable<DtoInputAddress[]> {
+    return this._httpClient.get<DtoInputAddress[]>(AdminPanelService._URL_API_ADDRESS);
   }
 
   updateAdmin(dto:DtoOutputAdmin): Observable<DtoInputUser> {
@@ -31,5 +37,9 @@ export class AdminPanelService {
 
   updatePassenger(dto:DtoOutputPassenger): Observable<DtoInputUser> {
     return this._httpClient.put<DtoInputUser>(AdminPanelService._URL_API_PASSENGER +"/"+ dto.id, dto);
+  }
+
+  updateAddress(dto:DtoOutputPassenger): Observable<DtoInputUser> {
+    return this._httpClient.put<DtoInputUser>(AdminPanelService._URL_API_ADDRESS +"/"+ dto.id, dto);
   }
 }
