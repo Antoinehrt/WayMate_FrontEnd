@@ -9,6 +9,7 @@ import {AdminPanelBookingComponent} from "./admin-panel-booking/admin-panel-book
 
 
 const routes: Routes = [
+  {path: "", pathMatch: "full", redirectTo:"admin-users"},
   {path: "admin-users", component: AdminPanelUserComponent},
   {path: "admin-address", component: AdminPanelAddressComponent},
   {path: "admin-car", component: AdminPanelCarComponent},
