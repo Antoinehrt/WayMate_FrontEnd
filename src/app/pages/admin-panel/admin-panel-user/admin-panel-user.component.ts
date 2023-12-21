@@ -3,7 +3,6 @@ import {DtoInputUser} from "../dtos/dto-input-user";
 import {AdminPanelService} from "../admin-panel.service";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
-import {DtoOutputAdmin} from "../dtos/dto-output-admin";
 import {LiveAnnouncer} from "@angular/cdk/a11y";
 import {MatSort, Sort} from "@angular/material/sort";
 
@@ -14,7 +13,7 @@ import {MatSort, Sort} from "@angular/material/sort";
 })
 export class AdminPanelUserComponent implements AfterViewInit  {
   users: DtoInputUser[] = [];
-  displayedColumns: string[] = ['id', 'userType', 'username', 'lastName', 'firstName', 'email', 'birthdate', 'phoneNumber', 'gender', 'addressId', 'carPlate', 'isBanned', 'edit', 'delete'];
+  displayedColumns: string[] = ['id', 'userType', 'username', 'lastName', 'firstName', 'email', 'birthdate', 'phoneNumber', 'gender', 'addressId', 'carPlate', 'isBanned', 'edit', 'ban'];
   dataSource = new MatTableDataSource <DtoInputUser>(this.users);
 
   constructor(private _adminPanel: AdminPanelService, private _liveAnnouncer: LiveAnnouncer) {

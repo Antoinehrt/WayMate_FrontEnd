@@ -82,14 +82,14 @@
       </ng-container>
       <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef><i class="fa-solid fa-pen"></i></th>
-        <td mat-cell *matCellDef="let user">
-          <ng-container *ngIf="!user.editMode; else editMode">
-            <a (click)="enableEditMode(user)">
+        <td mat-cell *matCellDef="let car">
+          <ng-container *ngIf="!car.editMode; else editMode">
+            <a (click)="enableEditMode(car)">
               <i class="fa-solid fa-pen"></i>
             </a>
           </ng-container>
           <ng-template #editMode>
-            <a (click)="disableEditMode(user)">
+            <a (click)="disableEditMode(car)">
               <i class="fa-solid fa-check"></i>
             </a>
           </ng-template>

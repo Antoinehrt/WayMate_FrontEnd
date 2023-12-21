@@ -1,5 +1,4 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {DtoInputUser} from "../dtos/dto-input-user";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {DtoInputCar} from "../dtos/dto-input-car";

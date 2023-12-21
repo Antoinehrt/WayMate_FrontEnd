@@ -23,12 +23,9 @@ export class AdminPanelAddressComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-
-
   ngAfterViewInit(): void {
     this.getAllAddress();
   }
-
   getAllAddress() {
     this._adminPanel.getAddress().subscribe(
       response => {
@@ -45,20 +42,14 @@ export class AdminPanelAddressComponent implements AfterViewInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
-
-  deleteUser(address: any) {
-  }
-
   enableEditMode(address: any): void {
     address.editMode = true;
 
   }
-
   disableEditMode(address: any): void {
     address.editMode = false;
     this.updateAddress(address);
   }
-
   updateAddress(address:any){
     this._adminPanel.updateAddress(address).subscribe(
       response => {

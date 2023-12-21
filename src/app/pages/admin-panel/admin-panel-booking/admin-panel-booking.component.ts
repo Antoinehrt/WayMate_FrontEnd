@@ -1,5 +1,4 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {DtoInputAddress} from "../dtos/dto-input-address";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {AdminPanelService} from "../admin-panel.service";
@@ -45,7 +44,7 @@ export class AdminPanelBookingComponent implements AfterViewInit {
     }
   }
 
-  deleteUser(booking: any) {
+  deleteBookink(booking: any) {
     this._adminPanel.deleteBooking(booking.id).subscribe(
       response => {
         this.getAllBooking()
