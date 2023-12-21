@@ -21,6 +21,7 @@ import {MatButtonModule} from "@angular/material/button";
 import { BookingComponent } from './pages/booking/booking.component';
 import {NavbarComponent} from "./addon/navbar/navbar.component";
 import {FooterComponent} from "./addon/footer/footer.component";
+import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {FooterComponent} from "./addon/footer/footer.component";
     NotFoundComponent,
     PopupNotConnectedComponent,
     NotFoundComponent,
-    BookingComponent
+    BookingComponent,
+    AdminPanelComponent
   ],
   imports: [
     HttpClientModule,
