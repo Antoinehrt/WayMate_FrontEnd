@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../utils/authentication/authentication.service";
 import {MyTripService} from "./my-trip.service";
-import {switchMap} from "rxjs";
 import {DtoOutputUser} from "./dtos/dto-output-user";
 
 @Component({
@@ -10,12 +9,10 @@ import {DtoOutputUser} from "./dtos/dto-output-user";
   styleUrls: ['./my-trip.component.css']
 })
 export class MyTripComponent implements OnInit {
-  _username!: string;
   user!:DtoOutputUser;
 
   constructor(private _authService: AuthenticationService, private _myTripService: MyTripService) {
   }
-
 
   ngOnInit(): void {
     this.getUsernameToken();
