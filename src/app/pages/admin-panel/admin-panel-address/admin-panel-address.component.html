@@ -9,14 +9,14 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> street </th>
         <td mat-cell *matCellDef="let address">
           <ng-container *ngIf="!address.editMode; else editMode">{{address.street}}</ng-container>
-          <ng-template #editMode><input  type="text" [(ngModel)]="address.street"></ng-template>
+          <ng-template #editMode><input type="text" class="long" [(ngModel)]="address.street"></ng-template>
         </td>
       </ng-container>
       <ng-container matColumnDef="postalCode">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> postalCode </th>
         <td mat-cell *matCellDef="let address">
           <ng-container *ngIf="!address.editMode; else editMode">{{address.postalCode}}</ng-container>
-          <ng-template #editMode><input type="text" [(ngModel)]="address.postalCode"></ng-template>
+          <ng-template #editMode><input type="text" class="normal" [(ngModel)]="address.postalCode"></ng-template>
         </td>
       </ng-container>
       <ng-container matColumnDef="city">
@@ -24,7 +24,7 @@
         <td mat-cell *matCellDef="let address">
           <ng-container *ngIf="!address.editMode; else editMode">{{address.city}}</ng-container>
           <ng-template #editMode>
-            <input type="text" [(ngModel)]="address.city">
+            <input type="text" class="normal" [(ngModel)]="address.city">
           </ng-template>
         </td>
       </ng-container>
@@ -33,7 +33,7 @@
         <td mat-cell *matCellDef="let address">
           <ng-container *ngIf="!address.editMode; else editMode">{{address.number}}</ng-container>
           <ng-template #editMode>
-            <input type="text" [(ngModel)]="address.number">
+            <input type="text" class="normal" [(ngModel)]="address.number">
           </ng-template>
         </td>
       </ng-container>

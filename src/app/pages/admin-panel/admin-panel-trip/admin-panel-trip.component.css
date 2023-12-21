@@ -8,3 +8,14 @@
 a:hover {
   cursor:pointer;
 }
+
+input.normal{
+  width: 85px;
+}
+input.long{
+  width: 120px;
+}
+
+input.short{
+  width: 40px;
+}
