@@ -74,9 +74,4 @@ export class AdminPanelService {
   deleteBooking(id:number): Observable<DtoInputBooking>{
     return this._httpClient.delete<DtoInputBooking>(AdminPanelService._URL_API_BOOKING + "/" + id);
   }
-
-  deleteTrip(id:number): Observable<DtoInputTrip>{
-    return this._httpClient.delete<DtoInputTrip>(AdminPanelService._URL_API_BOOKING + "/" + id);
-  }
-
 }
