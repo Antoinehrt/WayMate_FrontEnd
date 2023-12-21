@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {AdminPanelUserComponent} from "./admin-panel-user/admin-panel-user.component";
 import {AdminPanelAddressComponent} from "./admin-panel-address/admin-panel-address.component";
 import {RouterModule, Routes} from "@angular/router";
@@ -9,6 +8,7 @@ import {AdminPanelBookingComponent} from "./admin-panel-booking/admin-panel-book
 
 
 const routes: Routes = [
+  {path: "", pathMatch: "full", redirectTo:"admin-users"},
   {path: "admin-users", component: AdminPanelUserComponent},
   {path: "admin-address", component: AdminPanelAddressComponent},
   {path: "admin-car", component: AdminPanelCarComponent},
