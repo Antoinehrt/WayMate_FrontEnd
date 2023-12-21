@@ -57,6 +57,8 @@ export class AdminPanelCarComponent implements AfterViewInit  {
   }
 
   updateCar(car:any){
+    car.fuelType = parseInt(car.fuelType, 10);
+    car.carType = parseInt(car.carType, 10);
     this._adminPanel.updateCar(car).subscribe(
       response => {
         this.getAllCar();
