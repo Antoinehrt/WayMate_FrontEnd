@@ -14,7 +14,7 @@ import {MatSort, Sort} from "@angular/material/sort";
 })
 export class AdminPanelUserComponent implements AfterViewInit  {
   users: DtoInputUser[] = [];
-  displayedColumns: string[] = ['id', 'userType', 'username', 'email', 'birthdate', 'isBanned', 'phoneNumber', 'lastName', 'firstName', 'gender', 'addressId', 'carPlate', 'edit', 'delete'];
+  displayedColumns: string[] = ['id', 'userType', 'username', 'lastName', 'firstName', 'email', 'birthdate', 'phoneNumber', 'gender', 'addressId', 'carPlate', 'isBanned', 'edit', 'delete'];
   dataSource = new MatTableDataSource <DtoInputUser>(this.users);
 
   constructor(private _adminPanel: AdminPanelService, private _liveAnnouncer: LiveAnnouncer) {
