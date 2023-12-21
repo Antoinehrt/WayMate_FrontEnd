@@ -3,6 +3,7 @@ import {DtoInputUser} from "../dtos/dto-input-user";
 import {AdminPanelService} from "../admin-panel.service";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
+import {DtoOutputAdmin} from "../dtos/dto-output-admin";
 
 @Component({
   selector: 'app-admin-panel-user',
@@ -26,22 +27,17 @@ export class AdminPanelUserComponent implements AfterViewInit  {
   getAllUser() {
     this._adminPanel.getAllUser().subscribe(
       response => {
-        this.users = response;
-        console.log(response);
         this.dataSource = new MatTableDataSource <DtoInputUser>(response);
         this.dataSource.paginator = this.paginator;
       }
     )
   }
 
-  editUser(user: DtoInputUser) {
-    // Logique pour la modification
-    console.log("Edit user", user);
-  }
-
-  deleteUser(user: DtoInputUser) {
-    // Logique pour la suppression
-    console.log("Delete user", user);
+  deleteUser(user: any) {
+    if(user.isBanned == false){
+      user.isBanned = true;
+      this.updateUser(user);
+    }
   }
 
   enableEditMode(user: any): void {
@@ -50,7 +46,28 @@ export class AdminPanelUserComponent implements AfterViewInit  {
 
   disableEditMode(user: any): void {
     user.editMode = false;
-    console.log(user);
-    // Enregistrez les modifications, par exemple, via un service.
+    this.updateUser(user);
+  }
+
+  updateUser(user: any){
+    if(user.userType == "Driver") {
+      this._adminPanel.updateDriver(user).subscribe(
+        response => {
+          this.getAllUser();
+        }
+      )
+    } else if (user.userType == "Passenger"){
+      this._adminPanel.updatePassenger(user).subscribe(
+        response => {
+          this.getAllUser();
+        }
+      )
+    } else {
+      this._adminPanel.updateAdmin(user).subscribe(
+        response => {
+          this.getAllUser();
+        }
+      )
+    }
   }
 }
