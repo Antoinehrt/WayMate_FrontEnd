@@ -65,4 +65,9 @@ export class AdminPanelService {
   updateCar(dto:DtoOutputCar): Observable<DtoInputCar> {
     return this._httpClient.put<DtoInputCar>(AdminPanelService._URL_API_CAR +"/"+ dto.numberPlate, dto);
   }
+
+  deleteBooking(id:number): Observable<DtoInputBooking>{
+    return this._httpClient.delete<DtoInputBooking>(AdminPanelService._URL_API_BOOKING + "/" + id);
+  }
+
 }

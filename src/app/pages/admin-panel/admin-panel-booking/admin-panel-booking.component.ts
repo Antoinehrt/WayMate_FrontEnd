@@ -45,15 +45,10 @@ export class AdminPanelBookingComponent implements AfterViewInit {
     }
   }
 
-  deleteUser(address: any) {
-  }
-
-  enableEditMode(address: any): void {
-    address.editMode = true;
-
-  }
-
-  disableEditMode(address: any): void {
-    address.editMode = false;
+  deleteUser(booking: any) {
+    this._adminPanel.deleteBooking(booking.id).subscribe(
+      response => {
+        this.getAllBooking()
+    });
   }
 }
