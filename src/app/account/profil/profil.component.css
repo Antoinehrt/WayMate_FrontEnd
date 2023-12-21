@@ -1,0 +1,80 @@
+/* Base styling to align with the site's theme */
+body, html {
+  font-family: 'Open Sans', sans-serif; /* or any other font used on the site */
+  margin: 0;
+  padding: 0;
+  background-color: #f4f7f6; /* light background color based on the site */
+  color: #333; /* dark text color for readability */
+}
+
+.container {
+  display: block; /* Ensure the container is block level */
+  max-width: 900px; /* Max width can be adjusted to your preference */
+  margin: 5% auto; /* Center the container and give some margin from the top */
+  padding: 20px;
+  background-color: #ffffff; /* Background color for the form */
+  border-radius: 10px; /* Slightly rounded corners for the form */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  text-align: left; /* Align text to the left for the content */
+}
+
+/* Add a background color to the header to make it stand out */
+h1 {
+  background-color: #007bff; /* Blue color based on the site's header */
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 10px 10px 0 0;
+}
+
+/* Style for individual rows and inputs */
+.row {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  gap: 20px; /* Space between fields */
+  margin: 0 -10px; /* Negative margin to counteract padding on individual items */
+}
+
+.interior {
+  flex: 1; /* Flex grow to allow it to expand */
+  padding: 0 10px; /* Padding for spacing */
+}
+
+input[type="text"], input[type="email"], input[type="date"], input[type="radio"] {
+  width: 100%; /* Full width for inputs */
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #cccccc; /* Light grey border for inputs */
+  border-radius: 5px;
+}
+
+/* Highlight invalid inputs */
+input.ng-invalid:not(form) {
+  border-color: #dc3545; /* Bootstrap danger color for invalid inputs */
+}
+
+/* Highlight valid inputs */
+input.ng-valid:not(form) {
+  border-color: #28a745; /* Bootstrap success color for valid inputs */
+}
+
+/* Style for submit button */
+input[type="submit"] {
+  background-color: #007bff; /* Blue color based on the site's buttons */
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Media query for responsive adjustments */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column; /* Stack the fields vertically on small screens */
+  }
+}

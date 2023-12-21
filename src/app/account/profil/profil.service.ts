@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {DtoInputProfil} from "./dtos/dto-input-profil";
 import {DtoInputAddress} from "./dtos/dto-input-address";
 import {DtoOutputUpdateAddress} from "./dtos/dto-output-update-address";
+import {AuthenticationService} from "../../utils/authentication/authentication.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,35 +13,38 @@ export class ProfilService {
   private environment: any;
 
   constructor(private _httpClient: HttpClient,
-              /*private _session: SessionService*/) {
+              private _authService: AuthenticationService){
+
   }
   fetchProfil(id: number): Observable<DtoInputProfil> {
     return this._httpClient.get<DtoInputProfil>(this.environment.apiUrlAccount + "/fetch/profil/" + id);
   }
 
- /* updateProfil(dto: DtoInputProfil) {
+  // @ts-ignore
+  /*updateProfil(dto: DtoInputProfil) {
 
-    let dtoUpdate: DtoOutputUpdateDriver = {
+    let dtoUpdate: DtoOutputUpdateUser = {
       email: dto.email,
       firstName: dto.firstName,
      // idAccount: this._session.getID(),
       isAdmin: null,
-      phone: dto.phone,
+      phone: dto.phoneNumber,
       lastName: dto.lastName,
-      pictureURL: dto.pictureURL,
     }
     return this.updateProfil(dtoUpdate).subscribe();
   }*/
 
-  /*updateAddress(dto: DtoInputAddress) {
+  // @ts-ignore
+  updateAddress(dto: DtoInputAddress) {
 
     let dtoAddress:DtoOutputUpdateAddress={
       idAddress:dto.idAddress,
-      city:dto.city,
       street:dto.street,
       number:dto.number,
-      postCode:dto.postCode
+      postalCode:dto.postalCode,
+      city:dto.city,
+      passenger:dto.passenger
     }
     return this.updateAddress(dtoAddress).subscribe();
-  }*/
+  }
 }

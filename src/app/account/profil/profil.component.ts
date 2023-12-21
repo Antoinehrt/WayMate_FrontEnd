@@ -3,6 +3,7 @@ import {ProfilService} from "./profil.service";
 import {DtoInputProfil} from "./dtos/dto-input-profil";
 import {DtoInputAddress} from "./dtos/dto-input-address";
 import {AuthenticationService} from "../../utils/authentication/authentication.service";
+import {ConnectionService} from "../../pages/connection/connection.service";
 
 @Component({
   selector: 'app-profil',
@@ -13,6 +14,7 @@ export class ProfilComponent implements OnInit{
 
   public user : DtoInputProfil = {
    // userType : "",
+    idUser: 0,
     userName: "",
     password: "",
     email: "",
@@ -27,9 +29,11 @@ export class ProfilComponent implements OnInit{
       postalCode : "",
       number : 0,
       street : "",
+      idAddress: 0,
     }
   };
   public address:DtoInputAddress={
+    idAddress : 0,
     street : "",
     number : 0,
     postalCode : "",
@@ -37,13 +41,13 @@ export class ProfilComponent implements OnInit{
     passenger : ""
   }
   editMode: boolean = false;
-  constructor(private profilService : ProfilService, private authService : AuthenticationService
-              /*private _session : SessionService*/) {}
+  constructor(private profilService : ProfilService, private _connectService : ConnectionService,
+              private _authService : AuthenticationService) {}
 
   ngOnInit(): void {
-   /* this.profilService.fetchProfil(this._session.getID()).subscribe(profil => {
+    this.profilService.fetchProfil(this._connectService.getID()).subscribe(profil => {
       this.user = profil
-    })*/
+    })
     //this.user = this.authService.currentUserValue;
   }
 
@@ -52,15 +56,15 @@ export class ProfilComponent implements OnInit{
   }
 
   send() {
-    //this._notification.success("Changement effectué");
-    //this.profilService.updateProfil(this.user);
-    //this.profilService.updateAddress(this.user.address);
+
+   // this.profilService.updateProfil(this.user);
+    this.profilService.updateAddress(this.user.address);
     this.edit();
   }
 
   save() {
     if (this.editMode) {
-      this.authService.updateUser(this.user).subscribe(
+      this._authService.updateUser(this.user).subscribe(
         (data) => {
           console.log('Profil mis à jour avec succès', data);
           this.editMode = false;

@@ -25,6 +25,28 @@
                    #firstNameEl="ngModel"></p>
           <span *ngIf="firstNameEl.dirty &&  firstNameEl.invalid">Doit être complété</span>
         </div>
+        <div class="interior">
+          <p><span class="titre">Date de Naissance</span> :
+            <span [hidden]="editMode">{{user.birthdate}}</span>
+            <input [(ngModel)]="user.birthdate"
+                   [hidden]="!editMode"
+                   name="birthdate"
+                   pattern="^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/(19[0-9][0-9]|20[0-9][0-9])$"
+                   required
+                   #birthdateEl="ngModel"></p>
+          <span *ngIf="birthdateEl.dirty && birthdateEl.invalid">Format de date invalide (JJ/MM/AAAA)</span>
+        </div>
+        <div class="interior">
+          <p><span class="titre">Genre</span> :
+            <label>
+              <input type="radio" [(ngModel)]="user.gender" name="gender" value="F" [hidden]="!editMode"> F
+            </label>
+            <label>
+              <input type="radio" [(ngModel)]="user.gender" name="gender" value="M" [hidden]="!editMode"> M
+            </label>
+            <span [hidden]="editMode">{{ user.gender === 'F' ? 'F' : 'M' }}</span>
+          </p>
+        </div>
       </div>
       <br>
       <div class="row">

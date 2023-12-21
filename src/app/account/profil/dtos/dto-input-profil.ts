@@ -3,6 +3,7 @@ import {DtoInputCar} from "./dto-input-car";
 
 export interface DtoInputProfil {
  // userType : string;
+  idUser: number;
   userName : string;
   password : string;
   email : string;
