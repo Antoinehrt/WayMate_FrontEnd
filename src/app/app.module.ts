@@ -23,6 +23,7 @@ import {NavbarComponent} from "./addon/navbar/navbar.component";
 import {FooterComponent} from "./addon/footer/footer.component";
 import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
 import { MyTripComponent } from './pages/my-trip/my-trip.component';
+import { MyTripDetailsComponent } from './pages/my-trip/my-trip-details/my-trip-details.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MyTripComponent } from './pages/my-trip/my-trip.component';
     NotFoundComponent,
     BookingComponent,
     AdminPanelComponent,
-    MyTripComponent
+    MyTripComponent,
+    MyTripDetailsComponent
   ],
   imports: [
     HttpClientModule,
