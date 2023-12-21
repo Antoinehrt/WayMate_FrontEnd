@@ -7,6 +7,8 @@ import {DtoInputToken} from "../../connection/dto/dto-input-token";
 import {DtoOutputPassenger} from "../dto/dto-output-passenger";
 import {DtoInputAddress} from "../../trip-search/dtos/dto-input-address";
 import {DtoOutputCreateAddress} from "../../registration/dtos/dto-output-create-address";
+import {DtoOuputCar} from "../dto/dto-ouput-car";
+import {DtoOutputDriver} from "../dto/dto-output-driver";
 
 @Component({
   selector: 'app-passenger-profile',
@@ -18,8 +20,10 @@ export class PassengerProfileComponent {
   _address!: DtoInputAddress;
   ImagePath: string;
   editMode: boolean = false;
+  addCarMode: boolean = false;
   errorMail: boolean = false;
   errorUsername: boolean = false;
+  errorPlate: boolean = false;
   maxBirthdate: string;
 
   form: FormGroup = this._fb.group({
@@ -38,12 +42,21 @@ export class PassengerProfileComponent {
       postalCode: ['', [Validators.required]],
       city: ['', [Validators.required]],
       number: ['', [Validators.required]]
+    }),
+    carForm: this._fb.group({
+      numberPlate: ['', [Validators.required]],
+      brand: ['', [Validators.required]],
+      model: ['', [Validators.required]],
+      nbSeats: ['', [Validators.required]],
+      fuelType: ['', [Validators.required]],
+      carType: ['', [Validators.required]],
+      color: ['', [Validators.required]]
     })
   });
 
   constructor(private _profileService: ProfileService, private _authService: AuthenticationService, private _fb: FormBuilder,
               private _registrationService: RegistrationService) {
-    this.ImagePath = "assets/img/AdminIcon.png";
+    this.ImagePath = "assets/img/PassengerIcon.png";
     const currentDate = new Date();
     const maxDate = new Date(currentDate.getFullYear() - 14, currentDate.getMonth(), currentDate.getDate());
     this.maxBirthdate = maxDate.toISOString().split('T')[0];
@@ -60,8 +73,8 @@ export class PassengerProfileComponent {
           email: user.email,
           birthdate: user.birthdate,
           phoneNumber: user.phoneNumber,
-          lastname: user.lastName,  // Utilisez lastName au lieu de lastname
-          firstname: user.firstName,  // Utilisez firstName au lieu de firstname
+          lastname: user.lastName,
+          firstname: user.firstName,
           gender: user.gender,
           addressId: user.addressId
         };
@@ -82,14 +95,23 @@ export class PassengerProfileComponent {
               lastname: this._passenger.lastname,
               firstname: this._passenger.firstname,
               gender: this._passenger.gender,
-              addressId: this._passenger.addressId, // Ajoutez cette ligne
+              addressId: this._passenger.addressId,
             },
             addressForm: {
               street: this._address.street,
               postalCode: this._address.postalCode,
               city: this._address.city,
-              number: this._address.number
-            }
+              number: this._address.number,
+            },
+            carForm: {
+              numberPlate: 'Number plate',
+              brand: 'Brand',
+              model: 'Model',
+              nbSeats: 2,
+              fuelType: 0,
+              carType: 0,
+              color: 'Blue',
+            },
           });
         });
       });
@@ -127,35 +149,7 @@ export class PassengerProfileComponent {
                     (id) => {
                       if (id.id !== 0 && id.id !== null) {
                         idAddress = id.id;
-                        this.updatePassenger(
-                          this._passenger.id,
-                          newUsername,
-                          this._passenger.userType,
-                          this._passenger.password,
-                          newEmail,
-                          this.form.get('passengerForm.birthDate')?.value,
-                          this.form.get('passengerForm.phone')?.value,
-                          this.form.get('passengerForm.lastname')?.value,
-                          this.form.get('passengerForm.firstname')?.value,
-                          this.form.get('passengerForm.gender')?.value,
-                          idAddress
-                      );
-                        if (this._passenger.addressId !== 0) {
-                          this._profileService.getAddressById(this._passenger.addressId).subscribe(address => {
-                            this._address = {
-                              id: this._passenger.addressId,
-                              street: address.street,
-                              postalCode: address.postalCode,
-                              city: address.city,
-                              number: address.number
-                            };
-                          });
-                        }
-                        this._profileService.updatePassenger(this._passenger.id, this._passenger).subscribe(
-                          value => {
-                            console.log("value", value);
-                          }
-                        );
+                        this.updatePassengerAddress(idAddress);
                       } else {
                         // New address, insert and update user data
                         const dtoAddress: DtoOutputCreateAddress = {
@@ -163,56 +157,43 @@ export class PassengerProfileComponent {
                           postalCode: addressData.postalCode,
                           city: addressData.city,
                           number: addressData.number
-                        }
-                        console.log("1", dtoAddress);
+                        };
+
                         this._registrationService.insertAddress(dtoAddress).subscribe(
                           (addressId) => {
-                            console.log("2", addressId);
                             if (addressId.id !== 0 && addressId.id !== null) {
-                              idAddress = addressId.id;
-                              console.log("3", idAddress);
+                              idAddress = addressId.id;this.updatePassengerDetails(newUsername, newEmail, idAddress);
+                              this.updatePassengerAddress(idAddress);
                             }
-                            this.updatePassenger(
-                              this._passenger.id,
-                              newUsername,
-                              this._passenger.userType,
-                              this._passenger.password,
-                              newEmail,
-                              this.form.get('passengerForm.birthDate')?.value,
-                              this.form.get('passengerForm.phone')?.value,
-                              this.form.get('passengerForm.lastname')?.value,
-                              this.form.get('passengerForm.firstname')?.value,
-                              this.form.get('passengerForm.gender')?.value,
-                              idAddress
-                          );
-                            if (this._passenger.addressId !== 0) {
-                              this._profileService.getAddressById(this._passenger.addressId).subscribe(address => {
-                                this._address = {
-                                  id: this._passenger.addressId,
-                                  street: address.street,
-                                  postalCode: address.postalCode,
-                                  city: address.city,
-                                  number: address.number
-                                };
-                              });
-                            }
-                            this._profileService.updatePassenger(this._passenger.id, this._passenger).subscribe(
-                              value => {
-                                console.log("value", value);
-                              }
-                            );
                           }
                         );
                       }
 
+                      if (this.addCarMode) {
+                        this._profileService.getCarById(this.form.get('carForm.numberPlate')?.value).subscribe(
+                          (response) => {
+                            console.log(response);
+                            if (response != null && response.numberPlate != "") {
+                              console.log("if yes");
+                              this.errorPlate = true;
+                            } else {
+                              console.log("if false");
+                              this.errorPlate = false;
+                              this.createCar( {
+                                numberPlate: this.form.get('carForm.numberPlate')?.value,
+                                brand: this.form.get('carForm.brand')?.value,
+                                model: this.form.get('carForm.model')?.value,
+                                nbSeats: this.form.get('carForm.nbSeats')?.value,
+                                fuelType: parseInt(this.form.get('carForm.fuelType')?.value, 10),
+                                carType: parseInt(this.form.get('carForm.carType')?.value, 10),
+                                color: this.form.get('carForm.color')?.value
+                              });
+                            }
+                          }
+                        )
+                      }
                       this.QuitEditMode();
-                      const dto: DtoInputToken = { username: this._passenger.username, usertype: this._passenger.userType };
-                      this._authService.generateToken(dto).subscribe(
-                        value => {
-                        },
-                        error => {
-                        }
-                      );
+                      this.generateToken();
                     }
                   );
                 }
@@ -226,6 +207,80 @@ export class PassengerProfileComponent {
       );
     }
   }
+
+  createCar(dto: DtoOuputCar) {
+    console.log("Create car", dto);
+    this._profileService.createCar(dto).subscribe();
+  }
+
+  updateUserType(numberPlate: string){
+    let dtoDriver: DtoOutputDriver = {
+      id: this._passenger.id,
+      username: this._passenger.username,
+      userType: this._passenger.userType,
+      password: this._passenger.password,
+      email: this._passenger.email,
+      birthdate: this._passenger.birthdate,
+      phoneNumber: this._passenger.phoneNumber,
+      lastname: this._passenger.lastname,
+      firstname: this._passenger.firstname,
+      gender: this._passenger.gender,
+      addressId: this._passenger.addressId,
+      carPlate: numberPlate
+    }
+    console.log("dtodriver", dtoDriver);
+    this._profileService.changerUserType(this._passenger.id).subscribe(
+      error=>{
+        console.log("change", error);
+      }
+    );
+    this._profileService.updateDriver(dtoDriver.id, dtoDriver).subscribe(
+      error=>{
+        console.log("update", error);
+      });
+  }
+
+  updatePassengerDetails(newUsername: string, newEmail: string, idAddress: number) {
+    this.updatePassenger(
+      this._passenger.id,
+      newUsername,
+      this._passenger.userType,
+      this._passenger.password,
+      newEmail,
+      this.form.get('passengerForm.birthDate')?.value,
+      this.form.get('passengerForm.phone')?.value,
+      this.form.get('passengerForm.lastname')?.value,
+      this.form.get('passengerForm.firstname')?.value,
+      this.form.get('passengerForm.gender')?.value,
+      idAddress
+    );
+
+    // Update passenger data
+    this._profileService.updatePassenger(this._passenger.id, this._passenger).subscribe();
+  }
+
+  updatePassengerAddress(idAddress: number) {
+    // Update address
+    if (idAddress !== 0) {
+      this._profileService.getAddressById(idAddress).subscribe(address => {
+        console.log(address.street);
+        this._address = {
+          id: this._passenger.addressId,
+          street: address.street,
+          postalCode: address.postalCode,
+          city: address.city,
+          number: address.number
+        };
+      });
+    }
+  }
+
+  generateToken() {
+    // Generate token
+    const dto: DtoInputToken = {username: this._passenger.username, usertype: this._passenger.userType};
+        this._authService.generateToken(dto).subscribe();
+  }
+
 
   updatePassenger(
     id: number,
@@ -261,13 +316,22 @@ export class PassengerProfileComponent {
 
   QuitEditMode() {
     this.editMode = false;
+    this.QuitAddCarMode();
+  }
+
+  EnterAddCarMode() {
+    this.addCarMode = true;
+  }
+
+  QuitAddCarMode() {
+    this.addCarMode = false;
   }
 
   controlUsername():
     boolean {
-    if (this.form.get('username')?.valid && this.form.get('username')?.touched) {
+    if (this.form.get('passengerForm.username')?.valid && this.form.get('passengerForm.username')?.touched) {
       return true;
-    } else if (this.form.get('username')?.invalid && this.form.get('username')?.touched && this.form.get('username')?.dirty) {
+    } else if (this.form.get('passengerForm.username')?.invalid && this.form.get('passengerForm.username')?.touched && this.form.get('passengerForm.username')?.dirty) {
       return false;
     }
     return true;
@@ -275,9 +339,19 @@ export class PassengerProfileComponent {
 
   controlEmail():
     boolean {
-    if (this.form.get('email')?.valid && this.form.get('email')?.touched) {
+    if (this.form.get('passengerForm.email')?.valid && this.form.get('passengerForm.email')?.touched) {
       return true;
-    } else if (this.form.get('email')?.invalid && this.form.get('email')?.touched && this.form.get('email')?.dirty) {
+    } else if (this.form.get('passengerForm.email')?.invalid && this.form.get('passengerForm.email')?.touched && this.form.get('passengerForm.email')?.dirty) {
+      return false;
+    }
+    return true;
+  }
+
+  controlPlate():
+    boolean {
+    if (this.form.get('carForm.numberPlate')?.valid && this.form.get('carForm.numberPlate')?.touched) {
+      return true;
+    } else if (this.form.get('carForm.numberPlate')?.invalid && this.form.get('carForm.numberPlate')?.touched && this.form.get('carForm.numberPlate')?.dirty) {
       return false;
     }
     return true;

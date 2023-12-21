@@ -6,6 +6,9 @@ import { DtoOutputUser } from './dto/dto-output-user';
 import {DtoOutputAdmin} from "./dto/dto-output-admin";
 import {DtoInputAddress} from "../trip-search/dtos/dto-input-address";
 import {DtoOutputPassenger} from "./dto/dto-output-passenger";
+import {DtoInputCar} from "./dto/dto-input-car";
+import {DtoOuputCar} from "./dto/dto-ouput-car";
+import {DtoOutputDriver} from "./dto/dto-output-driver";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +18,11 @@ export class ProfileService {
   private static _URL_API_UPDATE_ADMIN: string = environment.BASE_URL_API + "/admin";
   private static _URL_API_UPDATE_PASSENGER: string = environment.BASE_URL_API + "/passenger";
   private static _URL_API_GET_ADDRESS_BY_ID: string = environment.BASE_URL_API + "/address";
+  private static _URL_API_GET_CAR_BY_ID: string = environment.BASE_URL_API + "/car/getById";
+  private static _URL_API_CREATE_CAR: string = environment.BASE_URL_API + "/car";
+  private static _URL_API_CHANGE_USERTYPE: string = environment.BASE_URL_API + "/passenger/changeUserType";
+  private static _URL_API_UPDATE_DRIVER: string= environment.BASE_URL_API + "/driver";
+
 
   constructor(private _httpClient: HttpClient) { }
 
@@ -30,6 +38,21 @@ export class ProfileService {
   }
   getAddressById(id: number): Observable<DtoInputAddress>{
     return this._httpClient.get<DtoInputAddress>(`${ProfileService._URL_API_GET_ADDRESS_BY_ID}/${id}`);
+  }
+  getCarById(numberPlate: string): Observable<DtoInputCar>{
+    return this._httpClient.get<DtoInputCar>(`${ProfileService._URL_API_GET_CAR_BY_ID}/${numberPlate}`);
+  }
+
+  createCar(dto: DtoOuputCar): any{
+    return this._httpClient.post(`${ProfileService._URL_API_CREATE_CAR}`, dto);
+  }
+
+  changerUserType(id: number){
+    return this._httpClient.get(`${ProfileService._URL_API_CHANGE_USERTYPE}/${id}`);
+  }
+
+  updateDriver(id: number, dto: DtoOutputDriver): Observable<any> {
+    return this._httpClient.put(`${ProfileService._URL_API_UPDATE_DRIVER}/${id}`, dto);
   }
 
 }

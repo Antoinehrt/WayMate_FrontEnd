@@ -1,14 +1,13 @@
 export interface DtoOutputDriver {
   id: number;
-  username:string;
+  username: string;
   userType: string;
-  password:string;
+  password: string;
   email: string;
   birthdate: Date;
-  isBanned: string;
   phoneNumber: string;
   lastname: string;
-  firstname:string;
+  firstname: string;
   gender: string;
   addressId: number;
   carPlate: string;

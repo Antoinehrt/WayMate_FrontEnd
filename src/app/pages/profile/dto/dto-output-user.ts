@@ -7,8 +7,8 @@ export interface DtoOutputUser {
   birthdate: Date;
   isBanned: string;
   phoneNumber: string;
-  lastName: string; // ajusté à "lastName"
-  firstName: string; // ajusté à "firstName"
+  lastName: string;
+  firstName: string;
   gender: string;
   addressId: number;
   carPlate: string;
