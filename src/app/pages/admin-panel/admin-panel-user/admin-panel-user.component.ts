@@ -4,6 +4,8 @@ import {AdminPanelService} from "../admin-panel.service";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {DtoOutputAdmin} from "../dtos/dto-output-admin";
+import {LiveAnnouncer} from "@angular/cdk/a11y";
+import {MatSort, Sort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-admin-panel-user',
@@ -15,22 +17,34 @@ export class AdminPanelUserComponent implements AfterViewInit  {
   displayedColumns: string[] = ['id', 'userType', 'username', 'email', 'birthdate', 'isBanned', 'phoneNumber', 'lastName', 'firstName', 'gender', 'addressId', 'carPlate', 'edit', 'delete'];
   dataSource = new MatTableDataSource <DtoInputUser>(this.users);
 
+  constructor(private _adminPanel: AdminPanelService, private _liveAnnouncer: LiveAnnouncer) {
+  }
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   ngAfterViewInit() {
     this.getAllUser();
 
   }
-  constructor(private _adminPanel: AdminPanelService) {
-  }
+
 
   getAllUser() {
     this._adminPanel.getAllUser().subscribe(
       response => {
         this.dataSource = new MatTableDataSource <DtoInputUser>(response);
         this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       }
     )
+  }
+
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
 
   deleteUser(user: any) {
