@@ -4,7 +4,7 @@ export interface DtoInputTrip {
   smoke: boolean;
   price: number;
   luggage: boolean;
-  ipetFriendly: boolean;
+  petFriendly: boolean;
   date: Date;
   driverMessage: string;
   airConditioning: boolean;
