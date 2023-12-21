@@ -106,3 +106,7 @@ h5{
   padding-left: 100px;
 }
 
+span.invalid {
+  color: red;
+}
+
