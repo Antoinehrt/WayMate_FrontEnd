@@ -31,6 +31,7 @@ export class RegistrationService {
     return this._httpClient.post<DtoInputAddress>(RegistrationService._URL_API_ADDRESS, dto);
   }
 
+
   fetchByEmail(email:string): Observable<DtoOutputRegistration> {
     return this._httpClient.get<DtoOutputRegistration>(`${RegistrationService._URL_API_REGISTRATION_EMAIL}/${email}`);
   }
