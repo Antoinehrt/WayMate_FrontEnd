@@ -21,6 +21,9 @@ import { MatDialogModule} from "@angular/material/dialog";
 import { PopupNotConnectedComponent } from './addon/popup-not-connected/popup-not-connected.component';
 import {MatButtonModule} from "@angular/material/button";
 import {ProfileComponent} from "./pages/profile/profile.component";
+import { PassengerProfileComponent } from './pages/profile/passenger-profile/passenger-profile.component';
+import { DriverProfileComponent } from './pages/profile/driver-profile/driver-profile.component';
+import {AdminProfileComponent} from "./pages/profile/admin-profile/admin-profile.component";
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import {ProfileComponent} from "./pages/profile/profile.component";
     FooterComponent,
     NotFoundComponent,
     PopupNotConnectedComponent,
-    ProfileComponent
+    ProfileComponent,
+    PassengerProfileComponent,
+    DriverProfileComponent,
+    AdminProfileComponent,
   ],
   imports: [
     HttpClientModule,
