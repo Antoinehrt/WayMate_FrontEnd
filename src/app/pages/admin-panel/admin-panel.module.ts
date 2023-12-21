@@ -12,6 +12,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
 import {MatIconModule} from "@angular/material/icon";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatSortModule} from "@angular/material/sort";
 
 
 
@@ -24,16 +25,17 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     AdminPanelTripComponent,
     AdminPanelBookingComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    RouterLink,
-    AdminPanelRoutingModule,
-    MatPaginatorModule,
-    MatTableModule,
-    MatIconModule,
-    FormsModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        RouterLink,
+        AdminPanelRoutingModule,
+        MatPaginatorModule,
+        MatTableModule,
+        MatIconModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatSortModule
+    ]
 })
 export class AdminPanelModule { }
