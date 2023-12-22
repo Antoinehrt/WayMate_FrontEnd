@@ -18,7 +18,7 @@ export class RegistrationService {
   private static _URL_API_REGISTRATION_EMAIL: string = environment.BASE_URL_API + "/authentication/registration/by-email";
   private static _URL_API_REGISTRATION_USERNAME: string = environment.BASE_URL_API + "/authentication/registration/by-username";
   private static _URL_API_REGISTRATION_ADDRESS: string = environment.BASE_URL_API + "/address/get-id";
-  private static _URL_API_TOKEN: string = environment.BASE_URL_API + "/authentication/registration";
+  private static _URL_API_REGISTRATION: string = environment.BASE_URL_API + "/authentication/registration";
 
   constructor(private _httpClient: HttpClient) {
   }
@@ -27,13 +27,10 @@ export class RegistrationService {
     return this._httpClient.get<DtoInputUser[]>(RegistrationService._URL_API_PASSENGER);
   }
 
-  registerUser(dto: DtoOutputCreateUser): Observable<DtoInputUser> {
-    return this._httpClient.post<DtoInputUser>(RegistrationService._URL_API_PASSENGER, dto);
-  }
-
   insertAddress(dto: DtoOutputCreateAddress): Observable<DtoInputAddress> {
     return this._httpClient.post<DtoInputAddress>(RegistrationService._URL_API_ADDRESS, dto);
   }
+
 
   fetchByEmail(email:string): Observable<DtoOutputRegistration> {
     return this._httpClient.get<DtoOutputRegistration>(`${RegistrationService._URL_API_REGISTRATION_EMAIL}/${email}`);
@@ -46,8 +43,7 @@ export class RegistrationService {
     return this._httpClient.get<DtoOutputFetchByAddress>(`${RegistrationService._URL_API_REGISTRATION_ADDRESS}?street=${street}&postalCode=${postalCode}&city=${city}&number=${number}`);
   }
 
-
-  buildToken(dto: DtoOutputCreateUser): Observable<DtoInputUser>{
-    return this._httpClient.post<DtoInputUser>(RegistrationService._URL_API_TOKEN, dto, { withCredentials: true });
+  registerUser(dto: DtoOutputCreateUser): Observable<DtoInputUser>{
+    return this._httpClient.post<DtoInputUser>(RegistrationService._URL_API_REGISTRATION, dto, { withCredentials: true });
   }
 }

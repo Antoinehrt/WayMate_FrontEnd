@@ -70,7 +70,7 @@ export class RegistrationComponent {
                       (id) => {
                         if(id.id !=0 && id.id != null){
                           registrationData.addressId = id.id;
-                          this._registrationService.buildToken(registrationData).subscribe(
+                          this._registrationService.registerUser(registrationData).subscribe(
                             (response) => {
                               console.log("User registered successfully:", response);
                             }
@@ -81,7 +81,7 @@ export class RegistrationComponent {
                             (addressId) => {
                               if(addressId.id !=0 && addressId.id != null)
                               registrationData.addressId = addressId.id;
-                              this._registrationService.buildToken(registrationData).subscribe(
+                              this._registrationService.registerUser(registrationData).subscribe(
                                 (response) => {
                                   console.log("User registered succesfully:", response);
                                 }
