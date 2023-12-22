@@ -20,6 +20,12 @@ import { DatePipe } from '@angular/common';
 import { MatDialogModule} from "@angular/material/dialog";
 import { PopupNotConnectedComponent } from './addon/popup-not-connected/popup-not-connected.component';
 import {MatButtonModule} from "@angular/material/button";
+import {ProfileComponent} from "./pages/profile/profile.component";
+import {AdminProfileComponent} from "./pages/profile/admin-profile/admin-profile.component";
+import {PassengerProfileComponent} from "./pages/profile/passenger-profile/passenger-profile.component";
+import {DriverProfileComponent} from "./pages/profile/driver-profile/driver-profile.component";
+import {BookingComponent} from "./pages/booking/booking.component";
+import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +40,13 @@ import {MatButtonModule} from "@angular/material/button";
     TripSearchComponent,
     FooterComponent,
     NotFoundComponent,
-    PopupNotConnectedComponent
+    PopupNotConnectedComponent,
+    ProfileComponent,
+    PassengerProfileComponent,
+    AdminProfileComponent,
+    DriverProfileComponent,
+    BookingComponent,
+    AdminPanelComponent
   ],
   imports: [
     HttpClientModule,

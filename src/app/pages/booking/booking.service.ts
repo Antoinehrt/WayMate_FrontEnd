@@ -17,7 +17,7 @@ export class BookingService {
   private static _URL_API_TRIP: string = environment.BASE_URL_API + "/trip";
   private static _URL_API_ADDRESS: string = environment.BASE_URL_API + "/address";
   private static _URL_API_DRIVER: string = environment.BASE_URL_API + "/driver";
-  private static _UTL_API_CAR: string = environment.BASE_URL_API + "/car";
+  private static _UTL_API_CAR: string = environment.BASE_URL_API + "/car/getById";
   private static _UTL_API_BOOKING: string = environment.BASE_URL_API + "/booking";
   private static _UTL_API_USER: string = environment.BASE_URL_API + "/user/GetByUsername";
   constructor(private _httpClient: HttpClient) {
