@@ -36,4 +36,12 @@ export class MyTripService {
       map(([trips, addresses]) => ({ trips, addresses }))
     );
   }
+
+  getTrip(id:number): Observable<DtoInputTrip> {
+    return this._httpClient.get<DtoInputTrip>(`${MyTripService._URL_API_TRIP}/${id}`);
+  }
+
+  getAddress(id:number): Observable<DtoInputAddress> {
+    return this._httpClient.get<DtoInputAddress>(`${MyTripService._URL_API_ADDRESS}/${id}`);
+  }
 }
