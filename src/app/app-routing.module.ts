@@ -1,28 +1,20 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {AdminPanelComponent} from "./pages/admin-panel/admin-panel.component";
 import {RegistrationComponent} from "./pages/registration/registration.component";
 import {ConnectionComponent} from "./pages/connection/connection.component";
 import {HomePageComponent} from "./pages/home-page/home-page.component";
 import {TripSearchComponent} from "./pages/trip-search/trip-search.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
-import {BookingComponent} from "./pages/booking/booking.component";
+
 
 const routes: Routes = [
   {path: "", pathMatch: "full", redirectTo:"/home"},
-  {
-    path: "adminPanel",
-    component: AdminPanelComponent,
-    loadChildren: () => import('./pages/admin-panel/admin-panel.module').then(a => a.AdminPanelModule)
-  },
   {path: "home", component: HomePageComponent},
   {path: "tripSearch", component: TripSearchComponent},
-  {path: "booking/:id", component: BookingComponent},
-  // {path: "adminPanel", component:AdminPanelComponent},
   {path: "registration", component: RegistrationComponent},
   {path: "connection", component: ConnectionComponent},
   {path: "not-found", component: NotFoundComponent},
-  {path: "**", redirectTo:"/not-found"}
+  {path: "**", redirectTo:"/not-found"},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,13 +1,13 @@
-export interface DtoInputUser {
+export interface DtoOutputPassenger {
   id: number;
   username:string;
+  userType: string;
   password:string;
   email: string;
   birthdate: Date;
   phoneNumber: string;
-  gender: string;
-  firstname:string;
   lastname: string;
-  addressId: number;
-  isBanned: string;
+  firstname:string;
+  gender: string;
+  addressId: number
 }
