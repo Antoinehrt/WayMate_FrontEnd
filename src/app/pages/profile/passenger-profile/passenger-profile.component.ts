@@ -149,6 +149,7 @@ export class PassengerProfileComponent {
                     (id) => {
                       if (id.id !== 0 && id.id !== null) {
                         idAddress = id.id;
+                        this.updatePassengerDetails(newUsername, newEmail, idAddress);
                         this.updatePassengerAddress(idAddress);
                       } else {
                         // New address, insert and update user data
@@ -158,11 +159,11 @@ export class PassengerProfileComponent {
                           city: addressData.city,
                           number: addressData.number
                         };
-
                         this._registrationService.insertAddress(dtoAddress).subscribe(
                           (addressId) => {
                             if (addressId.id !== 0 && addressId.id !== null) {
-                              idAddress = addressId.id;this.updatePassengerDetails(newUsername, newEmail, idAddress);
+                              idAddress = addressId.id;
+                              this.updatePassengerDetails(newUsername, newEmail, idAddress);
                               this.updatePassengerAddress(idAddress);
                             }
                           }
@@ -172,23 +173,21 @@ export class PassengerProfileComponent {
                       if (this.addCarMode) {
                         this._profileService.getCarById(this.form.get('carForm.numberPlate')?.value).subscribe(
                           (response) => {
-                            console.log(response);
-                            if (response != null && response.numberPlate != "") {
-                              console.log("if yes");
-                              this.errorPlate = true;
-                            } else {
-                              console.log("if false");
-                              this.errorPlate = false;
-                              this.createCar( {
-                                numberPlate: this.form.get('carForm.numberPlate')?.value,
-                                brand: this.form.get('carForm.brand')?.value,
-                                model: this.form.get('carForm.model')?.value,
-                                nbSeats: this.form.get('carForm.nbSeats')?.value,
-                                fuelType: parseInt(this.form.get('carForm.fuelType')?.value, 10),
-                                carType: parseInt(this.form.get('carForm.carType')?.value, 10),
-                                color: this.form.get('carForm.color')?.value
-                              });
-                            }
+                            this.updateUserType(response.numberPlate);
+                          },
+                          error => {
+                            console.log("if false");
+                            this.errorPlate = false;
+                            this.createCar( {
+                              numberPlate: this.form.get('carForm.numberPlate')?.value,
+                              brand: this.form.get('carForm.brand')?.value,
+                              model: this.form.get('carForm.model')?.value,
+                              nbSeats: this.form.get('carForm.nbSeats')?.value,
+                              fuelType: this.form.get('carForm.fuelType')?.value,
+                              carType: this.form.get('carForm.carType')?.value,
+                              color: this.form.get('carForm.color')?.value
+                            });
+                            this.updateUserType(this.form.get('carForm.numberPlate')?.value);
                           }
                         )
                       }

@@ -20,6 +20,7 @@ export class ProfileService {
   private static _URL_API_GET_ADDRESS_BY_ID: string = environment.BASE_URL_API + "/address";
   private static _URL_API_GET_CAR_BY_ID: string = environment.BASE_URL_API + "/car/getById";
   private static _URL_API_CREATE_CAR: string = environment.BASE_URL_API + "/car";
+  private static _URL_API_UPDATE_CAR: string = environment.BASE_URL_API + "/car/update";
   private static _URL_API_CHANGE_USERTYPE: string = environment.BASE_URL_API + "/passenger/changeUserType";
   private static _URL_API_UPDATE_DRIVER: string= environment.BASE_URL_API + "/driver";
 
@@ -36,6 +37,11 @@ export class ProfileService {
   updatePassenger(id: number, dto: DtoOutputPassenger): Observable<any> {
     return this._httpClient.put(`${ProfileService._URL_API_UPDATE_PASSENGER}/${id}`, dto);
   }
+
+  updateCar(id: string, dto: DtoOuputCar): Observable<any> {
+    return this._httpClient.put(`${ProfileService._URL_API_UPDATE_CAR}/${id}`, dto);
+  }
+
   getAddressById(id: number): Observable<DtoInputAddress>{
     return this._httpClient.get<DtoInputAddress>(`${ProfileService._URL_API_GET_ADDRESS_BY_ID}/${id}`);
   }
