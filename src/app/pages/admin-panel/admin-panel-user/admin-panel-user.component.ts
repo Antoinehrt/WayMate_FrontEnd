@@ -31,7 +31,6 @@ export class AdminPanelUserComponent implements AfterViewInit, OnInit  {
       next: () => {
         this._authService.TestConnectionAdmin().subscribe({
           next: (value) => {
-            console.log(value);
           }, error: (err) => {
             this._dialog.open(PopupNotHavePermissionComponent);
             this._router.navigate(['/home']);

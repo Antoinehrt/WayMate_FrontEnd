@@ -101,24 +101,19 @@ export class BookingComponent implements OnInit {
   confirmBooking(){
     this._athenticationService.GetUsernameFromToken().subscribe(
       reponse => {
-        console.log(reponse);
         this._bookingService.getUserB(reponse.username).subscribe(
           reponse => {
-            console.log(reponse);
             this.booking = {
               date: new Date(),
               reservedSeats: 1,
               IdPassenger: reponse.id,
               IdTrip: this.trip.id
             }
-            console.log(this.booking);
             this._bookingService.createBooking(this.booking).subscribe(
               () => {
-                console.log("Booking create");
                 this._router.navigate(['/home']);
               },
               () => {
-                console.error('Error creating booking');
               }
             );
           }

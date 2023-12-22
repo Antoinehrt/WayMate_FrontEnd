@@ -58,7 +58,7 @@ export class CreateTripComponent implements OnInit{
   ngOnInit(): void {
     this._authService.isConnected().subscribe({
       next: () => {
-        this._authService.TestConnectionAdmin().subscribe({
+        this._authService.TestConnectionDriver().subscribe({
           next: () => {
 
           }, error: () => {

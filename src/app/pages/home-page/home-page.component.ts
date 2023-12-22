@@ -42,13 +42,11 @@ export class HomePageComponent {
   formSubmit() {
     this.authService.isConnected().subscribe({
       next: value => {
-        console.log("Tout ok", value);
         const formData = this.form.value;
         this._homePageService.updateFormData(formData);
         this._route.navigate(['/tripSearch']);
       },
       error: (err) =>{
-        console.error("error", err);
         this.openPopup();
       }
     });
