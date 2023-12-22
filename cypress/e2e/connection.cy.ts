@@ -17,7 +17,8 @@ describe('Login Test', () => {
 
   it('should fail validation with incorrect password', () => {
     cy.get('input[name=email]').type('captain.rex@republicarmy.com');
-    cy.get('input[name=password]').type('DifferentPassword');
+    cy.get('input[name=password]').type('DifferentPassword2!');
+    cy.get('input[type=submit]').click();
     cy.contains('You have entered the wrong credentials.').should('be.visible');
   });
 
