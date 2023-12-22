@@ -6,7 +6,7 @@
       <th>Date</th>
       <th>Departure</th>
       <th>Destination</th>
-      <th>Modify</th>
+      <th>Details/Modify</th>
     </tr>
     </thead>
     <tbody>
@@ -16,7 +16,7 @@
       <td>{{ trips.departureAddress.city }}</td>
       <td>{{ trips.destinationAddress.city }}</td>
       <td>
-        <button class="btn btn-primary" (click)="modifyTrips(trips.trip.id)">Modify Trips</button>
+        <button class="btn btn-primary" (click)="modifyTrips(trips.trip.id)">Trip details/modify</button>
       </td>
     </tr>
     </tbody>
