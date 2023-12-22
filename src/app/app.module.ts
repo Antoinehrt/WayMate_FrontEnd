@@ -29,6 +29,7 @@ import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
 import { MyTripComponent } from './pages/my-trip/my-trip.component';
 import { MyTripDetailsComponent } from './pages/my-trip/my-trip-details/my-trip-details.component';
 import { MyBookingComponent } from './pages/my-booking/my-booking.component';
+import { CreateTripComponent } from './pages/create-trip/create-trip.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { MyBookingComponent } from './pages/my-booking/my-booking.component';
     AdminPanelComponent,
     MyTripComponent,
     MyTripDetailsComponent,
-    MyBookingComponent
+    MyBookingComponent,
+    CreateTripComponent
   ],
   imports: [
     HttpClientModule,
