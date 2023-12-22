@@ -23,7 +23,6 @@ export class ConnectionComponent {
     this._connectionService.login(value.email, value.password).subscribe({
     next: (response) => {
         this.errorPassword = false;
-        console.log("Login successful!", response);
         this._route.navigate(['/home']);
       },
       error: () => {

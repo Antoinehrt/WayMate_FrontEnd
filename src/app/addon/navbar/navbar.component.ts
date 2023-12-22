@@ -55,7 +55,7 @@ export class NavbarComponent implements OnInit{
   }
 
   displayAdmin(){
-    this.authService.TestConnectionDriver().subscribe({
+    this.authService.TestConnectionAdmin().subscribe({
       next: () => {
         this.admin = true;
       },
@@ -68,7 +68,6 @@ export class NavbarComponent implements OnInit{
   logout(): void{
     this.authService.logout().subscribe({
       next: value => {
-        console.log(value);
         this._route.navigate(['/home']);
       },
       error: (err) => {

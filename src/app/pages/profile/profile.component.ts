@@ -53,7 +53,6 @@ export class ProfileComponent implements OnInit {
         this._userRole = value.userType;
       },
       error: err => {
-        console.log("username", err);
       }
     });
   }

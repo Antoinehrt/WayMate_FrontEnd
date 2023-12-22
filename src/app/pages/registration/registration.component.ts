@@ -74,7 +74,6 @@ export class RegistrationComponent {
                           registrationData.addressId = id.id;
                           this._registrationService.registerUser(registrationData).subscribe(
                             (response) => {
-                              console.log("User registered successfully:", response);
                             }
                           )
                         }
@@ -85,7 +84,6 @@ export class RegistrationComponent {
                               registrationData.addressId = addressId.id;
                               this._registrationService.registerUser(registrationData).subscribe(
                                 (response) => {
-                                  console.log("User registered succesfully:", response);
                                 }
                               )
                             }

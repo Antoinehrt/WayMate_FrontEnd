@@ -50,10 +50,8 @@ export class MyBookingComponent implements OnInit {
   getAllBookingDetails() {
     this._myBookingService.getAllBookingDetails().subscribe(data => {
       this.groupedBooking = this.groupBooking(data.bookings, data.trips, data.addresses, data.drivers);
-      console.log(data.drivers);
       this.groupedBooking.sort((a, b) => new Date(a.booking.date).getTime() - new Date(b.booking.date).getTime());
       this.filterBooking();
-      console.log(this.groupedBooking);
     })
   }
 
