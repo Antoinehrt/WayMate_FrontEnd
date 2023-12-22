@@ -12,7 +12,7 @@
                     <div class="row">
                       <div class="col-md-6 mb-4 pb-2">
                         <div class="form-outline">
-                          <input class="form-control form-control-lg" type="text" name="username" formControlName="username" placeholder="Username"  (dblclick)="autocomplete()"/>
+                          <input class="form-control form-control-lg" type="text" name="username" formControlName="username" placeholder="Username"/>
                           <span *ngIf="errorUsername" class="invalid">This username is already used.</span>
                           <span *ngIf="!controlUsername()" class="invalid">The username is invalid. Use only letters, numbers, hyphens (-) and underscores (_).</span>
                         </div>

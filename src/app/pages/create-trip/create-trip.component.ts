@@ -194,32 +194,4 @@ export class CreateTripComponent implements OnInit{
       }
     });
   }
-
-  auto() {
-    this.form.setValue({
-      trip:{
-        dateTrip: this.minDate,
-        price:"25",
-        smoke: "true",
-        petFriendly:"true",
-        luggage:"true",
-        airConditioning:"true",
-        driverMessage:"test"
-      },
-      addressDepart:{
-        street:"Rue de la Rivière",
-        number:"204",
-        postalCode:"1000",
-        city:"Bruxelles",
-        country:"Belgium"
-      },
-      addressDest:{
-        street:"Avenue des Chênes",
-        number:"44",
-        postalCode:"7700",
-        city:"Mouscron",
-        country:"Belgium"
-      }
-    });
-  }
 }

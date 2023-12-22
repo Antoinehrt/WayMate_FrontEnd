@@ -58,14 +58,4 @@ export class HomePageComponent {
     this.dialog.open(PopupNotConnectedComponent, {
     })
   }
-
-  autocomplete() {
-    this.form.setValue({
-        depart: "Mos Eisley",
-        destination: "Galactic City",
-        date: "",
-        people: "2",
-
-    });
-  }
 }

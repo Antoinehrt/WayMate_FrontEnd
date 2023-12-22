@@ -141,29 +141,4 @@ export class RegistrationComponent {
   clickLogIn() {
     this._route.navigate(['/connection']);
   }
-
-  autocomplete() {
-    this.form.setValue({
-      passengerForm:{
-        phoneNumber: "06498231658",
-        gender: "Male",
-        firstname: "User123",
-        lastname: "User123",
-        username: "UserTest",
-        password: "PasswordTest1234!",
-        passwordVerif: "PasswordTest1234!",
-        email: "user123@gmail.com",
-        birthdate: "",
-        addressId: 0,
-        isBanned: false
-      },
-      addressForm:{
-        street: "Rue de la test",
-        postalCode: "645",
-        city: "Test",
-        number: "665",
-        country: "Belgium"
-      }
-    });
-  }
 }
