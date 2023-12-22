@@ -7,6 +7,8 @@ import {DtoInputDriver} from "./dtos/dto-input-driver";
 import {DtoInputCar} from "./dtos/dto-input-car";
 import {DtoOutputCreateBooking} from "./dtos/dto-output-create-booking";
 import {AuthenticationService} from "../../utils/authentication/authentication.service";
+import {MatDialog} from "@angular/material/dialog";
+import {PopupNotConnectedComponent} from "../../addon/popup/popup-not-connected/popup-not-connected.component";
 
 @Component({
   selector: 'app-booking',
@@ -23,14 +25,22 @@ export class BookingComponent implements OnInit {
   booking!: DtoOutputCreateBooking;
   idPass!: number;
 
-  constructor(private _route: ActivatedRoute, private _bookingService: BookingService, private _router: Router, private _athenticationService: AuthenticationService) {
+  constructor(private _route: ActivatedRoute, private _bookingService: BookingService, private _router: Router, private _athenticationService: AuthenticationService, private _dialog: MatDialog) {
   }
 
   ngOnInit() {
-    this._route.paramMap.subscribe(params => {
-      this.tripId = parseInt(<string>params.get('id'), 10);
-      this.getTripById(this.tripId);
+    this._athenticationService.isConnected().subscribe({
+      next: (value) => {
+        this._route.paramMap.subscribe(params => {
+          this.tripId = parseInt(<string>params.get('id'), 10);
+          this.getTripById(this.tripId);
+        });
+      }, error: (err) => {
+        this._dialog.open(PopupNotConnectedComponent);
+        this._router.navigate(['/home']);
+      }
     });
+
   }
 
   getTripById(id:number){

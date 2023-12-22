@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {DataTransferService} from "../../utils/data-transfer/data-transfer.service";
 import {AuthenticationService} from "../../utils/authentication/authentication.service";
-import {PopupNotConnectedComponent} from "../../addon/popup-not-connected/popup-not-connected.component";
+import {PopupNotConnectedComponent} from "../../addon/popup/popup-not-connected/popup-not-connected.component";
 import {MatDialog} from "@angular/material/dialog";
 
 @Component({

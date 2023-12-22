@@ -5,6 +5,11 @@ import {DtoOutputUser} from "./dtos/dto-output-user";
 import {DtoInputTrip} from "../trip-search/dtos/dto-input-trip";
 import {DtoInputAddress} from "../trip-search/dtos/dto-input-address";
 import {Router} from "@angular/router";
+import {
+  PopupNotHavePermissionComponent
+} from "../../addon/popup/popup-not-have-permission/popup-not-have-permission.component";
+import {PopupNotConnectedComponent} from "../../addon/popup/popup-not-connected/popup-not-connected.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-my-trip',
@@ -16,11 +21,25 @@ export class MyTripComponent implements OnInit {
   groupedTrips: any[] = [];
   filteredTrips: any[] = [];
 
-  constructor(private _authService: AuthenticationService, private _myTripService: MyTripService, private _router: Router) {
+  constructor(private _authService: AuthenticationService, private _myTripService: MyTripService, private _router: Router, private _dialog: MatDialog) {
   }
 
   ngOnInit(): void {
-    this.getUsernameToken();
+    this._authService.isConnected().subscribe({
+      next: () => {
+        this._authService.TestConnectionAdmin().subscribe({
+          next: () => {
+            this.getUsernameToken();
+          }, error: () => {
+            this._dialog.open(PopupNotHavePermissionComponent);
+            this._router.navigate(['/home']);
+          }
+        });
+      }, error: (err) => {
+        this._dialog.open(PopupNotConnectedComponent);
+        this._router.navigate(['/home']);
+      }
+    });
   }
 
   getUsernameToken(){

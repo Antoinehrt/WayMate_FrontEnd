@@ -6,7 +6,7 @@ import {DatePipe} from "@angular/common";
 import {DtoInputTrip} from "./dtos/dto-input-trip";
 import {DtoInputAddress} from "./dtos/dto-input-address";
 import {DtoInputDriver} from "./dtos/dto-input-driver";
-import {PopupNotConnectedComponent} from "../../addon/popup-not-connected/popup-not-connected.component";
+import {PopupNotConnectedComponent} from "../../addon/popup/popup-not-connected/popup-not-connected.component";
 import {MatDialog} from "@angular/material/dialog";
 import {AuthenticationService} from "../../utils/authentication/authentication.service";
 import {Router} from "@angular/router";
