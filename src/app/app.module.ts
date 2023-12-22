@@ -28,6 +28,7 @@ import {BookingComponent} from "./pages/booking/booking.component";
 import { AdminPanelComponent } from './pages/admin-panel/admin-panel.component';
 import { MyTripComponent } from './pages/my-trip/my-trip.component';
 import { MyTripDetailsComponent } from './pages/my-trip/my-trip-details/my-trip-details.component';
+import { MyBookingComponent } from './pages/my-booking/my-booking.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { MyTripDetailsComponent } from './pages/my-trip/my-trip-details/my-trip-
     BookingComponent,
     AdminPanelComponent,
     MyTripComponent,
-    MyTripDetailsComponent
+    MyTripDetailsComponent,
+    MyBookingComponent
   ],
   imports: [
     HttpClientModule,

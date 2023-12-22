@@ -10,15 +10,17 @@ import {BookingComponent} from "./pages/booking/booking.component";
 import {MyTripComponent} from "./pages/my-trip/my-trip.component";
 import {MyTripDetailsComponent} from "./pages/my-trip/my-trip-details/my-trip-details.component";
 import {ProfileComponent} from "./pages/profile/profile.component";
+import {MyBookingComponent} from "./pages/my-booking/my-booking.component";
 
 const routes: Routes = [
+  {path: "home", component: HomePageComponent},
   {path: "", pathMatch: "full", redirectTo:"/home"},
   {
     path: "adminPanel",
     component: AdminPanelComponent,
     loadChildren: () => import('./pages/admin-panel/admin-panel.module').then(a => a.AdminPanelModule)
   },
-  {path: "home", component: HomePageComponent},
+  {path: "myBooking", component: MyBookingComponent},
   {path: "tripSearch", component: TripSearchComponent},
   {path: "booking/:id", component: BookingComponent},
   {path: "trip/:id", component: MyTripDetailsComponent},
