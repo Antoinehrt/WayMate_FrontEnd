@@ -11,6 +11,7 @@ import {MyTripComponent} from "./pages/my-trip/my-trip.component";
 import {MyTripDetailsComponent} from "./pages/my-trip/my-trip-details/my-trip-details.component";
 import {ProfileComponent} from "./pages/profile/profile.component";
 import {MyBookingComponent} from "./pages/my-booking/my-booking.component";
+import {CreateTripComponent} from "./pages/create-trip/create-trip.component";
 
 const routes: Routes = [
   {path: "home", component: HomePageComponent},
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: "booking/:id", component: BookingComponent},
   {path: "trip/:id", component: MyTripDetailsComponent},
   {path: "myTrip", component: MyTripComponent},
+  {path: "createTrip", component: CreateTripComponent},
   {path: "registration", component: RegistrationComponent},
   {path: "connection", component: ConnectionComponent},
   {path: "profile", component: ProfileComponent},
