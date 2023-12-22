@@ -6,6 +6,11 @@ import {AuthenticationService} from "../../utils/authentication/authentication.s
 import {DtoOutputUser} from "./dtos/dto-output-user";
 import {DtoOutputTrip} from "./dtos/dto-output-trip";
 import {DtoOutputAddress} from "./dtos/dto-output-address";
+import {MatDialog} from "@angular/material/dialog";
+import {
+  PopupNotHavePermissionComponent
+} from "../../addon/popup/popup-not-have-permission/popup-not-have-permission.component";
+import {PopupNotConnectedComponent} from "../../addon/popup/popup-not-connected/popup-not-connected.component";
 
 @Component({
   selector: 'app-create-trip',
@@ -44,13 +49,28 @@ export class CreateTripComponent implements OnInit{
     })
   });
 
-  constructor(private _authService: AuthenticationService, private _fb: FormBuilder, private _createTripService: CreateTripService, private _route:Router) {
+  constructor(private _authService: AuthenticationService, private _fb: FormBuilder, private _dialog: MatDialog, private _createTripService: CreateTripService, private _route:Router) {
     const currentDate = new Date();
     const minDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()+1);
     this.minDate = minDate.toISOString().split('T')[0];
   }
 
   ngOnInit(): void {
+    this._authService.isConnected().subscribe({
+      next: () => {
+        this._authService.TestConnectionAdmin().subscribe({
+          next: () => {
+
+          }, error: () => {
+            this._dialog.open(PopupNotHavePermissionComponent);
+            this._route.navigate(['/home']);
+          }
+        });
+      }, error: () => {
+        this._dialog.open(PopupNotConnectedComponent);
+        this._route.navigate(['/home']);
+      }
+    });
     this.setFormValue();
     this.getUsernameToken();
   }

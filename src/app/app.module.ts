@@ -55,7 +55,7 @@ import { CreateTripComponent } from './pages/create-trip/create-trip.component';
     MyTripComponent,
     MyTripDetailsComponent,
     MyBookingComponent,
-    PopupNotHavePermissionComponent
+    PopupNotHavePermissionComponent,
     MyBookingComponent,
     CreateTripComponent
   ],
