@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class ConnectionComponent {
   fieldTextType: boolean = false;
-
+  errorPassword: boolean = false;
   form: FormGroup = this._fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]]
@@ -22,11 +22,12 @@ export class ConnectionComponent {
   verifyLogin(value: any){
     this._connectionService.login(value.email, value.password).subscribe({
     next: (response) => {
+        this.errorPassword = false;
         console.log("Login successful!", response);
-      this._route.navigate(['/home']);
+        this._route.navigate(['/home']);
       },
-      error: (err) => {
-        console.error("Login failed", err);
+      error: () => {
+        this.errorPassword = true;
       }
     })
   }
