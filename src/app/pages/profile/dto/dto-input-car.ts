@@ -3,7 +3,7 @@ export interface DtoInputCar {
   brand: string,
   model: string,
   nbSeats: number,
-  fuelType: string,
-  carType: string,
+  fuelType: number,
+  carType: number,
   color: string
 }
