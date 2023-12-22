@@ -24,11 +24,11 @@
         <li *ngIf="driver" class="nav-item">
           <a class="nav-link" routerLink="myTrip" routerLinkActive="active">My Trip</a>
         </li>
-        <li *ngIf="passenger" class="nav-item">
+        <li *ngIf="passenger || driver" class="nav-item">
           <a class="nav-link" routerLink="myBooking" routerLinkActive="active">My Booking</a>
         </li>
         <li *ngIf="admin" class="nav-item">
-          <a routerLink="adminPanel" class="dropdown-item" routerLinkActive="active">Admin Panel</a>
+          <a class="nav-link" routerLink="adminPanel" routerLinkActive="active">Admin Panel</a>
         </li>
       </ul>
     </div>

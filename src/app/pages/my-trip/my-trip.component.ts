@@ -27,7 +27,7 @@ export class MyTripComponent implements OnInit {
   ngOnInit(): void {
     this._authService.isConnected().subscribe({
       next: () => {
-        this._authService.TestConnectionAdmin().subscribe({
+        this._authService.TestConnectionDriver().subscribe({
           next: () => {
             this.getUsernameToken();
           }, error: () => {
@@ -49,7 +49,6 @@ export class MyTripComponent implements OnInit {
           value => {
             this.user = value;
             this.getAllTripDetails();
-            console.log(this.user);
           });
       }
     );
@@ -60,7 +59,6 @@ export class MyTripComponent implements OnInit {
       this.groupedTrips = this.groupTrips(data.trips, data.addresses);
       this.groupedTrips.sort((a, b) => new Date(a.trip.date).getTime() - new Date(b.trip.date).getTime());
       this.filterTrips();
-      console.log(this.filteredTrips);
     });
   }
 
@@ -81,7 +79,6 @@ export class MyTripComponent implements OnInit {
   }
 
   modifyTrips(id:number){
-    console.log(id);
     this._router.navigate(['/trip', id]);
   }
 }

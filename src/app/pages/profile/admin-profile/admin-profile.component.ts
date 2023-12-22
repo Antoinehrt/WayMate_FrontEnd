@@ -53,10 +53,8 @@ export class AdminProfileComponent implements OnInit {
           email: this._admin.email,
           phone: this._admin.phoneNumber
         });
-        console.log(this._admin);
       });
     });
-    console.log(this._admin);
   }
 
   onSubmit() {
@@ -87,16 +85,12 @@ export class AdminProfileComponent implements OnInit {
                   this.QuitEditMode();
                   this._profileService.updateAdmin(this._admin.id, this._admin).subscribe();
                   const dto: DtoInputToken = { username: this._admin.username, usertype: this._admin.userType };
-                  console.log(dto);
                   this._authService.generateToken(dto).subscribe(
                     value => {
-                      console.log(value);
                     },
                     error => {
-                      console.log(error);
                     }
                   );
-                  console.log(this._admin);
                 }
               }
             )

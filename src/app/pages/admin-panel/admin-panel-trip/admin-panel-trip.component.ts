@@ -31,7 +31,6 @@ export class AdminPanelTripComponent implements AfterViewInit, OnInit {
       next: () => {
         this._authService.TestConnectionAdmin().subscribe({
           next: (value) => {
-            console.log(value);
           }, error: (err) => {
             this._dialog.open(PopupNotHavePermissionComponent);
             this._router.navigate(['/home']);
@@ -87,11 +86,9 @@ export class AdminPanelTripComponent implements AfterViewInit, OnInit {
     trip.airConditioning = (booleanAttribute(trip.airConditioning));
     this._adminPanel.updateTrip(trip).subscribe(
       response => {
-        console.log(response);
         this.getAllTrip();
       },
       error => {
-        console.log(error);
       }
     )
   }

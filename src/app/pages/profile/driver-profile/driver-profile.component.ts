@@ -193,7 +193,6 @@ export class DriverProfileComponent {
                         carType: parseInt(this.form.get('carForm.carType')?.value, 10),
                         color: this.form.get('carForm.color')?.value,
                       }
-                      console.log(this._car);
                       this._profileService.updateCar(this._car.numberPlate, this._car).subscribe();
 
                       this.QuitEditMode();
@@ -233,7 +232,6 @@ export class DriverProfileComponent {
     // Update address
     if (idAddress !== 0) {
       this._profileService.getAddressById(idAddress).subscribe(address => {
-        console.log(address.street);
         this._address = {
           id: this._driver.addressId,
           street: address.street,

@@ -181,7 +181,6 @@ export class PassengerProfileComponent {
                             this.updateUserType(response.numberPlate);
                           },
                           () => {
-                            console.log("if false");
                             this.errorPlate = false;
                             this.createCar({
                               numberPlate: this.form.get('carForm.numberPlate')?.value,
@@ -206,14 +205,12 @@ export class PassengerProfileComponent {
           }
         },
         (error) => {
-          console.error('Error fetching by email:', error);
         }
       );
     }
   }
 
   createCar(dto: DtoOuputCar) {
-    console.log("Create car", dto);
     this._profileService.createCar(dto).subscribe();
   }
 
@@ -232,15 +229,12 @@ export class PassengerProfileComponent {
       addressId: this._passenger.addressId,
       carPlate: numberPlate
     }
-    console.log("dtodriver", dtoDriver);
     this._profileService.changerUserType(this._passenger.id).subscribe(
       error=>{
-        console.log("change", error);
       }
     );
     this._profileService.updateDriver(dtoDriver.id, dtoDriver).subscribe(
       error=>{
-        console.log("update", error);
       });
   }
 
@@ -267,7 +261,6 @@ export class PassengerProfileComponent {
     // Update address
     if (idAddress !== 0) {
       this._profileService.getAddressById(idAddress).subscribe(address => {
-        console.log(address.street);
         this._address = {
           id: this._passenger.addressId,
           street: address.street,
