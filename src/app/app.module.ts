@@ -30,6 +30,7 @@ import { MyTripComponent } from './pages/my-trip/my-trip.component';
 import { MyTripDetailsComponent } from './pages/my-trip/my-trip-details/my-trip-details.component';
 import { MyBookingComponent } from './pages/my-booking/my-booking.component';
 import { PopupNotHavePermissionComponent } from './addon/popup/popup-not-have-permission/popup-not-have-permission.component';
+import { CreateTripComponent } from './pages/create-trip/create-trip.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,8 @@ import { PopupNotHavePermissionComponent } from './addon/popup/popup-not-have-pe
     MyTripDetailsComponent,
     MyBookingComponent,
     PopupNotHavePermissionComponent
+    MyBookingComponent,
+    CreateTripComponent
   ],
   imports: [
     HttpClientModule,
