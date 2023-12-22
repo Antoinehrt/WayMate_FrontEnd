@@ -6,6 +6,9 @@ import {DtoInputAddress} from "./dtos/dto-input-address";
 import {DtoInputDriver} from "./dtos/dto-input-driver";
 import {AuthenticationService} from "../../utils/authentication/authentication.service";
 import {DtoOutputUser} from "../my-trip/dtos/dto-output-user";
+import {PopupNotConnectedComponent} from "../../addon/popup/popup-not-connected/popup-not-connected.component";
+import {MatDialog} from "@angular/material/dialog";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-my-booking',
@@ -17,11 +20,19 @@ export class MyBookingComponent implements OnInit {
   groupedBooking: any[] = [];
   filteredBooking: any[] = [];
 
-  constructor(private _authService: AuthenticationService, private _myBookingService: MyBookingService) {
+  constructor(private _authService: AuthenticationService, private _myBookingService: MyBookingService, private _dialog: MatDialog, private _router: Router) {
   }
 
+
   ngOnInit(): void {
-    this.getUsernameToken();
+    this._authService.isConnected().subscribe({
+      next: () => {
+        this.getUsernameToken();
+      }, error: () => {
+        this._dialog.open(PopupNotConnectedComponent);
+        this._router.navigate(['/home']);
+    }
+  });
   }
 
   getUsernameToken(){

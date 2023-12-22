@@ -7,6 +7,8 @@ import {DtoInputDriver} from "./dtos/dto-input-driver";
 import {DtoInputCar} from "./dtos/dto-input-car";
 import {DtoOutputCreateBooking} from "./dtos/dto-output-create-booking";
 import {AuthenticationService} from "../../utils/authentication/authentication.service";
+import {MatDialog} from "@angular/material/dialog";
+import {PopupNotConnectedComponent} from "../../addon/popup/popup-not-connected/popup-not-connected.component";
 
 @Component({
   selector: 'app-booking',
@@ -23,14 +25,22 @@ export class BookingComponent implements OnInit {
   booking!: DtoOutputCreateBooking;
   idPass!: number;
 
-  constructor(private _route: ActivatedRoute, private _bookingService: BookingService, private _router: Router, private _athenticationService: AuthenticationService) {
+  constructor(private _route: ActivatedRoute, private _bookingService: BookingService, private _router: Router, private _athenticationService: AuthenticationService, private _dialog: MatDialog) {
   }
 
   ngOnInit() {
-    this._route.paramMap.subscribe(params => {
-      this.tripId = parseInt(<string>params.get('id'), 10);
-      this.getTripById(this.tripId);
+    this._athenticationService.isConnected().subscribe({
+      next: () => {
+        this._route.paramMap.subscribe(params => {
+          this.tripId = parseInt(<string>params.get('id'), 10);
+          this.getTripById(this.tripId);
+        });
+      }, error: () => {
+        this._dialog.open(PopupNotConnectedComponent);
+        this._router.navigate(['/home']);
+      }
     });
+
   }
 
   getTripById(id:number){
@@ -103,11 +113,11 @@ export class BookingComponent implements OnInit {
             }
             console.log(this.booking);
             this._bookingService.createBooking(this.booking).subscribe(
-              response => {
+              () => {
                 console.log("Booking create");
                 this._router.navigate(['/home']);
               },
-              error => {
+              () => {
                 console.error('Error creating booking');
               }
             );

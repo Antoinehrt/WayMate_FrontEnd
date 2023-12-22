@@ -9,8 +9,7 @@ import {Router} from "@angular/router";
 })
 export class PopupNotConnectedComponent {
 
-  constructor(private _ref: MatDialogRef<PopupNotConnectedComponent>, private _route: Router) {
-  }
+  constructor(private _ref: MatDialogRef<PopupNotConnectedComponent>, private _route: Router) {}
 
   login(){
     this._route.navigate(['/connection']);
