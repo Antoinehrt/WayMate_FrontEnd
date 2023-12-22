@@ -37,6 +37,15 @@
           </ng-template>
         </td>
       </ng-container>
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header><i class="fa-solid fa-city"></i></th>
+        <td mat-cell *matCellDef="let address">
+          <ng-container *ngIf="!address.editMode; else editMode">{{address.country}}</ng-container>
+          <ng-template #editMode>
+            <input type="text" class="normal" [(ngModel)]="address.country">
+          </ng-template>
+        </td>
+      </ng-container>
       <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef><i class="fa-solid fa-pen"></i></th>
         <td mat-cell *matCellDef="let user">

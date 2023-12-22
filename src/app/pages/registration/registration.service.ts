@@ -39,8 +39,8 @@ export class RegistrationService {
   fetchByUsername(username:string): Observable<DtoOutputRegistration> {
     return this._httpClient.get<DtoOutputRegistration>(`${RegistrationService._URL_API_REGISTRATION_USERNAME}/${username}`);
   }
-  fetchByAddress(street:string, postalCode:string, city:string, number:string): Observable<DtoOutputFetchByAddress> {
-    return this._httpClient.get<DtoOutputFetchByAddress>(`${RegistrationService._URL_API_REGISTRATION_ADDRESS}?street=${street}&postalCode=${postalCode}&city=${city}&number=${number}`);
+  fetchByAddress(street:string, postalCode:string, city:string, number:string, country: string): Observable<DtoOutputFetchByAddress> {
+    return this._httpClient.get<DtoOutputFetchByAddress>(`${RegistrationService._URL_API_REGISTRATION_ADDRESS}?street=${street}&postalCode=${postalCode}&city=${city}&number=${number}&country=${country}`);
   }
 
   registerUser(dto: DtoOutputCreateUser): Observable<DtoInputUser>{
