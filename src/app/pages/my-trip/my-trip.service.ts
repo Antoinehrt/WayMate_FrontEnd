@@ -5,6 +5,7 @@ import {environment} from "../../../environments/environment";
 import {forkJoin, map, Observable} from "rxjs";
 import {DtoInputTrip} from "../trip-search/dtos/dto-input-trip";
 import {DtoInputAddress} from "../trip-search/dtos/dto-input-address";
+import {DtoOutputTrip} from "../admin-panel/dtos/dto-output-trip";
 
 @Injectable({
   providedIn: 'root'
@@ -43,5 +44,9 @@ export class MyTripService {
 
   getAddress(id:number): Observable<DtoInputAddress> {
     return this._httpClient.get<DtoInputAddress>(`${MyTripService._URL_API_ADDRESS}/${id}`);
+  }
+
+  updateTrip(dto:DtoOutputTrip): Observable<DtoInputTrip> {
+    return this._httpClient.put<DtoInputTrip>(MyTripService._URL_API_TRIP +"/"+ dto.id, dto);
   }
 }
