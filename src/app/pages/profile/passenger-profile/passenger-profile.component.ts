@@ -183,8 +183,8 @@ export class PassengerProfileComponent {
                               brand: this.form.get('carForm.brand')?.value,
                               model: this.form.get('carForm.model')?.value,
                               nbSeats: this.form.get('carForm.nbSeats')?.value,
-                              fuelType: this.form.get('carForm.fuelType')?.value,
-                              carType: this.form.get('carForm.carType')?.value,
+                              fuelType: parseInt(this.form.get('carForm.fuelType')?.value, 10),
+                              carType: parseInt(this.form.get('carForm.carType')?.value, 10),
                               color: this.form.get('carForm.color')?.value
                             });
                             this.updateUserType(this.form.get('carForm.numberPlate')?.value);
