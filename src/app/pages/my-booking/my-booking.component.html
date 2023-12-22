@@ -5,6 +5,7 @@
       <th>#</th>
       <th>Booking date</th>
       <th>Trip date</th>
+      <th>Country</th>
       <th>Departure</th>
       <th>Destination</th>
       <th>Driver</th>
@@ -16,10 +17,11 @@
       <td>{{i+1}}</td>
       <td>{{ trips.booking.date | date:'dd/MM/yyyy' }}</td>
       <td>{{ trips.trip.date | date:'dd/MM/yyyy' }}</td>
+      <td>{{ trips.departureAddress.country }}</td>
       <td>{{ trips.departureAddress.city }}</td>
       <td>{{ trips.destinationAddress.city }}</td>
       <td>{{ trips.driver.firstName}} {{ trips.driver.lastName}}</td>
-      <td>{{ trips.driver.carPlate}}}</td>
+      <td>{{ trips.driver.carPlate}}</td>
     </tr>
     </tbody>
   </table>
