@@ -32,7 +32,8 @@ export class RegistrationComponent {
       street:['', [Validators.required]],
       postalCode:['', [Validators.required]],
       city:['', [Validators.required]],
-      number:['', [Validators.required]]
+      number: ['', [Validators.required]],
+      country:['', [Validators.required]]
     })
   });
 
@@ -66,7 +67,8 @@ export class RegistrationComponent {
                     this._registrationService.fetchByAddress(this.form.get('addressForm.street')?.value,
                       this.form.get('addressForm.postalCode')?.value,
                       this.form.get('addressForm.city')?.value,
-                      this.form.get('addressForm.number')?.value).subscribe(
+                      this.form.get('addressForm.number')?.value,
+                      this.form.get('addressForm.country')?.value).subscribe(
                       (id) => {
                         if(id.id !=0 && id.id != null){
                           registrationData.addressId = id.id;
@@ -159,7 +161,8 @@ export class RegistrationComponent {
         street: "Rue de la test",
         postalCode: "645",
         city: "Test",
-        number: "665"
+        number: "665",
+        country: "Belgium"
       }
     });
   }

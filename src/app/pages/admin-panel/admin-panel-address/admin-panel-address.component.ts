@@ -14,7 +14,7 @@ import {MatSort,  Sort} from "@angular/material/sort";
 })
 export class AdminPanelAddressComponent implements AfterViewInit {
   address: DtoInputAddress[] = [];
-  displayedColumns: string[] = ['id', 'street', 'number', 'postalCode', 'city', 'edit'];
+  displayedColumns: string[] = ['id', 'street', 'number', 'postalCode', 'city', 'country' , 'edit'];
   dataSource = new MatTableDataSource <DtoInputAddress>(this.address);
 
   constructor(private _adminPanel: AdminPanelService, private _liveAnnouncer: LiveAnnouncer) {
@@ -44,7 +44,6 @@ export class AdminPanelAddressComponent implements AfterViewInit {
   }
   enableEditMode(address: any): void {
     address.editMode = true;
-
   }
   disableEditMode(address: any): void {
     address.editMode = false;
@@ -52,7 +51,7 @@ export class AdminPanelAddressComponent implements AfterViewInit {
   }
   updateAddress(address:any){
     this._adminPanel.updateAddress(address).subscribe(
-      response => {
+      () => {
         this.getAllAddress();
       }
     );

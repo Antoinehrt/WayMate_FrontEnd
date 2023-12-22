@@ -41,7 +41,8 @@ export class PassengerProfileComponent {
       street: ['', [Validators.required]],
       postalCode: ['', [Validators.required]],
       city: ['', [Validators.required]],
-      number: ['', [Validators.required]]
+      number: ['', [Validators.required]],
+      country: ['', [Validators.required]]
     }),
     carForm: this._fb.group({
       numberPlate: ['', [Validators.required]],
@@ -84,7 +85,8 @@ export class PassengerProfileComponent {
             street: address.street,
             postalCode: address.postalCode,
             city: address.city,
-            number: address.number
+            number: address.number,
+            country: address.country
           }
           this.form.setValue({
             passengerForm: {
@@ -102,6 +104,7 @@ export class PassengerProfileComponent {
               postalCode: this._address.postalCode,
               city: this._address.city,
               number: this._address.number,
+              country: this._address.country
             },
             carForm: {
               numberPlate: 'Number plate',
@@ -144,7 +147,8 @@ export class PassengerProfileComponent {
                     addressData.street,
                     addressData.postalCode,
                     addressData.city,
-                    addressData.number
+                    addressData.number,
+                    addressData.country
                   ).subscribe(
                     (id) => {
                       if (id.id !== 0 && id.id !== null) {
@@ -157,7 +161,8 @@ export class PassengerProfileComponent {
                           street: addressData.street,
                           postalCode: addressData.postalCode,
                           city: addressData.city,
-                          number: addressData.number
+                          number: addressData.number,
+                          country: addressData.country
                         };
                         this._registrationService.insertAddress(dtoAddress).subscribe(
                           (addressId) => {
@@ -175,10 +180,10 @@ export class PassengerProfileComponent {
                           (response) => {
                             this.updateUserType(response.numberPlate);
                           },
-                          error => {
+                          () => {
                             console.log("if false");
                             this.errorPlate = false;
-                            this.createCar( {
+                            this.createCar({
                               numberPlate: this.form.get('carForm.numberPlate')?.value,
                               brand: this.form.get('carForm.brand')?.value,
                               model: this.form.get('carForm.model')?.value,
@@ -268,7 +273,8 @@ export class PassengerProfileComponent {
           street: address.street,
           postalCode: address.postalCode,
           city: address.city,
-          number: address.number
+          number: address.number,
+          country: address.country
         };
       });
     }

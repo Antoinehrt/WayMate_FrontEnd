@@ -4,4 +4,5 @@ export interface DtoOutputAddress {
   postalCode: string;
   city: string;
   number: string;
+  country: string;
 }

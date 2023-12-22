@@ -40,7 +40,8 @@ export class DriverProfileComponent {
       street: ['', [Validators.required]],
       postalCode: ['', [Validators.required]],
       city: ['', [Validators.required]],
-      number: ['', [Validators.required]]
+      number: ['', [Validators.required]],
+      country: ['', [Validators.required]]
     }),
     carForm: this._fb.group({
       numberPlate: ['', [Validators.required]],
@@ -84,7 +85,8 @@ export class DriverProfileComponent {
             street: address.street,
             postalCode: address.postalCode,
             city: address.city,
-            number: address.number
+            number: address.number,
+            country: address.country
           }
           this._profileService.getCarById(user.carPlate).subscribe(car => {
             this._car = {
@@ -112,6 +114,7 @@ export class DriverProfileComponent {
                 postalCode: this._address.postalCode,
                 city: this._address.city,
                 number: this._address.number,
+                country: this._address.country
               },
               carForm: {
                 numberPlate: this._car.numberPlate,
@@ -154,7 +157,8 @@ export class DriverProfileComponent {
                     addressData.street,
                     addressData.postalCode,
                     addressData.city,
-                    addressData.number
+                    addressData.number,
+                    addressData.country
                   ).subscribe(
                     (id) => {
                       if (id.id !== 0 && id.id !== null) {
@@ -167,7 +171,8 @@ export class DriverProfileComponent {
                           street: addressData.street,
                           postalCode: addressData.postalCode,
                           city: addressData.city,
-                          number: addressData.number
+                          number: addressData.number,
+                          country: addressData.country
                         };
                         this._registrationService.insertAddress(dtoAddress).subscribe(
                           (addressId) => {
@@ -234,7 +239,8 @@ export class DriverProfileComponent {
           street: address.street,
           postalCode: address.postalCode,
           city: address.city,
-          number: address.number
+          number: address.number,
+          country: address.country
         };
       });
     }
