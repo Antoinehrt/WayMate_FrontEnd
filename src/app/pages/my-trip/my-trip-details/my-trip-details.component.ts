@@ -1,9 +1,9 @@
 import {booleanAttribute, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {DtoInputTrip} from "../../booking/dtos/dto-input-trip";
 import {MyTripService} from "../my-trip.service";
-import {DtoInputAddress} from "../../booking/dtos/dto-input-address";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {DtoInputTrip} from "../dtos/dto-input-trip";
+import {DtoInputAddress} from "../dtos/dto-input-address";
 
 @Component({
   selector: 'app-my-trip-details',
@@ -33,7 +33,6 @@ export class MyTripDetailsComponent implements OnInit{
     airConditioning:['', [Validators.required]],
     driverMessage:['',[Validators.required]]
   })
-
 
   getTripById(id:number){
     this._myTripService.getTrip(id).subscribe(

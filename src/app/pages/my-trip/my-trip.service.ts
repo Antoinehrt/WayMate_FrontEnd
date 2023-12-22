@@ -3,9 +3,9 @@ import {DtoOutputUser} from "./dtos/dto-output-user";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {forkJoin, map, Observable} from "rxjs";
-import {DtoInputTrip} from "../trip-search/dtos/dto-input-trip";
-import {DtoInputAddress} from "../trip-search/dtos/dto-input-address";
-import {DtoOutputTrip} from "../admin-panel/dtos/dto-output-trip";
+import {DtoInputTrip} from "./dtos/dto-input-trip";
+import {DtoInputAddress} from "./dtos/dto-input-address";
+import {DtoOutputTrip} from "./dtos/dto-output-trip";
 
 @Injectable({
   providedIn: 'root'
