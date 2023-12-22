@@ -55,7 +55,7 @@ export class DriverProfileComponent {
 
   constructor(private _profileService: ProfileService, private _authService: AuthenticationService, private _fb: FormBuilder,
               private _registrationService: RegistrationService) {
-    this.ImagePath = "assets/img/PassengerIcon.png";
+    this.ImagePath = "assets/img/DriverIcon.png";
     const currentDate = new Date();
     const maxDate = new Date(currentDate.getFullYear() - 14, currentDate.getMonth(), currentDate.getDate());
     this.maxBirthdate = maxDate.toISOString().split('T')[0];
