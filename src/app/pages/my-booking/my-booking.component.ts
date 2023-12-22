@@ -26,9 +26,9 @@ export class MyBookingComponent implements OnInit {
 
   ngOnInit(): void {
     this._authService.isConnected().subscribe({
-      next: (value) => {
+      next: () => {
         this.getUsernameToken();
-      }, error: (err) => {
+      }, error: () => {
         this._dialog.open(PopupNotConnectedComponent);
         this._router.navigate(['/home']);
     }

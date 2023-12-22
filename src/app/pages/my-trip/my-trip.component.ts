@@ -35,7 +35,7 @@ export class MyTripComponent implements OnInit {
             this._router.navigate(['/home']);
           }
         });
-      }, error: (err) => {
+      }, error: () => {
         this._dialog.open(PopupNotConnectedComponent);
         this._router.navigate(['/home']);
       }

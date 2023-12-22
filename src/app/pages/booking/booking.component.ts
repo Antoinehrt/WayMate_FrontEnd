@@ -30,12 +30,12 @@ export class BookingComponent implements OnInit {
 
   ngOnInit() {
     this._athenticationService.isConnected().subscribe({
-      next: (value) => {
+      next: () => {
         this._route.paramMap.subscribe(params => {
           this.tripId = parseInt(<string>params.get('id'), 10);
           this.getTripById(this.tripId);
         });
-      }, error: (err) => {
+      }, error: () => {
         this._dialog.open(PopupNotConnectedComponent);
         this._router.navigate(['/home']);
       }
@@ -113,11 +113,11 @@ export class BookingComponent implements OnInit {
             }
             console.log(this.booking);
             this._bookingService.createBooking(this.booking).subscribe(
-              response => {
+              () => {
                 console.log("Booking create");
                 this._router.navigate(['/home']);
               },
-              error => {
+              () => {
                 console.error('Error creating booking');
               }
             );
