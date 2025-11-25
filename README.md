@@ -1,5 +1,9 @@
 # WayMate — Front-end
 
+<div align="center">
+  <img src="src/assets/img/waymate_HomePage.jpg" alt="WayMate Illustration" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">
+</div>
+
 **WayMate is the front-end for a final-year project of a carpooling (ridesharing) web application. This repository implements the user interface and client-side logic for users to discover rides, create trip offers, manage bookings, and interact with the carpooling platform.**
 
 Table of contents
@@ -156,7 +160,6 @@ ng build --configuration production
 ```
 
 Build artifacts will be stored in the `dist/` directory.
-
 
 ## Pages Overview
 
